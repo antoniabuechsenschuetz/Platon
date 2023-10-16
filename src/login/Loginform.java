@@ -4,13 +4,12 @@ import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 public class Loginform extends javax.swing.JFrame {
 
-    Connection c = null;
-    ResultSet rs = null;
-    PreparedStatement pst = null;
+    Connection connection = null;
+    ResultSet resultSet = null;
+    PreparedStatement preparedStatement = null;
 
     public Loginform() {
         initComponents();
