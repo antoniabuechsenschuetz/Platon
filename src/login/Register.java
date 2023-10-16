@@ -14,7 +14,7 @@ import login.DB;
 
 public class Register extends javax.swing.JFrame {
 
-     Connection c =null;
+     Connection c = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
    
