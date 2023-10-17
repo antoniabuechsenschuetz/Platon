@@ -131,6 +131,5 @@ target/
 *.backup
 *.log
 *.lck
-*.properties
 *.script
 *.tmp
