@@ -14,10 +14,10 @@ import login.DB;
 
 public class Register extends javax.swing.JFrame {
 
-     Connection c = null;
+    Connection c = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
-   
+    
     public Register() {
         initComponents();
     }
@@ -129,7 +129,7 @@ public class Register extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(remail, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rpass, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
@@ -157,41 +157,33 @@ public class Register extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-    // registrieren Button
-    DB db = new DB();
-    Connection c = db.mycon();
+    String name = rname.getText();
+    String username = rusername.getText();
+    String email = remail.getText();
+    String password = rpass.getText();
     
-    String nam = rname.getText();
-    String u_nam = rusername.getText();
-    String E_mail = remail.getText();
-    String Pas = rpass.getText();
-    
-      
-    try {
-        // PreparedStatement für sqlbfrage
-        String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
-        PreparedStatement pst = c.prepareStatement(sql);
-        pst.setString(1, nam);
-        pst.setString(2, u_nam);
-        pst.setString(3, E_mail);
-        pst.setString(4, Pas);
-        
-        int result = pst.executeUpdate();
-        
-        if (result > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Dein Account wurde erstellt.");
-            
-            pst.close();
-            c.close();
-            
-            // Öffnen Sie das neue Fenster
-            new Loginform().setVisible(true);
-            this.setVisible(false);
+    if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Bitte füllen Sie alle Felder aus.");
+        } else {
+        DB db = new DB();
+            // Registrieren aufrufen
+            //Usercontroller userController = Usercontroller.getInstance();
+            //boolean success = userController.register(name, username, email, password);
+            boolean success = db.configurateUser(name, username, email, password);
+            if (success) { //erfolgreiche Registrierung
+                JOptionPane.showMessageDialog(rootPane, "Dein Account wurde erstellt.");
+                rname.setText("");
+                rusername.setText("");
+                remail.setText("");
+                rpass.setText("");
+                // Weiterleitung zur Login-Seite
+                new Loginform().setVisible(true);
+                this.setVisible(false);
+            } else {
+                // Fehler beim Erstellen des Kontos
+                JOptionPane.showMessageDialog(rootPane, "Fehler beim Erstellen des Accounts");
+            }
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(rootPane, "Fehler beim Erstellen des Accounts");
-    }
     
       rname.setText("");
       rusername.setText("");

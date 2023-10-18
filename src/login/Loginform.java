@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 public class Loginform extends javax.swing.JFrame {
 
     Connection connection = null;
-    ResultSet resultSet = null;
+    ResultSet resultSet = null; //KANN DAS NICHT WEG!!!!!!!!
     PreparedStatement preparedStatement = null;
 
     public Loginform() {
@@ -144,15 +144,15 @@ public class Loginform extends javax.swing.JFrame {
 
     private void loginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbtnActionPerformed
 
-        String un = lname.getText();
-        String ps = lpass.getText();
+        String username = lname.getText();
+        String password = lpass.getText();
 
-        if (Usercontroller.getInstance().login(un, ps)) {
-            
-
+        if (Usercontroller.getInstance().login(username, password)) {
             // Öffnen Sie das neue Fenster
             this.setVisible(false);
-            new Startseite().setVisible(true);
+            Startseite startseite = new Startseite();
+            startseite.setVisible(true);
+            startseite.setLoggedInUsername(Usercontroller.getInstance().getLoggedInUser().getUsername());
         } else {
             JOptionPane.showMessageDialog(rootPane, "Logindaten sind falsch");
         }

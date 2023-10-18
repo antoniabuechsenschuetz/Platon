@@ -17,6 +17,10 @@ public class Startseite extends javax.swing.JFrame {
         initComponents();
     }
 
+    public void setLoggedInUsername(String username) {
+        jLabel1.setText("Willkommen mein Freund, " + username + "!");
+    }
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
