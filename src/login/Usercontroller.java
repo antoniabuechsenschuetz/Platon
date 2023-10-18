@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Usercontroller {
-
+    
+    private User loggedInUser;
     private static Usercontroller instance = null;
 
     private Usercontroller() {
@@ -21,6 +22,7 @@ public class Usercontroller {
     }
 
     public boolean login(String username, String password) {
+        boolean result = false;
         try {
             // Erstellen Sie eine Verbindung zur Datenbank
 
@@ -35,12 +37,9 @@ public class Usercontroller {
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) { // Wenn wahr dann das //hier:Nutzerobjekt
-                rs.close();
-                pst.close();
-                c.close();
-
-                // Öffnet das neue Fenster
-                return true;
+              loggedInUser = new User(rs.getString("user_name"),rs.getString("name"), rs.getString("email"), rs.getString("password"));
+              result = true;
+                     
             }
 
             // schließt die db 
@@ -50,8 +49,17 @@ public class Usercontroller {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return result;
     }
+    
+    public void setLoggedInUser(User user) {
+        loggedInUser = user;
+    }
+
+    public User getLoggedInUser() {
+        return loggedInUser;
+    }
+    
     
     //Registrieren GUI
     //merken WER angemeldet hat

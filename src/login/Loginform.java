@@ -148,11 +148,12 @@ public class Loginform extends javax.swing.JFrame {
         String ps = lpass.getText();
 
         if (Usercontroller.getInstance().login(un, ps)) {
+            
 
-            this.setVisible(false); // Schaltet das Loginformular unsichtbar
+            // Öffnen Sie das neue Fenster
+            this.setVisible(false);
             new Startseite().setVisible(true);
-
-        } else { // Wenn falsch, dann das
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Logindaten sind falsch");
         }
 

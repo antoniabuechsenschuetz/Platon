@@ -14,6 +14,14 @@ public class User {
     private String standort; 
     public String beschreibung;
     public String bild;
+    private String password;
+    
+    public User (String username, String name, String email, String password){
+         this.username = username;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
     
     // Konstruktor
     public User(String username, String name, String email, int alter, String standort, String beschreibung, String bild) {
