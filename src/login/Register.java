@@ -10,15 +10,17 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JDialog;
 import login.DB;
 
-public class Register extends javax.swing.JFrame {
+public class Register extends javax.swing.JDialog {
 
     Connection c = null;
     ResultSet rs = null;
     PreparedStatement pst = null;
     
-    public Register() {
+    public Register(JDialog parent) {
+        super(parent, true);
         initComponents();
     }
 
@@ -39,7 +41,7 @@ public class Register extends javax.swing.JFrame {
         remail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(199, 197, 174));
 
@@ -176,8 +178,7 @@ public class Register extends javax.swing.JFrame {
                 rusername.setText("");
                 remail.setText("");
                 rpass.setText("");
-                // Weiterleitung zur Login-Seite
-                new Loginform().setVisible(true);
+              
                 this.setVisible(false);
             } else {
                 // Fehler beim Erstellen des Kontos
@@ -194,41 +195,9 @@ public class Register extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // Login von der Registrieren Seite
         
-        new Loginform().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Loginform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Loginform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Loginform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Loginform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Loginform().setVisible(true);
-            }
-        });
-    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

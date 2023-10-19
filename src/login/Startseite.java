@@ -20,7 +20,7 @@ public class Startseite extends javax.swing.JFrame {
     public void setLoggedInUsername(String username) {
         jLabel1.setText("Willkommen mein Freund, " + username + "!");
     }
-      
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,7 +87,14 @@ public class Startseite extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Startseite().setVisible(true);
+                Startseite start = new Startseite();
+                new Loginform(start).setVisible(true);
+                if (Usercontroller.getInstance().getLoggedInUser() != null) {
+                    start.setLoggedInUsername(Usercontroller.getInstance().getLoggedInUser().getUsername());
+                    start.setVisible(true);
+                }else{
+                    System.exit(0);
+                }
             }
         });
     }
