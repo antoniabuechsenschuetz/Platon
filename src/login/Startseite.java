@@ -45,10 +45,10 @@ public class Startseite extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Papyrus", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(166, 162, 143));
-        jLabel1.setText("Startseite");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Papyrus", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setText("Willkommen mein Freund, %s!");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 570, 30));
 
         jDesktopPane1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -91,6 +91,8 @@ public class Startseite extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 350, -1));
 
         jScrollPane1.setBackground(new java.awt.Color(156, 200, 200));
+
+        jSeparator1.setBackground(new java.awt.Color(186, 212, 212));
         jScrollPane1.setViewportView(jSeparator1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 580, 450));
