@@ -111,7 +111,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/testtest/NetBeansProjects/PlatonGit/bilder/Premium Vector | Seamless pattern with antique statue of man column olive vase.JPEG"/>
+          <Image iconType="2" name="/Users/testtest/NetBeansProjects/PlatonGit/bilder/startseiteLeiste.JPEG"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel2"/>
       </Properties>
@@ -124,7 +124,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="/Users/testtest/NetBeansProjects/PlatonGit/bilder/Premium Vector | Seamless pattern with antique statue of man column olive vase.JPEG"/>
+          <Image iconType="2" name="/Users/testtest/NetBeansProjects/PlatonGit/bilder/startseiteLeiste.JPEG"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel3"/>
       </Properties>

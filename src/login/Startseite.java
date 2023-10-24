@@ -82,11 +82,11 @@ public class Startseite extends javax.swing.JFrame {
 
         getContentPane().add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 580, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/testtest/NetBeansProjects/PlatonGit/bilder/Premium Vector | Seamless pattern with antique statue of man column olive vase.JPEG")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/testtest/NetBeansProjects/PlatonGit/bilder/startseiteLeiste.JPEG")); // NOI18N
         jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 338, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/testtest/NetBeansProjects/PlatonGit/bilder/Premium Vector | Seamless pattern with antique statue of man column olive vase.JPEG")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/testtest/NetBeansProjects/PlatonGit/bilder/startseiteLeiste.JPEG")); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 0, 350, -1));
 
