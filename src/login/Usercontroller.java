@@ -21,34 +21,6 @@ public class Usercontroller {
         return instance;
     }
 
-    public boolean register(String name, String username, String email, String password) {
-
-        try {
-            DB db = new DB();
-            Connection c = db.mycon();
-            String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
-            java.sql.PreparedStatement pst = c.prepareStatement(sql);
-            pst.setString(1, name);
-            pst.setString(2, username);
-            pst.setString(3, email);
-            pst.setString(4, password);
-
-            int result = pst.executeUpdate();
-
-            pst.close();
-            c.close();
-
-            if (result > 0) {
-                return true; //erfolgreich registriert
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Datenbankfehler aufgetreten, bitte probiere es später erneut.");
-
-        }
-        return false;
-    }
-
     public boolean login(String username, String password) {
         boolean result = false;
         try {
