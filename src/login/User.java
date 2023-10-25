@@ -7,6 +7,7 @@ package login;
  */
 public class User {
     
+    private int id;
     private String username;
     private String name;
     private String email;
@@ -61,6 +62,15 @@ public class User {
     
     public String bild(){
         return bild;
+    }
+      public String getPassword() {
+        return password;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int newId) {
+        this.id = newId;
     }
 }
 
