@@ -8,14 +8,14 @@ import javax.swing.JOptionPane;
 public class DB {
 
     public Connection mycon() {
-        Connection conn = null;
+        Connection connection = null;
         try {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:file:data/Platon_db", "SA", "");
+            connection = DriverManager.getConnection("jdbc:hsqldb:file:data/Platon_db", "SA", "");
         } catch (ClassNotFoundException | SQLException exc) {
             exc.printStackTrace();
         }
-        return conn;
+        return connection;
     }
 
     public static void main(String[] args) throws SQLException {
@@ -25,9 +25,9 @@ public class DB {
     }
 
     public boolean configurateUser(String name, String username, String email, String password) {
-        try (Connection conn = mycon()) {
+        try (Connection connection = mycon()) {
             String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
-            try (java.sql.PreparedStatement pst = conn.prepareStatement(sql)) {
+            try (java.sql.PreparedStatement pst = connection.prepareStatement(sql)) {
                 pst.setString(1, name);
                 pst.setString(2, username);
                 pst.setString(3, email);
