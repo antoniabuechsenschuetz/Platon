@@ -10,7 +10,7 @@ public class Usercontroller {
     private User loggedInUser;
     private static Usercontroller instance = null;
 
-    private Usercontroller() { //stellt sicher, dass nur eine Instanz
+    private Usercontroller() { //stellt sicher, dass nur eine Instanz existiert
 
     }
 
@@ -25,18 +25,18 @@ public class Usercontroller {
 
         try {
             DB db = new DB();
-            Connection c = db.mycon();
+            Connection connection = db.mycon();
             String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
-            java.sql.PreparedStatement pst = c.prepareStatement(sql);
-            pst.setString(1, name);
-            pst.setString(2, username);
-            pst.setString(3, email);
-            pst.setString(4, password);
+            java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, password);
 
-            int result = pst.executeUpdate();
+            int result = preparedStatement.executeUpdate();
 
-            pst.close();
-            c.close();
+            preparedStatement.close();
+            connection.close();
 
             if (result > 0) {
                 return true; //erfolgreich registriert
@@ -55,25 +55,25 @@ public class Usercontroller {
             // Erstellen Sie eine Verbindung zur Datenbank
 
             DB db = new DB();
-            Connection c = db.mycon();
+            Connection connection = db.mycon();
 
             String sql = "SELECT * FROM Login WHERE User_Name=? AND Password=?";
-            java.sql.PreparedStatement pst = c.prepareStatement(sql);
-            pst.setString(1, username); // Benutzername
-            pst.setString(2, password); // Passwort
+            java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, username); // Benutzername
+            preparedStatement.setString(2, password); // Passwort
 
-            ResultSet rs = pst.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (rs.next()) { // Wenn wahr dann das //hier:Nutzerobjekt
-                loggedInUser = new User(rs.getString("user_name"), rs.getString("name"), rs.getString("email"), rs.getString("password"));
+            if (resultSet.next()) { // Wenn wahr dann das //hier:Nutzerobjekt
+                loggedInUser = new User(resultSet.getString("user_name"), resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"));
                 result = true;
 
             }
 
             // schließt die db 
-            rs.close();
-            pst.close();
-            c.close();
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Datenbankfehler aufgetreten, bitte probiere es später erneut.");

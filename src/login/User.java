@@ -1,4 +1,3 @@
-
 package login;
 
 /**
@@ -10,14 +9,14 @@ public class User {
     private String username;
     private String name;
     private String email;
-    private int alter; 
-    private String standort; 
-    public String beschreibung;
-    public String bild;
+    private int age; 
+    private String location; 
+    public String description;
+    public String picture;
     private String password;
     
     public User (String username, String name, String email, String password){
-         this.username = username;
+        this.username = username;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -28,10 +27,10 @@ public class User {
         this.username = username;
         this.name = name;
         this.email = email;
-        this.alter = alter; 
-        this.standort = standort;
-        this.beschreibung = beschreibung;
-        this.bild = bild;
+        this.age = alter; 
+        this.location = standort;
+        this.description = beschreibung;
+        this.picture = bild;
     }
 
     // Getter-Methoden
@@ -48,19 +47,19 @@ public class User {
     }
     
     public int getAlter(){
-        return alter;
+        return age;
     }
     
     public String standort(){
-        return standort;
+        return location;
     }
     
     public String beschreibung(){
-        return beschreibung;
+        return description;
     }
     
     public String bild(){
-        return bild;
+        return picture;
     }
 }
 
