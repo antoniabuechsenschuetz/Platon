@@ -30,6 +30,7 @@ public class Startseite extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -43,9 +44,14 @@ public class Startseite extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel4.setFont(new java.awt.Font("Papyrus", 0, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("PLATON");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
+
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Papyrus", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setFont(new java.awt.Font("Krungthep", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Name");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 113, 30));
 
@@ -60,14 +66,12 @@ public class Startseite extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(37, 81, 81));
 
-        jButton1.setBackground(new java.awt.Color(0, 102, 102));
+        jButton1.setBackground(new java.awt.Color(148, 186, 186));
         jButton1.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Profil");
 
-        jButton2.setBackground(new java.awt.Color(0, 102, 102));
         jButton2.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setForeground(new java.awt.Color(0, 102, 102));
         jButton2.setText("Feed");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,9 +79,8 @@ public class Startseite extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 102, 102));
+        jButton3.setBackground(new java.awt.Color(156, 193, 193));
         jButton3.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Gruppen");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,9 +88,8 @@ public class Startseite extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 102, 102));
+        jButton4.setBackground(new java.awt.Color(165, 200, 200));
         jButton4.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Freunde");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +102,7 @@ public class Startseite extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,17 +110,17 @@ public class Startseite extends javax.swing.JFrame {
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(jButton4)
                     .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButton2)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -126,13 +128,10 @@ public class Startseite extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -141,7 +140,7 @@ public class Startseite extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(512, Short.MAX_VALUE))
+                .addContainerGap(522, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 680));
@@ -211,6 +210,7 @@ public class Startseite extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
