@@ -52,9 +52,7 @@ public class Usercontroller {
     public boolean login(String username, String password) {
         boolean result = false;
         try {
-            // Erstellen Sie eine Verbindung zur Datenbank
-
-            DB db = new DB();
+            DB db = new DB(); //Verbindung zu DB WEG
             Connection connection = db.mycon();
 
             String sql = "SELECT * FROM Login WHERE User_Name=? AND Password=?";
@@ -88,4 +86,9 @@ public class Usercontroller {
     public User getLoggedInUser() {
         return loggedInUser;
     }
+    
+    searchUser {
+    //ausgeben aus Datenbank
+    //rausstreichen Freunde die bereits geaddet & sich selbst auch nicht
+}
 }

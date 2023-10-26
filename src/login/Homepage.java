@@ -3,6 +3,15 @@ package login;
 /**
  *
  * @author lisas
+ * freunde ausählen können aus freundeliste
+ * was passiert wenn man auf freunde klickt? Software sagen wer meine Freunde sind
+ * -> 1. add Freunde macht dialog auf, mit liste aller user (bis auf alle, die bereits meine freunde sind & man selbst)
+ * 2. alle Freunde die man bereits geaddet hat
+ * danach erst um feed kümmern
+ * im panelFreind wird suchfeld benötigt (Textfeld)
+ * provisorisch einen weiteren button "button", sobald man tippt & er sucht zu schwierig
+ * klicken auf suchen => dann erst, funktioniert mit präfix FR -> Franziska (soll merken neuer Buchstaben &
+ * direkt suchen noch zu schwierig)
  */
 public class Homepage extends javax.swing.JFrame {
     
@@ -26,13 +35,14 @@ public class Homepage extends javax.swing.JFrame {
         jLabelHeadline = new javax.swing.JLabel();
         jLabelUsername = new javax.swing.JLabel();
         jLabelLeftHeadliner = new javax.swing.JLabel();
-        jPanelBelowToolBar = new javax.swing.JPanel();
+        jPanelAll = new javax.swing.JPanel();
         jLabelRightHeadliner = new javax.swing.JLabel();
         jPanelFeed = new javax.swing.JPanel();
         jButtonProfile = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonFeed = new javax.swing.JButton();
         jButtonGroups = new javax.swing.JButton();
         jButtonFriends = new javax.swing.JButton();
+        jPanelBelowToolBar = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,7 +62,7 @@ public class Homepage extends javax.swing.JFrame {
         jLabelLeftHeadliner.setText("jLabel2");
         getContentPane().add(jLabelLeftHeadliner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 338, -1));
 
-        jPanelBelowToolBar.setBackground(new java.awt.Color(169, 199, 199));
+        jPanelAll.setBackground(new java.awt.Color(169, 199, 199));
 
         jLabelRightHeadliner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/Bilder/startseiteLeiste.JPEG"))); // NOI18N
         jLabelRightHeadliner.setText("jLabel3");
@@ -63,12 +73,12 @@ public class Homepage extends javax.swing.JFrame {
         jButtonProfile.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
         jButtonProfile.setText("Profil");
 
-        jButton2.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setText("Feed");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonFeed.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
+        jButtonFeed.setForeground(new java.awt.Color(0, 102, 102));
+        jButtonFeed.setText("Feed");
+        jButtonFeed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonFeedActionPerformed(evt);
             }
         });
 
@@ -98,7 +108,7 @@ public class Homepage extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jButtonProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonFeed, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonGroups, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -112,45 +122,57 @@ public class Homepage extends javax.swing.JFrame {
                 .addGroup(jPanelFeedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonFriends)
                     .addComponent(jButtonGroups)
-                    .addComponent(jButton2)
+                    .addComponent(jButtonFeed)
                     .addComponent(jButtonProfile))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanelBelowToolBarLayout = new javax.swing.GroupLayout(jPanelBelowToolBar);
-        jPanelBelowToolBar.setLayout(jPanelBelowToolBarLayout);
-        jPanelBelowToolBarLayout.setHorizontalGroup(
-            jPanelBelowToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanelBelowToolBar.setOpaque(false);
+
+        javax.swing.GroupLayout jPanelAllLayout = new javax.swing.GroupLayout(jPanelAll);
+        jPanelAll.setLayout(jPanelAllLayout);
+        jPanelAllLayout.setHorizontalGroup(
+            jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelFeed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBelowToolBarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelRightHeadliner, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelAllLayout.createSequentialGroup()
+                .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAllLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jLabelRightHeadliner))
+                    .addGroup(jPanelAllLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanelAllLayout.setVerticalGroup(
+            jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAllLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabelRightHeadliner)
+                .addGap(5, 5, 5)
+                .addComponent(jPanelFeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanelBelowToolBarLayout.setVerticalGroup(
-            jPanelBelowToolBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelBelowToolBarLayout.createSequentialGroup()
-                .addComponent(jLabelRightHeadliner)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelFeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(518, Short.MAX_VALUE))
-        );
 
-        getContentPane().add(jPanelBelowToolBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 680));
+        getContentPane().add(jPanelAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonFeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFeedActionPerformed
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonFeedActionPerformed
 
     private void jButtonGroupsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGroupsActionPerformed
         
     }//GEN-LAST:event_jButtonGroupsActionPerformed
 
     private void jButtonFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFriendsActionPerformed
-        
+        jPanelBelowToolBar.removeAll();
+        jPanelBelowToolBar.add(new PanelFriends());
+        pack();
     }//GEN-LAST:event_jButtonFriendsActionPerformed
 
     /**
@@ -197,7 +219,7 @@ public class Homepage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonFeed;
     private javax.swing.JButton jButtonFriends;
     private javax.swing.JButton jButtonGroups;
     private javax.swing.JButton jButtonProfile;
@@ -205,6 +227,7 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelLeftHeadliner;
     private javax.swing.JLabel jLabelRightHeadliner;
     private javax.swing.JLabel jLabelUsername;
+    private javax.swing.JPanel jPanelAll;
     private javax.swing.JPanel jPanelBelowToolBar;
     private javax.swing.JPanel jPanelFeed;
     // End of variables declaration//GEN-END:variables
