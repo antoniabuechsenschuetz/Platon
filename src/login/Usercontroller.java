@@ -21,34 +21,6 @@ public class Usercontroller {
         return instance;
     }
 
-    public boolean register(String name, String username, String email, String password) {
-
-        try {
-            DB db = new DB();
-            Connection connection = db.mycon();
-            String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
-            java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, username);
-            preparedStatement.setString(3, email);
-            preparedStatement.setString(4, password);
-
-            int result = preparedStatement.executeUpdate();
-
-            preparedStatement.close();
-            connection.close();
-
-            if (result > 0) {
-                return true; //erfolgreich registriert
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Datenbankfehler aufgetreten, bitte probiere es später erneut.");
-
-        }
-        return false;
-    }
-
     public boolean login(String username, String password) {
         boolean result = false;
         try {
@@ -87,8 +59,8 @@ public class Usercontroller {
         return loggedInUser;
     }
     
-    searchUser {
+   // searchUser {
     //ausgeben aus Datenbank
     //rausstreichen Freunde die bereits geaddet & sich selbst auch nicht
-}
+//}
 }
