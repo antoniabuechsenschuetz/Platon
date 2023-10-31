@@ -109,18 +109,22 @@ public class Register extends javax.swing.JDialog {
     if (name.isEmpty() || username.isEmpty() || email.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bitte füllen Sie alle Felder aus.");
         } else {
-        DB db = new DB();
-            boolean success = db.configurateUser(name, username, email, password);
-            if (success) { //erfolgreiche Registrierung
-                JOptionPane.showMessageDialog(rootPane, "Dein Account wurde erstellt.");
-                jLabelName.setText("");
-                jLabelUsername.setText("");
-                jLabelEmail.setText("");
-                jLabelPassword.setText("");
-                this.setVisible(false);
-            } else {
-                // Fehler beim Erstellen des Kontos
-                JOptionPane.showMessageDialog(rootPane, "Fehler beim Erstellen des Accounts");
+            DB db = DB.getInstance();
+            try {
+                boolean success = db.configurateUser(name, username, email, password);
+                if (success) { //erfolgreiche Registrierung
+                    JOptionPane.showMessageDialog(rootPane, "Dein Account wurde erstellt.");
+                    jLabelName.setText("");
+                    jLabelUsername.setText("");
+                    jLabelEmail.setText("");
+                    jLabelPassword.setText("");
+                    this.setVisible(false);
+                } else {
+                    // Fehler beim Erstellen des Kontos
+                    JOptionPane.showMessageDialog(rootPane, "Fehler beim Erstellen des Accounts");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }//GEN-LAST:event_jButtonRegisterActionPerformed

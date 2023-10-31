@@ -24,7 +24,7 @@ public class DB {
      * Ferner macht der Konstruktor den Datenbanktreiber der Laufzeitumgebung
      * bekannt.
      */
-    public DB() {
+    private DB() {
         try {
             Class.forName(treibername);
         } catch (ClassNotFoundException exc) {
@@ -52,6 +52,45 @@ public class DB {
                 conn.close();
             }
         }
+    }
+    
+    public User userLogin(String username, String password) throws SQLException {
+        User loggedInUser = null;
+        connect();
+
+        String sql = "SELECT * FROM Login WHERE User_Name=? AND Password=?";
+        java.sql.PreparedStatement preparedStatement = conn.prepareStatement(sql);
+        preparedStatement.setString(1, username); // Benutzername
+        preparedStatement.setString(2, password); // Passwort
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) { // Wenn wahr dann das //hier:Nutzerobjekt
+            loggedInUser = new User(resultSet.getString("user_name"), resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"));
+        }
+
+        close();
+        return loggedInUser;
+    }
+    
+    public List<User> searchUser(String search) throws SQLException {
+    List<User> foundUserList = new ArrayList<>();
+    
+    String searchSql = "SELECT * FROM login where Name LIKE '%"+search+"%' or user_name LIKE '%"+search+"%'";
+    connect();
+    Statement stmt = conn.createStatement();
+    ResultSet rst = stmt.executeQuery(searchSql);
+    while (rst.next()) {
+        User user = new User(
+                // rst.getInt("id"), // soll id in user bleiben?
+                rst.getString("name"),
+                rst.getString("user_name"),
+                rst.getString("email"),
+                rst.getString("password"));
+        foundUserList.add(user);
+    }
+    close();
+    return foundUserList;
     }
 
     /**
@@ -140,41 +179,19 @@ public class DB {
         return result;
     }
 
+    public boolean configurateUser(String name, String username, String email, String password) throws SQLException {
+        connect();
+        String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, name);
+        pst.setString(2, username);
+        pst.setString(3, email);
+        pst.setString(4, password);
 
-public Connection mycon() {
-        Connection conn = null;
-        try {
-            Class.forName("org.hsqldb.jdbc.JDBCDriver");
-            conn = DriverManager.getConnection("jdbc:hsqldb:file:data/Platon_db", "SA", "");
-        } catch (ClassNotFoundException | SQLException exc) {
-            exc.printStackTrace();
-        }
-        return conn;
-    }
-
-    public static void main(String[] args) throws SQLException {
-        DB db = new DB();
-        Connection c = db.mycon();
-        c.close();
-    }
-
-    public boolean configurateUser(String name, String username, String email, String password) {
-        try (Connection conn = mycon()) {
-            String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
-            try (java.sql.PreparedStatement pst = conn.prepareStatement(sql)) {
-                pst.setString(1, name);
-                pst.setString(2, username);
-                pst.setString(3, email);
-                pst.setString(4, password);
-
-                int result = pst.executeUpdate();
-                return result > 0;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Datenbankfehler aufgetreten, bitte probiere es später erneut.");
-            return false;
-        }
+        int result = pst.executeUpdate();
+        
+        close();
+        return result > 0;
     }
 
     /**
@@ -185,30 +202,21 @@ public Connection mycon() {
      * @param password
      * @return
      */
-    public boolean register(String name, String username, String email, String password) {
+    public boolean register(String name, String username, String email, String password) throws SQLException {
 
-        try {
-            DB db = new DB();
-            Connection c = db.mycon();
-            String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
-            java.sql.PreparedStatement pst = c.prepareStatement(sql);
-            pst.setString(1, name);
-            pst.setString(2, username);
-            pst.setString(3, email);
-            pst.setString(4, password);
+        connect();
+        String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, name);
+        pst.setString(2, username);
+        pst.setString(3, email);
+        pst.setString(4, password);
 
-            int result = pst.executeUpdate();
-
-            pst.close();
-            c.close();
-
-            if (result > 0) {
-                return true; //erfolgreich registriert
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Datenbankfehler aufgetreten, bitte probiere es später erneut.");
-
+        int result = pst.executeUpdate();
+        pst.close();
+        close();
+        if (result > 0) {
+            return true; //erfolgreich registriert
         }
         return false;
     }
