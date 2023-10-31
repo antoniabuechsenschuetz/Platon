@@ -3,6 +3,8 @@ package login;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class Usercontroller {
@@ -59,8 +61,43 @@ public class Usercontroller {
         return loggedInUser;
     }
     
-   // searchUser {
+    
+    public ArrayList<User> searchUser(String search) {
+    ArrayList<User> foundUserList = new ArrayList<>();
+    
+    String searchSql = "SELECT * FROM login where Name LIKE '%"+search+"%' or user_name LIKE '%"+search+"%'";
+
+    try {
+        DB db = new DB(); //Verbindung zu DB WEG
+        Connection connection = db.mycon();
+
+        Statement stmt = connection.createStatement();
+        ResultSet rst = stmt.executeQuery(searchSql);
+        while (rst.next()) {
+            User user = new User(
+                    // rst.getInt("id"), // soll id in user bleiben?
+                    rst.getString("name"),
+                    rst.getString("user_name"),
+                    rst.getString("email"),
+                    rst.getString("password"));
+            foundUserList.add(user);
+        }
+
+        // schließt die db 
+        rst.close();
+        stmt.close();
+        connection.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Datenbankfehler aufgetreten, bitte probiere es später erneut.");
+    }
+   
+    return foundUserList;
+    }
+
+    
+
+    //searchUser {
     //ausgeben aus Datenbank
     //rausstreichen Freunde die bereits geaddet & sich selbst auch nicht
-//}
 }
