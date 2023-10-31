@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Usercontroller {
@@ -36,6 +37,15 @@ public class Usercontroller {
             JOptionPane.showMessageDialog(null, "Datenbankfehler aufgetreten, bitte probiere es später erneut.");
         }
         return result;
+    }
+    
+    public List<User> searchForUser(String search) {
+        try {
+            return DB.getInstance().searchUser(search, loggedInUser.getUsername());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void setLoggedInUser(User user) {

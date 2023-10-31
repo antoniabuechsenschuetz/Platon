@@ -73,7 +73,7 @@ public class DB {
         return loggedInUser;
     }
     
-    public List<User> searchUser(String search) throws SQLException {
+    public List<User> searchUser(String search, String excludeUsername) throws SQLException {
     List<User> foundUserList = new ArrayList<>();
     
     String searchSql = "SELECT * FROM login where Name LIKE '%"+search+"%' or user_name LIKE '%"+search+"%'";
@@ -81,13 +81,15 @@ public class DB {
     Statement stmt = conn.createStatement();
     ResultSet rst = stmt.executeQuery(searchSql);
     while (rst.next()) {
-        User user = new User(
-                // rst.getInt("id"), // soll id in user bleiben?
-                rst.getString("name"),
-                rst.getString("user_name"),
-                rst.getString("email"),
-                rst.getString("password"));
-        foundUserList.add(user);
+        if (!rst.getString("user_name").equals(excludeUsername)) {
+            User user = new User(
+                    // rst.getInt("id"), // soll id in user bleiben?
+                    rst.getString("user_name"),
+                    rst.getString("name"),
+                    rst.getString("email"),
+                    rst.getString("password"));
+            foundUserList.add(user);
+        }
     }
     close();
     return foundUserList;
