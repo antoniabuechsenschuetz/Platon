@@ -13,7 +13,7 @@ import login.User;
 public class DB {
 
     private static final String treibername = "org.hsqldb.jdbc.JDBCDriver";
-    private static final String dbURL = "C:\\Users\\User\\Documents\\Studium\\swt\\github platon\\Platon\\data=true"; //richtigr pfad?
+    private static final String dbURL = "jdbc:hsqldb:file:data/Platon_db"; //richtigr pfad?
     private Connection conn;
     private static DB instance;
 
@@ -66,7 +66,7 @@ public class DB {
         List<User> all = new ArrayList<User>();
         connect();
         Statement stmt = conn.createStatement();
-        ResultSet rst = stmt.executeQuery("SELECT * from USER");
+        ResultSet rst = stmt.executeQuery("SELECT * from Login");
         while (rst.next()) {
             User user = new User(
                     // rst.getInt("id"), // soll id in user bleiben?
@@ -84,7 +84,7 @@ public class DB {
         connect();
         User user = null;
         Statement stmt = conn.createStatement();
-        ResultSet rst = stmt.executeQuery("SELECT * from Kumpel WHERE name = '" + name + "'");
+        ResultSet rst = stmt.executeQuery("SELECT * from Login WHERE name = '" + name + "'");
         if (rst.next()) {
             user = new User(
                     // rst.getInt("id"),
@@ -101,7 +101,7 @@ public class DB {
         boolean result = false;
         connect();
         Statement stmt = conn.createStatement();
-        stmt.executeUpdate("INSERT INTO User (name, username, email, password) VALUES ('"
+        stmt.executeUpdate("INSERT INTO Login (name, user_name, email, password) VALUES ('"
                 + user.getName() + "','"
                 + user.getUsername() + "','"
                 + user.getEmail() + "','"
@@ -120,7 +120,7 @@ public class DB {
         boolean result;
         connect();
         Statement stmt = conn.createStatement();
-        result = stmt.executeUpdate("delete from User where id=" + user.getId()) != 0;
+        result = stmt.executeUpdate("delete from Login where id=" + user.getId()) != 0;
         close();
         return result;
     }
@@ -130,9 +130,9 @@ public class DB {
         boolean result = false;
         connect();
         Statement stmt = conn.createStatement();
-        result = (stmt.executeUpdate("UPDATE User SET "
+        result = (stmt.executeUpdate("UPDATE Login SET "
                 + "name='" + user.getName() + "', "
-                + "username='" + user.getUsername() + "', "
+                + "user_name='" + user.getUsername() + "', "
                 + "email='" + user.getEmail() + "' "
                 + "password='" + user.getPassword() + "' "
                 + "WHERE id=" + user.getId())) != 0;
