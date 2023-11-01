@@ -58,7 +58,7 @@ public class DB {
         User loggedInUser = null;
         connect();
 
-        String sql = "SELECT * FROM Login WHERE User_Name=? AND Password=?";
+        String sql = "SELECT * FROM User WHERE User_Name=? AND Password=?";
         java.sql.PreparedStatement preparedStatement = conn.prepareStatement(sql);
         preparedStatement.setString(1, username); // Benutzername
         preparedStatement.setString(2, password); // Passwort
@@ -76,7 +76,7 @@ public class DB {
     public List<User> searchUser(String search, String excludeUsername) throws SQLException {
     List<User> foundUserList = new ArrayList<>();
     
-    String searchSql = "SELECT * FROM login where Name LIKE '%"+search+"%' or user_name LIKE '%"+search+"%'";
+    String searchSql = "SELECT * FROM User where Name LIKE '%"+search+"%' or user_name LIKE '%"+search+"%'";
     connect();
     Statement stmt = conn.createStatement();
     ResultSet rst = stmt.executeQuery(searchSql);
@@ -107,7 +107,7 @@ public class DB {
         List<User> all = new ArrayList<User>();
         connect();
         Statement stmt = conn.createStatement();
-        ResultSet rst = stmt.executeQuery("SELECT * from Login");
+        ResultSet rst = stmt.executeQuery("SELECT * from User");
         while (rst.next()) {
             User user = new User(
                     // rst.getInt("id"), // soll id in user bleiben?
@@ -125,7 +125,7 @@ public class DB {
         connect();
         User user = null;
         Statement stmt = conn.createStatement();
-        ResultSet rst = stmt.executeQuery("SELECT * from Login WHERE name = '" + name + "'");
+        ResultSet rst = stmt.executeQuery("SELECT * from User WHERE name = '" + name + "'");
         if (rst.next()) {
             user = new User(
                     // rst.getInt("id"),
@@ -142,7 +142,7 @@ public class DB {
         boolean result = false;
         connect();
         Statement stmt = conn.createStatement();
-        stmt.executeUpdate("INSERT INTO Login (name, user_name, email, password) VALUES ('"
+        stmt.executeUpdate("INSERT INTO User (name, user_name, email, password) VALUES ('"
                 + user.getName() + "','"
                 + user.getUsername() + "','"
                 + user.getEmail() + "','"
@@ -161,7 +161,7 @@ public class DB {
         boolean result;
         connect();
         Statement stmt = conn.createStatement();
-        result = stmt.executeUpdate("delete from Login where id=" + user.getId()) != 0;
+        result = stmt.executeUpdate("delete from User where id=" + user.getId()) != 0;
         close();
         return result;
     }
@@ -171,7 +171,7 @@ public class DB {
         boolean result = false;
         connect();
         Statement stmt = conn.createStatement();
-        result = (stmt.executeUpdate("UPDATE Login SET "
+        result = (stmt.executeUpdate("UPDATE User SET "
                 + "name='" + user.getName() + "', "
                 + "user_name='" + user.getUsername() + "', "
                 + "email='" + user.getEmail() + "' "
@@ -183,7 +183,7 @@ public class DB {
 
     public boolean configurateUser(String name, String username, String email, String password) throws SQLException {
         connect();
-        String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO User (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, name);
         pst.setString(2, username);
@@ -207,7 +207,7 @@ public class DB {
     public boolean register(String name, String username, String email, String password) throws SQLException {
 
         connect();
-        String sql = "INSERT INTO Login (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO User (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, name);
         pst.setString(2, username);
