@@ -4,6 +4,8 @@
  */
 package login;
 
+import java.util.List;
+
 /**
  *
  * @author lisas
@@ -13,7 +15,7 @@ public class PanelFriends extends javax.swing.JPanel {
     /**
      * Creates new form PanelFriends
      */
-    public PanelFriends() {
+    public PanelFriends(Homepage aThis) {
         initComponents();
     }
 
@@ -26,9 +28,14 @@ public class PanelFriends extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jButtonAddFriend = new javax.swing.JButton();
+        search = new java.awt.TextField();
+        friendsList = new java.awt.List();
 
         setOpaque(false);
+
+        jPanel1.setBackground(new java.awt.Color(5, 81, 81));
 
         jButtonAddFriend.setText("add Friend");
         jButtonAddFriend.addActionListener(new java.awt.event.ActionListener() {
@@ -37,21 +44,64 @@ public class PanelFriends extends javax.swing.JPanel {
             }
         });
 
+        search.setText("Suche...");
+        search.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchMouseClicked(evt);
+            }
+        });
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
+
+        friendsList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                friendsListActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(28, Short.MAX_VALUE)
+                        .addComponent(friendsList, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonAddFriend)
+                .addGap(14, 14, 14))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(friendsList, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAddFriend))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jButtonAddFriend)
-                .addContainerGap(295, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jButtonAddFriend)
-                .addContainerGap(251, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -59,8 +109,29 @@ public class PanelFriends extends javax.swing.JPanel {
      System.out.println("Freund hinzugefügt.");
     }//GEN-LAST:event_jButtonAddFriendActionPerformed
 
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+
+        String searchText = search.getText();
+        List<User> searchResult = Usercontroller.getInstance().searchForUser(searchText);
+        friendsList.removeAll();
+        for(User e : searchResult) {
+            friendsList.add(e.getUsername());
+        }
+    }//GEN-LAST:event_searchActionPerformed
+
+    private void friendsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsListActionPerformed
+        //TODO
+    }//GEN-LAST:event_friendsListActionPerformed
+
+    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
+        search.setText("");
+    }//GEN-LAST:event_searchMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.List friendsList;
     private javax.swing.JButton jButtonAddFriend;
+    private javax.swing.JPanel jPanel1;
+    private java.awt.TextField search;
     // End of variables declaration//GEN-END:variables
 }
