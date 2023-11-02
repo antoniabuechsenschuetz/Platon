@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import login.User;
 
 public class DB {
+    
 
     private static final String treibername = "org.hsqldb.jdbc.JDBCDriver";
     private static final String dbURL = "jdbc:hsqldb:file:data/Platon_db"; //richtigr pfad?
