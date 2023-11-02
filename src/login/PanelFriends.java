@@ -103,11 +103,11 @@ public class PanelFriends extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonAddFriendActionPerformed
 
     private void jButtonSearchFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchFriendActionPerformed
-        String searchQuery = JOptionPane.showInputDialog(this, "Geben Sie den Suchbegriff ein:");
-        if (searchQuery != null && !searchQuery.isEmpty()) {
-            List<User> searchResults = Usercontroller.getInstance().searchFriends(searchQuery);
-            //updateFriendList(searchResults);
-        }
+        //String searchQuery = JOptionPane.showInputDialog(this, "Geben Sie den Suchbegriff ein:");
+        //if (searchQuery != null && !searchQuery.isEmpty()) {
+        //List<User> searchResults = Usercontroller.getInstance().searchFriends(searchQuery);
+        //updateFriendList(searchResults);
+    
     }//GEN-LAST:event_jButtonSearchFriendActionPerformed
 
 
