@@ -1,8 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package login;
+
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +16,20 @@ public class PanelFriends extends javax.swing.JPanel {
         initComponents();
     }
 
+    /*
+    public void updateFriendList() {
+        List<User> friends = Usercontroller.getInstance().getFriends();
+
+        removeAll();
+        for (User friend : friends) {
+    javax.swing.JLabel labelFriend = new javax.swing.JLabel();
+            labelFriend.setText(friend.getName()); // Annahme: Der Name des Freundes soll angezeigt werden
+            add(labelFriend);
+        }
+        revalidate();
+        repaint();
+    }
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,7 +40,10 @@ public class PanelFriends extends javax.swing.JPanel {
     private void initComponents() {
 
         jButtonAddFriend = new javax.swing.JButton();
+        jButtonSearchFriend = new javax.swing.JButton();
+        jButtonSearch = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(169, 199, 199));
         setOpaque(false);
 
         jButtonAddFriend.setText("add Friend");
@@ -37,6 +53,15 @@ public class PanelFriends extends javax.swing.JPanel {
             }
         });
 
+        jButtonSearchFriend.setText("Suche nach Freunden...");
+        jButtonSearchFriend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchFriendActionPerformed(evt);
+            }
+        });
+
+        jButtonSearch.setText("...suchen!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -44,23 +69,51 @@ public class PanelFriends extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jButtonAddFriend)
-                .addContainerGap(295, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jButtonSearchFriend)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSearch)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButtonAddFriend)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAddFriend)
+                    .addComponent(jButtonSearchFriend)
+                    .addComponent(jButtonSearch))
                 .addContainerGap(251, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddFriendActionPerformed
-     System.out.println("Freund hinzugefügt.");
+        String username = JOptionPane.showInputDialog(this, "Geben Sie den Benutzernamen des Freundes ein:");
+        if (username != null && !username.isEmpty()) {
+            List<User> searchResults = Usercontroller.getInstance().searchForUser(username);
+            if (!searchResults.isEmpty()) {
+                for (User user : searchResults) {
+                    user.addFriend(Usercontroller.getInstance().getLoggedInUser());
+                }
+                //updateFriendList();
+            } else {
+                JOptionPane.showMessageDialog(this, "Benutzer nicht gefunden.");
+            }
+        }
     }//GEN-LAST:event_jButtonAddFriendActionPerformed
+
+    private void jButtonSearchFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchFriendActionPerformed
+        String searchQuery = JOptionPane.showInputDialog(this, "Geben Sie den Suchbegriff ein:");
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            List<User> searchResults = Usercontroller.getInstance().searchFriends(searchQuery);
+            //updateFriendList(searchResults);
+        }
+    }//GEN-LAST:event_jButtonSearchFriendActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAddFriend;
+    private javax.swing.JButton jButtonSearch;
+    private javax.swing.JButton jButtonSearchFriend;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,20 +32,20 @@ public class Usercontroller {
                 this.loggedInUser = userForLogin;
                 result = true;
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Datenbankfehler aufgetreten, bitte probiere es später erneut.");
         }
         return result;
     }
-    
+
     public List<User> searchForUser(String search) {
         try {
             return DB.getInstance().searchUser(search, loggedInUser.getUsername());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return null; //oder leere liste ausgeben: return new ArrayList<>()
     }
 
     public void setLoggedInUser(User user) {
@@ -55,9 +55,8 @@ public class Usercontroller {
     public User getLoggedInUser() {
         return loggedInUser;
     }
-    
 
-    //searchUser {
-    //ausgeben aus Datenbank
-    //rausstreichen Freunde die bereits geaddet & sich selbst auch nicht
+    public List<User> getFriends() {
+        return loggedInUser.getFriends();
+    }
 }

@@ -1,5 +1,8 @@
 package login;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author lisas
@@ -15,12 +18,14 @@ public class User {
     public String description;
     public String picture;
     private String password;
+    private List<User> friends;
     
     public User (String username, String name, String email, String password){
         this.username = username;
         this.name = name;
         this.email = email;
         this.password = password;
+        friends = new ArrayList<>();
     }
     
     // Konstruktor
@@ -32,6 +37,7 @@ public class User {
         this.location = standort;
         this.description = beschreibung;
         this.picture = bild;
+        friends = new ArrayList<>();
     }
 
     // Getter-Methoden
@@ -70,6 +76,15 @@ public class User {
     }
     public void setId(int newId) {
         this.id = newId;
+    }
+        
+    public List<User> getFriends() {
+        return friends;
+    }
+    
+    public void addFriend(User friend) {
+        friends.add(friend);
+        friend.getFriends().add(this); //auch umgekehrt adden
     }
 }
 
