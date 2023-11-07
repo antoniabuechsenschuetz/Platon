@@ -73,8 +73,8 @@ public class Homepage extends javax.swing.JFrame {
         jButtonProfile.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
         jButtonProfile.setText("Profil");
 
+        jButtonFeed.setBackground(new java.awt.Color(171, 203, 203));
         jButtonFeed.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
-        jButtonFeed.setForeground(new java.awt.Color(0, 102, 102));
         jButtonFeed.setText("Feed");
         jButtonFeed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +94,11 @@ public class Homepage extends javax.swing.JFrame {
         jButtonFriends.setBackground(new java.awt.Color(165, 200, 200));
         jButtonFriends.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
         jButtonFriends.setText("Freunde");
+        jButtonFriends.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonFriendsMouseClicked(evt);
+            }
+        });
         jButtonFriends.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFriendsActionPerformed(evt);
@@ -105,7 +110,7 @@ public class Homepage extends javax.swing.JFrame {
         jPanelFeedLayout.setHorizontalGroup(
             jPanelFeedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFeedLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addComponent(jButtonProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonFeed, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,30 +138,30 @@ public class Homepage extends javax.swing.JFrame {
         jPanelAll.setLayout(jPanelAllLayout);
         jPanelAllLayout.setHorizontalGroup(
             jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelFeed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelAllLayout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanelAllLayout.createSequentialGroup()
                 .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAllLayout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabelRightHeadliner))
-                    .addGroup(jPanelAllLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAllLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelRightHeadliner, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelFeed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanelAllLayout.setVerticalGroup(
             jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAllLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
                 .addComponent(jLabelRightHeadliner)
-                .addGap(5, 5, 5)
+                .addGap(3, 3, 3)
                 .addComponent(jPanelFeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanelAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 680));
+        getContentPane().add(jPanelAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -171,9 +176,13 @@ public class Homepage extends javax.swing.JFrame {
 
     private void jButtonFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFriendsActionPerformed
         jPanelBelowToolBar.removeAll();
-        jPanelBelowToolBar.add(new PanelFriends());
+        jPanelBelowToolBar.add(new PanelFriends(this));
         pack();
     }//GEN-LAST:event_jButtonFriendsActionPerformed
+
+    private void jButtonFriendsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFriendsMouseClicked
+        new PanelFriends(this).setVisible(true);                         
+    }//GEN-LAST:event_jButtonFriendsMouseClicked
 
     /**
      * @param args the command line arguments
