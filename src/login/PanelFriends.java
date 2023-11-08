@@ -31,6 +31,7 @@ public class PanelFriends extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jButtonAddFriend = new javax.swing.JButton();
         search = new java.awt.TextField();
+        searchFriends = new java.awt.List();
         friendsList = new java.awt.List();
 
         setOpaque(false);
@@ -56,6 +57,12 @@ public class PanelFriends extends javax.swing.JPanel {
             }
         });
 
+        searchFriends.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchFriendsActionPerformed(evt);
+            }
+        });
+
         friendsList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 friendsListActionPerformed(evt);
@@ -67,14 +74,13 @@ public class PanelFriends extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(28, Short.MAX_VALUE)
-                        .addComponent(friendsList, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(friendsList, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(searchFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAddFriend)
                 .addGap(14, 14, 14))
         );
@@ -82,11 +88,17 @@ public class PanelFriends extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(friendsList, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonAddFriend))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(friendsList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonAddFriend))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(searchFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -113,19 +125,28 @@ public class PanelFriends extends javax.swing.JPanel {
 
         String searchText = search.getText();
         List<User> searchResult = Usercontroller.getInstance().searchForUser(searchText);
-        friendsList.removeAll();
+        searchFriends.removeAll();
         for(User e : searchResult) {
-            friendsList.add(e.getUsername());
+            searchFriends.add(e.getUsername());
         }
     }//GEN-LAST:event_searchActionPerformed
 
-    private void friendsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsListActionPerformed
+    private void searchFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFriendsActionPerformed
         //TODO
-    }//GEN-LAST:event_friendsListActionPerformed
+    }//GEN-LAST:event_searchFriendsActionPerformed
 
     private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
         search.setText("");
     }//GEN-LAST:event_searchMouseClicked
+
+    private void friendsListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_friendsListActionPerformed
+
+        List<Integer> searchResult = Usercontroller.getInstance().getFriends();
+        friendsList.removeAll();
+        for(Integer e : searchResult) {
+            friendsList.add(e + "");
+        }
+    }//GEN-LAST:event_friendsListActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -133,5 +154,6 @@ public class PanelFriends extends javax.swing.JPanel {
     private javax.swing.JButton jButtonAddFriend;
     private javax.swing.JPanel jPanel1;
     private java.awt.TextField search;
+    private java.awt.List searchFriends;
     // End of variables declaration//GEN-END:variables
 }

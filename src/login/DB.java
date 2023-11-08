@@ -226,4 +226,19 @@ public class DB {
         }
         return false;
     }
+
+    public List<Integer> getFriendsId(int search) throws SQLException {
+        List<Integer> friendsIdList = new ArrayList<>();
+
+        String searchSql = "SELECT * FROM myFriends where myId LIKE '%" + search;
+        connect();
+        Statement stmt = conn.createStatement();
+        ResultSet rst = stmt.executeQuery(searchSql);
+        while (rst.next()) {
+                
+            friendsIdList.add(rst.getInt("friendId"));
+        }
+        close();
+        return friendsIdList;
+    }
 }

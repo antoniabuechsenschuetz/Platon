@@ -56,6 +56,15 @@ public class Usercontroller {
         return loggedInUser;
     }
     
+    public List<Integer> getFriends() {
+        try {
+            return DB.getInstance().getFriendsId(loggedInUser.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
 
     //searchUser {
     //ausgeben aus Datenbank
