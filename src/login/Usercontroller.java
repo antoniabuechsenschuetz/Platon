@@ -56,14 +56,26 @@ public class Usercontroller {
         return loggedInUser;
     }
     
-    public List<Integer> getFriends() {
+    public List<String> getFriends() {
         try {
-            return DB.getInstance().getFriendsId(loggedInUser.getId());
+            List<Integer> tmp = DB.getInstance().getFriendsId(loggedInUser.getId());
+            return DB.getInstance().nameIdSearch(tmp);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
+    
+    public void addFriends(String name) {
+        try {
+            int id = DB.getInstance().searchUserForName(name).getId();
+            DB.getInstance().addFriends(loggedInUser.getId(),id);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    
     
 
     //searchUser {

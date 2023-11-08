@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 import login.User;
@@ -128,14 +129,14 @@ public class DB {
         connect();
         User user = null;
         Statement stmt = conn.createStatement();
-        ResultSet rst = stmt.executeQuery("SELECT * from User WHERE name = '" + name + "'");
+        ResultSet rst = stmt.executeQuery("SELECT * FROM USER WHERE USER_NAME = '" + name + "'");
         if (rst.next()) {
             user = new User(
                     // rst.getInt("id"),
-                    rst.getString("name"),
-                    rst.getString("username"),
-                    rst.getString("email"),
-                    rst.getString("password"));
+                    rst.getString("NAME"),
+                    rst.getString("USER_NAME"),
+                    rst.getString("EMAIL"),
+                    rst.getString("PASSWORD"));
             user.setId(rst.getInt("id"));
         }
         close();
@@ -228,17 +229,57 @@ public class DB {
     }
 
     public List<Integer> getFriendsId(int search) throws SQLException {
+        System.out.println(search);
         List<Integer> friendsIdList = new ArrayList<>();
-
-        String searchSql = "SELECT * FROM myFriends where myId LIKE '%" + search;
         connect();
+        String searchSql = "SELECT FRIENDID FROM MYFRIENDS WHERE MYID = " + search;
+
         Statement stmt = conn.createStatement();
         ResultSet rst = stmt.executeQuery(searchSql);
+
         while (rst.next()) {
-                
-            friendsIdList.add(rst.getInt("friendId"));
+            friendsIdList.add(rst.getInt("FRIENDID")); // "FRIENDID" in Großbuchstaben
         }
+
         close();
         return friendsIdList;
     }
+
+    
+    public boolean addFriends(int mId, int fId) throws SQLException {
+        connect();
+        String sql = String.format("INSERT INTO MYFRIENDS(MYID, FRIENDID) VALUES (%d, %d)", mId, fId);
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        int result = pst.executeUpdate();
+        pst.close();
+        if(result > 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    public List<String> nameIdSearch(List<Integer> ids) throws SQLException {
+        List<String> friendsNames = new LinkedList<>();
+        connect();
+    
+        String sqlSmt = "SELECT USER_NAME FROM USER WHERE ID = ?";
+    
+        for (int e : ids) {
+            java.sql.PreparedStatement stmt = conn.prepareStatement(sqlSmt);
+            stmt.setInt(1, e);
+            ResultSet rst = stmt.executeQuery();
+        
+            if (rst.next()) {
+                String userName = rst.getString("USER_NAME");
+                friendsNames.add(userName);
+            }
+        
+            rst.close();
+            stmt.close();
+        }
+    
+    close();
+    return friendsNames;
+}
+
 }
