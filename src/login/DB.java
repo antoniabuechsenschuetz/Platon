@@ -53,7 +53,7 @@ public class DB {
             }
         }
     }
-    
+
     public User userLogin(String username, String password) throws SQLException {
         User loggedInUser = null;
         connect();
@@ -67,38 +67,40 @@ public class DB {
 
         if (resultSet.next()) { // Wenn wahr dann das //hier:Nutzerobjekt
             loggedInUser = new User(resultSet.getString("user_name"), resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"));
+            loggedInUser.setId(resultSet.getInt("id"));
         }
 
         close();
         return loggedInUser;
     }
-    
+
     public List<User> searchUser(String search, String excludeUsername) throws SQLException {
-    List<User> foundUserList = new ArrayList<>();
-    
-    String searchSql = "SELECT * FROM User where Name LIKE '%"+search+"%' or user_name LIKE '%"+search+"%'";
-    connect();
-    Statement stmt = conn.createStatement();
-    ResultSet rst = stmt.executeQuery(searchSql);
-    while (rst.next()) {
-        if (!rst.getString("user_name").equals(excludeUsername)) {
-            User user = new User(
-                    // rst.getInt("id"), // soll id in user bleiben?
-                    rst.getString("user_name"),
-                    rst.getString("name"),
-                    rst.getString("email"),
-                    rst.getString("password"));
-            foundUserList.add(user);
+        List<User> foundUserList = new ArrayList<>();
+
+        String searchSql = "SELECT * FROM User where Name LIKE '%" + search + "%' or user_name LIKE '%" + search + "%'";
+        connect();
+        Statement stmt = conn.createStatement();
+        ResultSet rst = stmt.executeQuery(searchSql);
+        while (rst.next()) {
+            if (!rst.getString("user_name").equals(excludeUsername)) {
+                User user = new User(
+                        // rst.getInt("id"), // soll id in user bleiben?
+                        rst.getString("user_name"),
+                        rst.getString("name"),
+                        rst.getString("email"),
+                        rst.getString("password"));
+                user.setId(rst.getInt("id"));
+                foundUserList.add(user);
+            }
         }
-    }
-    close();
-    return foundUserList;
+        close();
+        return foundUserList;
     }
 
     /**
-     * Die Methode allUser liefert alle in der Datenbank gespeicherten User
-     * als Liste von User-Objekten zurück. Ist keine User-Entität in der
-     * Datenbank gespeichert, wird eine leere Liste zurückgeliefert.
+     * Die Methode allUser liefert alle in der Datenbank gespeicherten User als
+     * Liste von User-Objekten zurück. Ist keine User-Entität in der Datenbank
+     * gespeichert, wird eine leere Liste zurückgeliefert.
      *
      * @return Liste aller User-Objekte
      * @throws SQLException
@@ -115,6 +117,7 @@ public class DB {
                     rst.getString("username"),
                     rst.getString("email"),
                     rst.getString("password"));
+            user.setId(rst.getInt("id"));
             all.add(user);
         }
         close();
@@ -133,6 +136,7 @@ public class DB {
                     rst.getString("username"),
                     rst.getString("email"),
                     rst.getString("password"));
+            user.setId(rst.getInt("id"));
         }
         close();
         return user;
@@ -155,9 +159,9 @@ public class DB {
         close();
         return result;
     }
-    
+
 //User loeschen
-    public boolean deleteUser (User user) throws SQLException {
+    public boolean deleteUser(User user) throws SQLException {
         boolean result;
         connect();
         Statement stmt = conn.createStatement();
@@ -165,7 +169,7 @@ public class DB {
         close();
         return result;
     }
-    
+
 // User daten speichern, upadten
     public boolean saveUser(User user) throws SQLException {
         boolean result = false;
@@ -191,7 +195,7 @@ public class DB {
         pst.setString(4, password);
 
         int result = pst.executeUpdate();
-        
+
         close();
         return result > 0;
     }
