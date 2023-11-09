@@ -252,10 +252,11 @@ public class DB {
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
         int result = pst.executeUpdate();
         pst.close();
-        if(result > 0) {
-            return true;
-        }
-        return false;
+        String sql2 = String.format("INSERT INTO MYFRIENDS(MYID, FRIENDID) VALUES (%d, %d)", fId, mId);
+        java.sql.PreparedStatement pst2 = conn.prepareStatement(sql2);
+        int result2 = pst2.executeUpdate();
+        close();
+        return result == 0 && result2 == 0;
     }
     
     public List<String> nameIdSearch(List<Integer> ids) throws SQLException {

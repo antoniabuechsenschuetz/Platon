@@ -12,9 +12,11 @@ import javax.swing.DefaultListModel;
  * @author lisas
  */
 public class PanelFriends extends javax.swing.JPanel {
+
     private DefaultListModel<String> listModel;
     public List<User> result;
     public String tmpUsername;
+
     /**
      * Creates new form PanelFriends
      */
@@ -142,14 +144,14 @@ public class PanelFriends extends javax.swing.JPanel {
         displayFriends();
         System.out.println("Freund hinzugefügt.");
     }//GEN-LAST:event_jButtonAddFriendActionPerformed
-    
+
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
 
         String searchText = search.getText();
         List<User> searchResult = Usercontroller.getInstance().searchForUser(searchText);
         result = searchResult;
         searchFriends.removeAll();
-        for(User e : searchResult) {
+        for (User e : searchResult) {
             searchFriends.add(e.getUsername());
         }
     }//GEN-LAST:event_searchActionPerformed
@@ -169,16 +171,18 @@ public class PanelFriends extends javax.swing.JPanel {
     private void searchFriendsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFriendsMouseClicked
         List<User> tmp = this.result;
         int x = searchFriends.getSelectedIndex();
-        jButtonAddFriend.setEnabled(true);
-        tmpUsername = tmp.get(x).getUsername();
+        if (x >= 0) {
+            jButtonAddFriend.setEnabled(true);
+            System.out.println(x);
+            tmpUsername = tmp.get(x).getUsername();
+        }
     }//GEN-LAST:event_searchFriendsMouseClicked
-    
-    
+
     private void displayFriends() {
         listModel.clear();
         List<String> ids = Usercontroller.getInstance().getFriends();
-        for(String e : ids) {
-           listModel.addElement(e);
+        for (String e : ids) {
+            listModel.addElement(e);
         }
     }
 
