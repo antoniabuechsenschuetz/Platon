@@ -209,15 +209,6 @@ public class Homepage extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         
-           DB db = DB.getInstance();
-                 
-              try {
-           boolean test = db.createClub("Antonia ist Cool", "Hallo meine Freunde", 5, "bild");
-           System.out.println(test);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
