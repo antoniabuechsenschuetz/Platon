@@ -282,5 +282,25 @@ public class DB {
     close();
     return friendsNames;
 }
+    public boolean createClub (String club_name, String description,int size, String image) throws SQLException {
+        
+        connect();
+        String sql = "INSERT INTO CLUB(NAME,DESCRIPTION, SIZE, IMAGE ) VALUES (?, ?, ?,?)";
+          java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, club_name);
+        pst.setString(2, description);
+        pst.setInt(3, size);
+        pst.setString(4, image);
+
+        int result = pst.executeUpdate();
+        pst.close();
+        close();  
+        if (result > 0) {
+            return true; 
+        }
+        return false;
+        
+    }
+
 
 }
