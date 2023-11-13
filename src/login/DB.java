@@ -245,7 +245,6 @@ public class DB {
         return friendsIdList;
     }
 
-    
     public boolean addFriends(int mId, int fId) throws SQLException {
         connect();
         String sql = String.format("INSERT INTO MYFRIENDS(MYID, FRIENDID) VALUES (%d, %d)", mId, fId);
@@ -258,29 +257,28 @@ public class DB {
         close();
         return result == 0 && result2 == 0;
     }
-    
+
     public List<String> nameIdSearch(List<Integer> ids) throws SQLException {
         List<String> friendsNames = new LinkedList<>();
         connect();
-    
+
         String sqlSmt = "SELECT USER_NAME FROM USER WHERE ID = ?";
-    
+
         for (int e : ids) {
             java.sql.PreparedStatement stmt = conn.prepareStatement(sqlSmt);
             stmt.setInt(1, e);
             ResultSet rst = stmt.executeQuery();
-        
+
             if (rst.next()) {
                 String userName = rst.getString("USER_NAME");
                 friendsNames.add(userName);
             }
-        
+
             rst.close();
             stmt.close();
         }
-    
-    close();
-    return friendsNames;
-}
 
+        close();
+        return friendsNames;
+    }
 }

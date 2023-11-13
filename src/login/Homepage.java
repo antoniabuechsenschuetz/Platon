@@ -72,6 +72,16 @@ public class Homepage extends javax.swing.JFrame {
         jButtonProfile.setBackground(new java.awt.Color(148, 186, 186));
         jButtonProfile.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
         jButtonProfile.setText("Profil");
+        jButtonProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonProfileMouseClicked(evt);
+            }
+        });
+        jButtonProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonProfileActionPerformed(evt);
+            }
+        });
 
         jButtonFeed.setBackground(new java.awt.Color(171, 203, 203));
         jButtonFeed.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
@@ -181,8 +191,18 @@ public class Homepage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonFriendsActionPerformed
 
     private void jButtonFriendsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFriendsMouseClicked
-        new PanelFriends(this).setVisible(true);                         
+        new PanelFriends(this).setVisible(true);
     }//GEN-LAST:event_jButtonFriendsMouseClicked
+
+    private void jButtonProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProfileActionPerformed
+        jPanelBelowToolBar.removeAll();
+        jPanelBelowToolBar.add(new PanelProfile(this));
+        pack();
+    }//GEN-LAST:event_jButtonProfileActionPerformed
+
+    private void jButtonProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProfileMouseClicked
+        new PanelProfile(this).setVisible(true);
+    }//GEN-LAST:event_jButtonProfileMouseClicked
 
     /**
      * @param args the command line arguments

@@ -76,6 +76,9 @@ public class Usercontroller {
 
     }
     
+    // Username, Name, Interessen, Biografie
+    
+    
     
 
     //searchUser {
