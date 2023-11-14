@@ -29,65 +29,65 @@ public class PanelProfile extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SaveProfile = new javax.swing.JButton();
-        ProfilePicture = new javax.swing.JLabel();
-        Name = new javax.swing.JTextField();
-        Username = new javax.swing.JTextField();
-        Location = new javax.swing.JTextField();
+        jButtonSaveProfile = new javax.swing.JButton();
+        jButtonProfilePicture = new javax.swing.JLabel();
+        jTextFielfName = new javax.swing.JTextField();
+        JTextFieldUsername = new javax.swing.JTextField();
+        jTextFieldLocation = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        InteressenList = new javax.swing.JList<>();
-        Description = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jListHobbies = new javax.swing.JList<>();
+        jTextFieldDescription = new javax.swing.JTextField();
+        jButtonChangeProfile = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(6, 81, 81));
 
-        SaveProfile.setText("Speichern");
+        jButtonSaveProfile.setText("speichern");
 
-        ProfilePicture.setBackground(new java.awt.Color(255, 255, 255));
-        ProfilePicture.setText("BILD");
-        ProfilePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 9, true));
+        jButtonProfilePicture.setBackground(new java.awt.Color(255, 255, 255));
+        jButtonProfilePicture.setText("BILD");
+        jButtonProfilePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 9, true));
 
-        Name.setText("Name");
-        Name.addActionListener(new java.awt.event.ActionListener() {
+        jTextFielfName.setText("Name");
+        jTextFielfName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NameActionPerformed(evt);
+                jTextFielfNameActionPerformed(evt);
             }
         });
 
-        Username.setText("Username");
-        Username.addActionListener(new java.awt.event.ActionListener() {
+        JTextFieldUsername.setText("Username");
+        JTextFieldUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UsernameActionPerformed(evt);
+                JTextFieldUsernameActionPerformed(evt);
             }
         });
 
-        Location.setText("Standort");
-        Location.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldLocation.setText("Standort");
+        jTextFieldLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LocationActionPerformed(evt);
+                jTextFieldLocationActionPerformed(evt);
             }
         });
 
-        InteressenList.setModel(new javax.swing.AbstractListModel<String>() {
+        jListHobbies.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        InteressenList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        jListHobbies.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                InteressenListValueChanged(evt);
+                jListHobbiesValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(InteressenList);
+        jScrollPane1.setViewportView(jListHobbies);
 
-        Description.setText("Beschreibung");
-        Description.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldDescription.setText("Beschreibung");
+        jTextFieldDescription.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DescriptionActionPerformed(evt);
+                jTextFieldDescriptionActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Bearbeiten");
+        jButtonChangeProfile.setText("bearbeiten");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,19 +97,19 @@ public class PanelProfile extends javax.swing.JPanel {
                 .addGap(98, 98, 98)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SaveProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jButtonProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonChangeProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSaveProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(50, 50, 50))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Username)
-                            .addComponent(Location)
+                            .addComponent(JTextFieldUsername)
+                            .addComponent(jTextFieldLocation)
                             .addComponent(jScrollPane1)
-                            .addComponent(Description, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                            .addComponent(Name, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jTextFieldDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                            .addComponent(jTextFielfName, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(158, 158, 158))))
         );
         layout.setVerticalGroup(
@@ -118,63 +118,63 @@ public class PanelProfile extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(SaveProfile)
+                        .addComponent(jButtonSaveProfile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jButtonChangeProfile))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(ProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFielfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(Location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
     }// </editor-fold>//GEN-END:initComponents
     
     private void display_data() {
-       Name.setText(Usercontroller.getInstance().getLoggedInUser().getName());
-       Username.setText(Usercontroller.getInstance().getLoggedInUser().getUsername());
-       Location.setText(Usercontroller.getInstance().getLoggedInUser().standort());
-       Description.setText(Usercontroller.getInstance().getLoggedInUser().beschreibung());
+       jTextFielfName.setText(Usercontroller.getInstance().getLoggedInUser().getName());
+       JTextFieldUsername.setText(Usercontroller.getInstance().getLoggedInUser().getUsername());
+       jTextFieldLocation.setText(Usercontroller.getInstance().getLoggedInUser().standort());
+       jTextFieldDescription.setText(Usercontroller.getInstance().getLoggedInUser().beschreibung());
     }
     
-    private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
+    private void jTextFielfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielfNameActionPerformed
 
-    }//GEN-LAST:event_NameActionPerformed
+    }//GEN-LAST:event_jTextFielfNameActionPerformed
 
-    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
+    private void JTextFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldUsernameActionPerformed
         
-    }//GEN-LAST:event_UsernameActionPerformed
+    }//GEN-LAST:event_JTextFieldUsernameActionPerformed
 
-    private void LocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocationActionPerformed
+    private void jTextFieldLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLocationActionPerformed
 
-    }//GEN-LAST:event_LocationActionPerformed
+    }//GEN-LAST:event_jTextFieldLocationActionPerformed
 
-    private void DescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescriptionActionPerformed
+    private void jTextFieldDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionActionPerformed
 
-    }//GEN-LAST:event_DescriptionActionPerformed
+    }//GEN-LAST:event_jTextFieldDescriptionActionPerformed
 
-    private void InteressenListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_InteressenListValueChanged
+    private void jListHobbiesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListHobbiesValueChanged
 
-    }//GEN-LAST:event_InteressenListValueChanged
+    }//GEN-LAST:event_jListHobbiesValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Description;
-    private javax.swing.JList<String> InteressenList;
-    private javax.swing.JTextField Location;
-    private javax.swing.JTextField Name;
-    private javax.swing.JLabel ProfilePicture;
-    private javax.swing.JButton SaveProfile;
-    private javax.swing.JTextField Username;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField JTextFieldUsername;
+    private javax.swing.JButton jButtonChangeProfile;
+    private javax.swing.JLabel jButtonProfilePicture;
+    private javax.swing.JButton jButtonSaveProfile;
+    private javax.swing.JList<String> jListHobbies;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextFieldDescription;
+    private javax.swing.JTextField jTextFieldLocation;
+    private javax.swing.JTextField jTextFielfName;
     // End of variables declaration//GEN-END:variables
 }

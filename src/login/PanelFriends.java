@@ -23,7 +23,7 @@ public class PanelFriends extends javax.swing.JPanel {
     public PanelFriends(Homepage aThis) {
         initComponents();
         listModel = new DefaultListModel<>();
-        Friendslist.setModel(listModel);
+        jListFriends.setModel(listModel);
         displayFriends();
     }
 
@@ -36,16 +36,16 @@ public class PanelFriends extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanelFriendsBackground = new javax.swing.JPanel();
         jButtonAddFriend = new javax.swing.JButton();
-        search = new java.awt.TextField();
-        searchFriends = new java.awt.List();
+        jTextFieldSearchBar = new java.awt.TextField();
+        jListSearchFriends = new java.awt.List();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Friendslist = new javax.swing.JList<>();
+        jListFriends = new javax.swing.JList<>();
 
         setOpaque(false);
 
-        jPanel1.setBackground(new java.awt.Color(5, 81, 81));
+        jPanelFriendsBackground.setBackground(new java.awt.Color(5, 81, 81));
 
         jButtonAddFriend.setText("add Friend");
         jButtonAddFriend.setEnabled(false);
@@ -60,68 +60,68 @@ public class PanelFriends extends javax.swing.JPanel {
             }
         });
 
-        search.setText("Suche...");
-        search.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTextFieldSearchBar.setText("Suche...");
+        jTextFieldSearchBar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchMouseClicked(evt);
+                jTextFieldSearchBarMouseClicked(evt);
             }
         });
-        search.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldSearchBar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
+                jTextFieldSearchBarActionPerformed(evt);
             }
         });
 
-        searchFriends.addMouseListener(new java.awt.event.MouseAdapter() {
+        jListSearchFriends.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchFriendsMouseClicked(evt);
+                jListSearchFriendsMouseClicked(evt);
             }
         });
-        searchFriends.addActionListener(new java.awt.event.ActionListener() {
+        jListSearchFriends.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchFriendsActionPerformed(evt);
+                jListSearchFriendsActionPerformed(evt);
             }
         });
 
-        Friendslist.setModel(new javax.swing.AbstractListModel<String>() {
+        jListFriends.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(Friendslist);
+        jScrollPane1.setViewportView(jListFriends);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelFriendsBackgroundLayout = new javax.swing.GroupLayout(jPanelFriendsBackground);
+        jPanelFriendsBackground.setLayout(jPanelFriendsBackgroundLayout);
+        jPanelFriendsBackgroundLayout.setHorizontalGroup(
+            jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
+                .addGroup(jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jListSearchFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAddFriend)
                 .addGap(14, 14, 14))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelFriendsBackgroundLayout.setVerticalGroup(
+            jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
+                .addGroup(jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(jButtonAddFriend))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                            .addComponent(searchFriends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jListSearchFriends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -130,12 +130,12 @@ public class PanelFriends extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelFriendsBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelFriendsBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,38 +145,38 @@ public class PanelFriends extends javax.swing.JPanel {
         System.out.println("Freund hinzugefügt.");
     }//GEN-LAST:event_jButtonAddFriendActionPerformed
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+    private void jTextFieldSearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchBarActionPerformed
 
-        String searchText = search.getText();
+        String searchText = jTextFieldSearchBar.getText();
         List<User> searchResult = Usercontroller.getInstance().searchForUser(searchText);
         result = searchResult;
-        searchFriends.removeAll();
+        jListSearchFriends.removeAll();
         for (User e : searchResult) {
-            searchFriends.add(e.getUsername());
+            jListSearchFriends.add(e.getUsername());
         }
-    }//GEN-LAST:event_searchActionPerformed
+    }//GEN-LAST:event_jTextFieldSearchBarActionPerformed
 
-    private void searchFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFriendsActionPerformed
+    private void jListSearchFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListSearchFriendsActionPerformed
         //TODO
-    }//GEN-LAST:event_searchFriendsActionPerformed
+    }//GEN-LAST:event_jListSearchFriendsActionPerformed
 
-    private void searchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchMouseClicked
-        search.setText("");
-    }//GEN-LAST:event_searchMouseClicked
+    private void jTextFieldSearchBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSearchBarMouseClicked
+        jTextFieldSearchBar.setText("");
+    }//GEN-LAST:event_jTextFieldSearchBarMouseClicked
 
     private void jButtonAddFriendMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonAddFriendMouseClicked
 
     }//GEN-LAST:event_jButtonAddFriendMouseClicked
 
-    private void searchFriendsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchFriendsMouseClicked
+    private void jListSearchFriendsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSearchFriendsMouseClicked
         List<User> tmp = this.result;
-        int x = searchFriends.getSelectedIndex();
+        int x = jListSearchFriends.getSelectedIndex();
         if (x >= 0) {
             jButtonAddFriend.setEnabled(true);
             System.out.println(x);
             tmpUsername = tmp.get(x).getUsername();
         }
-    }//GEN-LAST:event_searchFriendsMouseClicked
+    }//GEN-LAST:event_jListSearchFriendsMouseClicked
 
     private void displayFriends() {
         listModel.clear();
@@ -187,11 +187,11 @@ public class PanelFriends extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> Friendslist;
     private javax.swing.JButton jButtonAddFriend;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JList<String> jListFriends;
+    private java.awt.List jListSearchFriends;
+    private javax.swing.JPanel jPanelFriendsBackground;
     private javax.swing.JScrollPane jScrollPane1;
-    private java.awt.TextField search;
-    private java.awt.List searchFriends;
+    private java.awt.TextField jTextFieldSearchBar;
     // End of variables declaration//GEN-END:variables
 }
