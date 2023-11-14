@@ -67,7 +67,15 @@ public class DB {
         ResultSet resultSet = preparedStatement.executeQuery();
 
         if (resultSet.next()) { // Wenn wahr dann das //hier:Nutzerobjekt
-            loggedInUser = new User(resultSet.getString("user_name"), resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("password"));
+
+            String uname = resultSet.getString("user_name");
+            String name = resultSet.getString("name");
+            String mail = resultSet.getString("email");
+            String ps = resultSet.getString("password");
+            String desc = resultSet.getString("description");
+            String loc = resultSet.getString("location");
+
+            loggedInUser = new User(uname, name, mail, ps, loc, desc);
             loggedInUser.setId(resultSet.getInt("id"));
         }
 
@@ -300,4 +308,21 @@ public class DB {
          return false;
 
      }
+      
+        public boolean databaseUpdate (String table, String column, String value, int id) throws SQLException {
+        connect();
+        String sql = String.format("UPDATE %s SET %s = ? WHERE ID = ?", table.toUpperCase(), column.toUpperCase());
+
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, value);
+        pst.setInt(2, id);
+        int result = pst.executeUpdate();
+        pst.close();
+        close();
+        if (result > 0) {
+            return true;
+        }
+        return false;
+    }
+
 }

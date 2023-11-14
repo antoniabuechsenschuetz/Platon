@@ -4,6 +4,10 @@
  */
 package login;
 
+import login.DB;
+import login.Homepage;
+import login.Usercontroller;
+
 /**
  *
  * @author patricia
@@ -12,13 +16,13 @@ public class PanelProfile extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelProfile
+     *
      * @param aThis
      */
     public PanelProfile(Homepage aThis) {
         initComponents();
         display_data();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,88 +33,128 @@ public class PanelProfile extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonSaveProfile = new javax.swing.JButton();
-        jButtonProfilePicture = new javax.swing.JLabel();
-        jTextFielfName = new javax.swing.JTextField();
-        JTextFieldUsername = new javax.swing.JTextField();
-        jTextFieldLocation = new javax.swing.JTextField();
+        SaveProfile = new javax.swing.JButton();
+        ProfilePicture = new javax.swing.JLabel();
+        Name = new javax.swing.JTextField();
+        Username = new javax.swing.JTextField();
+        Location = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jListHobbies = new javax.swing.JList<>();
-        jTextFieldDescription = new javax.swing.JTextField();
-        jButtonChangeProfile = new javax.swing.JButton();
+        InteressenList = new javax.swing.JList<>();
+        Description = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        HobbiesText = new javax.swing.JLabel();
+        UsernameText = new javax.swing.JLabel();
+        StandortText = new javax.swing.JLabel();
+        NameText = new javax.swing.JLabel();
+        BeschreibungText = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(6, 81, 81));
 
-        jButtonSaveProfile.setText("speichern");
-
-        jButtonProfilePicture.setBackground(new java.awt.Color(255, 255, 255));
-        jButtonProfilePicture.setText("BILD");
-        jButtonProfilePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 9, true));
-
-        jTextFielfName.setText("Name");
-        jTextFielfName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFielfNameActionPerformed(evt);
+        SaveProfile.setText("Speichern");
+        SaveProfile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveProfileMouseClicked(evt);
             }
         });
 
-        JTextFieldUsername.setText("Username");
-        JTextFieldUsername.addActionListener(new java.awt.event.ActionListener() {
+        ProfilePicture.setBackground(new java.awt.Color(255, 255, 255));
+        ProfilePicture.setForeground(new java.awt.Color(255, 255, 255));
+        ProfilePicture.setText("BILD");
+        ProfilePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 9, true));
+
+        Name.setText("Name");
+        Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JTextFieldUsernameActionPerformed(evt);
+                NameActionPerformed(evt);
             }
         });
 
-        jTextFieldLocation.setText("Standort");
-        jTextFieldLocation.addActionListener(new java.awt.event.ActionListener() {
+        Username.setText("Username");
+        Username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLocationActionPerformed(evt);
+                UsernameActionPerformed(evt);
             }
         });
 
-        jListHobbies.setModel(new javax.swing.AbstractListModel<String>() {
+        Location.setText("Standort");
+        Location.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LocationActionPerformed(evt);
+            }
+        });
+        Location.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                LocationKeyReleased(evt);
+            }
+        });
+
+        InteressenList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jListHobbies.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        InteressenList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListHobbiesValueChanged(evt);
+                InteressenListValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(jListHobbies);
+        jScrollPane1.setViewportView(InteressenList);
 
-        jTextFieldDescription.setText("Beschreibung");
-        jTextFieldDescription.addActionListener(new java.awt.event.ActionListener() {
+        Description.setText("Beschreibung");
+        Description.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDescriptionActionPerformed(evt);
+                DescriptionActionPerformed(evt);
+            }
+        });
+        Description.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                DescriptionKeyReleased(evt);
             }
         });
 
-        jButtonChangeProfile.setText("bearbeiten");
+        jButton1.setText("Bearbeiten");
+
+        HobbiesText.setForeground(new java.awt.Color(255, 255, 255));
+        HobbiesText.setText("Hobbies");
+
+        UsernameText.setForeground(new java.awt.Color(255, 255, 255));
+        UsernameText.setText("Benutzername");
+
+        StandortText.setForeground(new java.awt.Color(255, 255, 255));
+        StandortText.setText("Standort");
+
+        NameText.setForeground(new java.awt.Color(255, 255, 255));
+        NameText.setText("Name");
+
+        BeschreibungText.setForeground(new java.awt.Color(255, 255, 255));
+        BeschreibungText.setText("Beschreibung");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(66, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(StandortText, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(HobbiesText, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(UsernameText, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(NameText, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BeschreibungText, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonChangeProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonSaveProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(50, 50, 50))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(239, 239, 239)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTextFieldUsername)
-                            .addComponent(jTextFieldLocation)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jTextFieldDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
-                            .addComponent(jTextFielfName, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(158, 158, 158))))
+                            .addComponent(SaveProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Location, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,63 +162,100 @@ public class PanelProfile extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(45, 45, 45)
-                        .addComponent(jButtonSaveProfile)
+                        .addComponent(SaveProfile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonChangeProfile))
+                        .addComponent(jButton1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButtonProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jTextFielfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NameText))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsernameText))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(StandortText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(JTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(HobbiesText))
                 .addGap(12, 12, 12)
-                .addComponent(jTextFieldLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BeschreibungText)
+                    .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
         );
+
+        Location.getAccessibleContext().setAccessibleName("Location");
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void display_data() {
-       jTextFielfName.setText(Usercontroller.getInstance().getLoggedInUser().getName());
-       JTextFieldUsername.setText(Usercontroller.getInstance().getLoggedInUser().getUsername());
-       jTextFieldLocation.setText(Usercontroller.getInstance().getLoggedInUser().standort());
-       jTextFieldDescription.setText(Usercontroller.getInstance().getLoggedInUser().beschreibung());
+        Name.setText(Usercontroller.getInstance().getLoggedInUser().getName());
+        Username.setText(Usercontroller.getInstance().getLoggedInUser().getUsername());
+        Location.setText(Usercontroller.getInstance().getLoggedInUser().getLocation());
+        Description.setText(Usercontroller.getInstance().getLoggedInUser().getDescription());
     }
-    
-    private void jTextFielfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFielfNameActionPerformed
 
-    }//GEN-LAST:event_jTextFielfNameActionPerformed
+    private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
 
-    private void JTextFieldUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldUsernameActionPerformed
-        
-    }//GEN-LAST:event_JTextFieldUsernameActionPerformed
+    }//GEN-LAST:event_NameActionPerformed
 
-    private void jTextFieldLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLocationActionPerformed
+    private void UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameActionPerformed
 
-    }//GEN-LAST:event_jTextFieldLocationActionPerformed
+    }//GEN-LAST:event_UsernameActionPerformed
 
-    private void jTextFieldDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionActionPerformed
+    private void LocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LocationActionPerformed
 
-    }//GEN-LAST:event_jTextFieldDescriptionActionPerformed
+    }//GEN-LAST:event_LocationActionPerformed
 
-    private void jListHobbiesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListHobbiesValueChanged
+    private void DescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescriptionActionPerformed
 
-    }//GEN-LAST:event_jListHobbiesValueChanged
+    }//GEN-LAST:event_DescriptionActionPerformed
+
+    private void InteressenListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_InteressenListValueChanged
+
+    }//GEN-LAST:event_InteressenListValueChanged
+
+    private void LocationKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LocationKeyReleased
+
+    }//GEN-LAST:event_LocationKeyReleased
+
+    private void DescriptionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DescriptionKeyReleased
+
+    }//GEN-LAST:event_DescriptionKeyReleased
+
+    private void SaveProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveProfileMouseClicked
+        int id = Usercontroller.getInstance().getLoggedInUser().getId();
+        String lo = Location.getText();
+        String d = Description.getText();
+            try {
+                DB.getInstance().databaseUpdate("USER", "LOCATION", lo, id);
+                DB.getInstance().databaseUpdate("USER", "DESCRIPTION", d, id);
+            } catch (Exception e) {
+                e.printStackTrace();
+        }
+    }//GEN-LAST:event_SaveProfileMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField JTextFieldUsername;
-    private javax.swing.JButton jButtonChangeProfile;
-    private javax.swing.JLabel jButtonProfilePicture;
-    private javax.swing.JButton jButtonSaveProfile;
-    private javax.swing.JList<String> jListHobbies;
+    private javax.swing.JLabel BeschreibungText;
+    private javax.swing.JTextField Description;
+    private javax.swing.JLabel HobbiesText;
+    private javax.swing.JList<String> InteressenList;
+    private javax.swing.JTextField Location;
+    private javax.swing.JTextField Name;
+    private javax.swing.JLabel NameText;
+    private javax.swing.JLabel ProfilePicture;
+    private javax.swing.JButton SaveProfile;
+    private javax.swing.JLabel StandortText;
+    private javax.swing.JTextField Username;
+    private javax.swing.JLabel UsernameText;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextFieldDescription;
-    private javax.swing.JTextField jTextFieldLocation;
-    private javax.swing.JTextField jTextFielfName;
     // End of variables declaration//GEN-END:variables
 }

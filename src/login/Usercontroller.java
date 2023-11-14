@@ -76,12 +76,4 @@ public class Usercontroller {
 
     }
     
-    // Username, Name, Interessen, Biografie
-    
-    
-    
-
-    //searchUser {
-    //ausgeben aus Datenbank
-    //rausstreichen Freunde die bereits geaddet & sich selbst auch nicht
 }

@@ -5,33 +5,33 @@ package login;
  * @author lisas
  */
 public class User {
-    
+
     private int id;
     private String username;
     private String name;
     private String email;
-    private int age; 
-    private String location; 
+    private int age;
+    private String location;
     public String description;
     public String picture;
     private String password;
-    
-    public User (String username, String name, String email, String password){
+
+    public User(String username, String name, String email, String password) {
         this.username = username;
         this.name = name;
         this.email = email;
         this.password = password;
     }
-    
+
+    //Konstruktor erweitern für Picture und Age ODER(besser) neuen zusätzlichen 
     // Konstruktor
-    public User(String username, String name, String email, int alter, String standort, String beschreibung, String bild) {
+    public User(String username, String name, String email, String password, String standort, String beschreibung) {
         this.username = username;
         this.name = name;
         this.email = email;
-        this.age = alter; 
+        this.password = password;
         this.location = standort;
         this.description = beschreibung;
-        this.picture = bild;
     }
 
     // Getter-Methoden
@@ -46,32 +46,32 @@ public class User {
     public String getEmail() {
         return email;
     }
-    
-    public int getAlter(){
+
+    public int getAlter() {
         return age;
     }
-    
-    public String standort(){
+
+    public String getLocation() {
         return location;
     }
-    
-    public String beschreibung(){
+
+    public String getDescription() {
         return description;
     }
-    
-    public String bild(){
+
+    public String bild() {
         return picture;
     }
-     public String getPassword() {
+
+    public String getPassword() {
         return password;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int newId) {
         this.id = newId;
     }
 }
-
-    
-
