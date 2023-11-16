@@ -143,7 +143,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButtonFeed" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonGroups" min="-2" pref="140" max="-2" attributes="0"/>
+                      <Component id="jButtonClubs" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButtonFriends" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -156,7 +156,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButtonFriends" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonGroups" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonClubs" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonFeed" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButtonProfile" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -195,7 +195,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFeedActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButtonGroups">
+            <Component class="javax.swing.JButton" name="jButtonClubs">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="c1" green="c1" red="9c" type="rgb"/>
@@ -206,7 +206,7 @@
                 <Property name="text" type="java.lang.String" value="Gruppen"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGroupsActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonClubsActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonFriends">

@@ -2,25 +2,23 @@ package login;
 
 /**
  *
- * @author lisas
- * freunde ausählen können aus freundeliste
- * was passiert wenn man auf freunde klickt? Software sagen wer meine Freunde sind
- * -> 1. add Freunde macht dialog auf, mit liste aller user (bis auf alle, die bereits meine freunde sind & man selbst)
- * 2. alle Freunde die man bereits geaddet hat
- * danach erst um feed kümmern
- * im panelFreind wird suchfeld benötigt (Textfeld)
- * provisorisch einen weiteren button "button", sobald man tippt & er sucht zu schwierig
- * klicken auf suchen => dann erst, funktioniert mit präfix FR -> Franziska (soll merken neuer Buchstaben &
- * direkt suchen noch zu schwierig)
+ * @author lisas freunde ausählen können aus freundeliste was passiert wenn man
+ * auf freunde klickt? Software sagen wer meine Freunde sind -> 1. add Freunde
+ * macht dialog auf, mit liste aller user (bis auf alle, die bereits meine
+ * freunde sind & man selbst) 2. alle Freunde die man bereits geaddet hat danach
+ * erst um feed kümmern im panelFreind wird suchfeld benötigt (Textfeld)
+ * provisorisch einen weiteren button "button", sobald man tippt & er sucht zu
+ * schwierig klicken auf suchen => dann erst, funktioniert mit präfix FR ->
+ * Franziska (soll merken neuer Buchstaben & direkt suchen noch zu schwierig)
  */
 public class Homepage extends javax.swing.JFrame {
-    
+
     public Homepage() {
         initComponents();
     }
 
     public void setLoggedInUsername(String username) {
-        jLabelUsername.setText( username );
+        jLabelUsername.setText(username);
     }
 
     /**
@@ -40,7 +38,7 @@ public class Homepage extends javax.swing.JFrame {
         jPanelFeed = new javax.swing.JPanel();
         jButtonProfile = new javax.swing.JButton();
         jButtonFeed = new javax.swing.JButton();
-        jButtonGroups = new javax.swing.JButton();
+        jButtonClubs = new javax.swing.JButton();
         jButtonFriends = new javax.swing.JButton();
         jPanelBelowToolBar = new javax.swing.JPanel();
 
@@ -92,12 +90,12 @@ public class Homepage extends javax.swing.JFrame {
             }
         });
 
-        jButtonGroups.setBackground(new java.awt.Color(156, 193, 193));
-        jButtonGroups.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
-        jButtonGroups.setText("Gruppen");
-        jButtonGroups.addActionListener(new java.awt.event.ActionListener() {
+        jButtonClubs.setBackground(new java.awt.Color(156, 193, 193));
+        jButtonClubs.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
+        jButtonClubs.setText("Gruppen");
+        jButtonClubs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGroupsActionPerformed(evt);
+                jButtonClubsActionPerformed(evt);
             }
         });
 
@@ -125,7 +123,7 @@ public class Homepage extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButtonFeed, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonGroups, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonClubs, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
@@ -136,7 +134,7 @@ public class Homepage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelFeedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonFriends)
-                    .addComponent(jButtonGroups)
+                    .addComponent(jButtonClubs)
                     .addComponent(jButtonFeed)
                     .addComponent(jButtonProfile))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -177,16 +175,20 @@ public class Homepage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonFeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFeedActionPerformed
-        
+
     }//GEN-LAST:event_jButtonFeedActionPerformed
 
-    private void jButtonGroupsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGroupsActionPerformed
-        
-    }//GEN-LAST:event_jButtonGroupsActionPerformed
+    private void jButtonClubsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClubsActionPerformed
+        jPanelBelowToolBar.removeAll();
+        jPanelBelowToolBar.add(new PanelClubs(this));
+        jPanelBelowToolBar.repaint();
+        pack();
+    }//GEN-LAST:event_jButtonClubsActionPerformed
 
     private void jButtonFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFriendsActionPerformed
         jPanelBelowToolBar.removeAll();
         jPanelBelowToolBar.add(new PanelFriends(this));
+        jPanelBelowToolBar.repaint();
         pack();
     }//GEN-LAST:event_jButtonFriendsActionPerformed
 
@@ -197,6 +199,7 @@ public class Homepage extends javax.swing.JFrame {
     private void jButtonProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonProfileActionPerformed
         jPanelBelowToolBar.removeAll();
         jPanelBelowToolBar.add(new PanelProfile(this));
+        jPanelBelowToolBar.repaint();
         pack();
     }//GEN-LAST:event_jButtonProfileActionPerformed
 
@@ -208,7 +211,7 @@ public class Homepage extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
 
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -233,7 +236,7 @@ public class Homepage extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -242,7 +245,7 @@ public class Homepage extends javax.swing.JFrame {
                 if (Usercontroller.getInstance().getLoggedInUser() != null) {
                     homepage.setLoggedInUsername(Usercontroller.getInstance().getLoggedInUser().getUsername());
                     homepage.setVisible(true);
-                }else{
+                } else {
                     System.exit(0);
                 }
             }
@@ -250,9 +253,9 @@ public class Homepage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonClubs;
     private javax.swing.JButton jButtonFeed;
     private javax.swing.JButton jButtonFriends;
-    private javax.swing.JButton jButtonGroups;
     private javax.swing.JButton jButtonProfile;
     private javax.swing.JLabel jLabelHeadline;
     private javax.swing.JLabel jLabelLeftHeadliner;

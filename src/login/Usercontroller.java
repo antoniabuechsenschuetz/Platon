@@ -42,7 +42,7 @@ public class Usercontroller {
     public List<User> searchForUser(String search) {
         try {
             return DB.getInstance().searchUser(search, loggedInUser.getUsername());
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -60,7 +60,7 @@ public class Usercontroller {
         try {
             List<Integer> tmp = DB.getInstance().getFriendsId(loggedInUser.getId());
             return DB.getInstance().nameIdSearch(tmp);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -70,10 +70,19 @@ public class Usercontroller {
         try {
             int id = DB.getInstance().searchUserForName(name).getId();
             DB.getInstance().addFriends(loggedInUser.getId(),id);
-        } catch(Exception e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         }
 
     }
-    
+    /*
+    public List<Club> getClubs() {
+        try {
+            return DB.getInstance().getClubsForUser(loggedInUser.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+*/
 }

@@ -37,17 +37,17 @@ public class Club {
     }
 
     // Getter für beschreibung
-    public String getdescription() {
+    public String getDescription() {
         return description;
     }
 
     // Getter für groesse
-    public int size() {
+    public int getSize() {
         return size;
     }
 
     // Getter für bild
-    public String getimage() {
+    public String getImage() {
         return image;
     }
 }
