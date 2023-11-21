@@ -15,6 +15,7 @@ public class Homepage extends javax.swing.JFrame {
 
     public Homepage() {
         initComponents();
+        displayFeed();
     }
 
     public void setLoggedInUsername(String username) {
@@ -84,6 +85,11 @@ public class Homepage extends javax.swing.JFrame {
         jButtonFeed.setBackground(new java.awt.Color(171, 203, 203));
         jButtonFeed.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
         jButtonFeed.setText("Feed");
+        jButtonFeed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonFeedMouseClicked(evt);
+            }
+        });
         jButtonFeed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonFeedActionPerformed(evt);
@@ -207,6 +213,13 @@ public class Homepage extends javax.swing.JFrame {
         new PanelProfile(this).setVisible(true);
     }//GEN-LAST:event_jButtonProfileMouseClicked
 
+    private void jButtonFeedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonFeedMouseClicked
+        jPanelBelowToolBar.removeAll();
+        jPanelBelowToolBar.add(new PanelFeed(this));
+        jPanelBelowToolBar.repaint();
+        pack();
+    }//GEN-LAST:event_jButtonFeedMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -250,6 +263,13 @@ public class Homepage extends javax.swing.JFrame {
                 }
             }
         });
+    }
+    
+    public void displayFeed() {
+        jPanelBelowToolBar.removeAll();
+        jPanelBelowToolBar.add(new PanelFeed(this));
+        jPanelBelowToolBar.repaint();
+        pack();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
