@@ -35,6 +35,20 @@
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
+                  <Component id="jTextFieldSearchBar" min="-2" pref="208" max="-2" attributes="0"/>
+                  <EmptySpace pref="185" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+          <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="184" max="-2" attributes="0"/>
+                  <Component id="jListSearchFriends" min="-2" pref="208" max="-2" attributes="0"/>
+                  <EmptySpace pref="185" max="32767" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -46,9 +60,23 @@
                   <Component id="jButtonJoinNewClub" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonLeaveClub" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="jListJoinedClubs" min="-2" pref="288" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+              <Component id="jListJoinedClubs" min="-2" pref="117" max="-2" attributes="0"/>
               <EmptySpace pref="54" max="32767" attributes="0"/>
+          </Group>
+          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+                  <Component id="jTextFieldSearchBar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="199" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+          <Group type="103" rootIndex="2" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+                  <Component id="jListSearchFriends" min="-2" pref="90" max="-2" attributes="0"/>
+                  <EmptySpace pref="100" max="32767" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,6 +109,21 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLeaveClubActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="java.awt.TextField" name="jTextFieldSearchBar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Suche..."/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextFieldSearchBarMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSearchBarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="java.awt.List" name="jListSearchFriends">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jListSearchFriendsMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jListSearchFriendsActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

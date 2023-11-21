@@ -325,5 +325,27 @@ public class DB {
         }
         return false;
     }
+    
+    public List<Club> searchClub(String search) throws SQLException {
+        List<Club> foundClubList = new ArrayList<>();
+        String searchSql = "SELECT * FROM Club where Name LIKE '%" + search + "%'";
+        connect();
+        Statement stmt = conn.createStatement();
+        ResultSet rst = stmt.executeQuery(searchSql);
+
+        while (rst.next()) {
+            Club club = new Club(
+                    rst.getString("name"),
+                    rst.getInt("id"),
+                    rst.getString("description"),
+                    rst.getInt("size"),
+                    rst.getString("image"));
+            foundClubList.add(club);
+
+        }
+        close();
+        return foundClubList;
+    }
+
 
 }

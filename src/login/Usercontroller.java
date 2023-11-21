@@ -32,13 +32,13 @@ public class Usercontroller {
                 this.loggedInUser = userForLogin;
                 result = true;
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Datenbankfehler aufgetreten, bitte probiere es später erneut.");
         }
         return result;
     }
-    
+
     public List<User> searchForUser(String search) {
         try {
             return DB.getInstance().searchUser(search, loggedInUser.getUsername());
@@ -55,7 +55,7 @@ public class Usercontroller {
     public User getLoggedInUser() {
         return loggedInUser;
     }
-    
+
     public List<String> getFriends() {
         try {
             List<Integer> tmp = DB.getInstance().getFriendsId(loggedInUser.getId());
@@ -65,14 +65,24 @@ public class Usercontroller {
         }
         return null;
     }
-    
+
     public void addFriends(String name) {
         try {
             int id = DB.getInstance().searchUserForName(name).getId();
-            DB.getInstance().addFriends(loggedInUser.getId(),id);
-        } catch(SQLException e) {
+            DB.getInstance().addFriends(loggedInUser.getId(), id);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public List<Club> searchClub(String search) {
+        try {
+            return DB.getInstance().searchClub(search);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
 
     }
     /*
@@ -84,5 +94,5 @@ public class Usercontroller {
         }
         return null;
     }
-*/
+     */
 }
