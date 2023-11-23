@@ -136,7 +136,7 @@ public class PanelFriends extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAddFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddFriendActionPerformed
-        Usercontroller.getInstance().addFriends(tmpUsername);
+        Usercontroller.getInstance().addFriend(tmpUsername);
         displayFriends();
         System.out.println("Freund hinzugefügt.");
     }//GEN-LAST:event_jButtonAddFriendActionPerformed
