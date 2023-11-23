@@ -48,12 +48,21 @@ public class Usercontroller {
         return null;
     }
 
+    public User getLoggedInUser() {
+        return loggedInUser;
+    }
+
     public void setLoggedInUser(User user) {
         loggedInUser = user;
     }
 
-    public User getLoggedInUser() {
-        return loggedInUser;
+    public int getLoggedInUserId() {
+        try {
+            return DB.getInstance().getLoggedInUserId(loggedInUser.getUsername());
+        } catch (SQLException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+        return -1; //Anzeigen, dass Anfrage fehlgeschlagen
     }
 
     public List<String> getFriends() {
@@ -66,10 +75,55 @@ public class Usercontroller {
         return null;
     }
 
-    public void addFriends(String name) {
+    public void addFriend(String name) {
         try {
-            int id = DB.getInstance().searchUserForName(name).getId();
+            int id = DB.getInstance().searchUserByName(name).getId();
             DB.getInstance().addFriends(loggedInUser.getId(), id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    /*
+
+    public List<Club> searchForClubs(String search) {
+        try {
+            List<Club> clubs = DB.getInstance().searchClubs(search);
+
+            for (Club club : clubs) {
+                club.setMembersIds(DB.getInstance().getClubMembersIds(club.getId()));
+            }
+
+            return clubs;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+    public List<String> getClubNames() {
+       List<String> clubNames = new ArrayList<>();
+        try {
+            List<Club> allClubs = DB.getInstance().getClubs();
+            for (Club club : allClubs) {
+                System.out.println("Club ID: " + club.getId() + ", Name: " + club.getClubName());
+                clubNames.add(club.getClubName());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return clubNames;
+    }
+*/
+    public void addClub(String clubName) {
+        try {
+            Club club = DB.getInstance().searchClubByName(clubName);
+
+            int userId = loggedInUser.getId();
+            int clubId = club.getId();
+
+            DB.getInstance().addUserToClub(userId, clubId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -85,7 +139,7 @@ public class Usercontroller {
         return null;
 
     }
-    /*
+    
     public List<Club> getClubs() {
         try {
             return DB.getInstance().getClubsForUser(loggedInUser.getId());
@@ -94,5 +148,5 @@ public class Usercontroller {
         }
         return null;
     }
-     */
+     
 }

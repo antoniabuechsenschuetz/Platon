@@ -7,28 +7,23 @@ package login;
  */
 public class Club {
     
-    private String club_name;
+    private String name;
     private int id;
     private String description;
     private int size;
     private String image;
 
-    public Club(String club_name, int id, String description , int size, String image) {
-        this.club_name = club_name;
+    public Club(String name, int id, String description , int size, String image) {
+        this.name = name;
         this.id = id;
         this.description = description;
         this.size = size;
         this.image = image;
     }    
     
-    
-    
-    
-    
-
-    // Getter für club_name
-    public String getClub_name() {
-        return club_name;
+    // Getter für Name
+    public String getName() {
+        return name;
     }
 
     // Getter für id
@@ -50,4 +45,6 @@ public class Club {
     public String getImage() {
         return image;
     }
+    
+    //toString Clubname anzeigen
 }

@@ -106,6 +106,24 @@ public class DB {
         return foundUserList;
     }
 
+    public int getLoggedInUserId(String username) throws SQLException {
+        connect();
+        int userId = -1;
+
+        String sql = "SELECT ID FROM USER WHERE USER_NAME = ?";
+        try (java.sql.PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                userId = resultSet.getInt("ID");
+            }
+        }
+
+        close();
+        return userId;
+    }
+
     /**
      * Die Methode allUser liefert alle in der Datenbank gespeicherten User als
      * Liste von User-Objekten zurück. Ist keine User-Entität in der Datenbank
@@ -133,7 +151,7 @@ public class DB {
         return all;
     }
 
-    public User searchUserForName(String name) throws SQLException {
+    public User searchUserByName(String name) throws SQLException {
         connect();
         User user = null;
         Statement stmt = conn.createStatement();
@@ -309,23 +327,35 @@ public class DB {
         return false;
 
     }
-    
-    public boolean databaseUpdate(String table, String column, String value, int id) throws SQLException {
+
+    public List<String> getJoinedClubNames(int userId) throws SQLException {
         connect();
-        String sql = String.format("UPDATE %s SET %s = ? WHERE ID = ?", table.toUpperCase(), column.toUpperCase());
+        List<String> joinedClubs = new ArrayList<>();
+
+        String sql = "SELECT CLUB.* FROM CLUB "
+                + "JOIN USER_TO_CLUB ON CLUB.ID = USER_TO_CLUB.CLUB_ID "
+                + "WHERE USER_TO_CLUB.USER_ID = ?";
 
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, value);
-        pst.setInt(2, id);
-        int result = pst.executeUpdate();
-        pst.close();
-        close();
-        if (result > 0) {
-            return true;
+        pst.setInt(1, userId);
+        ResultSet rst = pst.executeQuery();
+
+        while (rst.next()) {
+            String clubName = rst.getString("NAME");
+            /*int clubId = rst.getInt("ID");
+            String description = rst.getString("DESCRIPTION");
+            int size = rst.getInt("SIZE");
+            String image = rst.getString("IMAGE");
+
+            Club club = new Club(clubName, clubId, description, size, image);
+             */
+            joinedClubs.add(clubName);
         }
-        return false;
+        close();
+
+        return joinedClubs;
     }
-    
+
     public List<Club> searchClub(String search) throws SQLException {
         List<Club> foundClubList = new ArrayList<>();
         String searchSql = "SELECT * FROM Club where Name LIKE '%" + search + "%'";
@@ -346,6 +376,104 @@ public class DB {
         close();
         return foundClubList;
     }
+    
+    public Club searchClubByName(String name) throws SQLException {
+        connect();
+        Club club = null;
+        Statement stmt = conn.createStatement();
+        ResultSet rst = stmt.executeQuery("SELECT * FROM CLUB WHERE NAME = '" + name + "'");
+        if (rst.next()) {
+            club = new Club(
+                    rst.getString("NAME"),
+                    rst.getInt("ID"),
+                    rst.getString("DESCRIPTION"),
+                    rst.getInt("SIZE"),
+            rst.getString("IMAGE"));
+            //club.setId(rst.getString("IMAGE")); aus searchForUserByName
+        }
+        close();
+        return club;
+    }
+    
+    public List<Integer> getClubMembersIds(int clubId) throws SQLException {
+        connect();
+        List<Integer> membersIds = new ArrayList<>();
+        String sql = "SELECT USER_ID FROM USER_TO_CLUB WHERE CLUB_ID = ?";
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
 
+        try (pst) {
+            pst.setInt(1, clubId);
+            ResultSet rst = pst.executeQuery();
+
+            while (rst.next()) {
+                int memberId = rst.getInt("USER_ID");
+                membersIds.add(memberId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+
+        return membersIds;
+    }
+
+    public List<Club> getClubsForUser(int userId) throws SQLException {
+        connect();
+        List<Club> clubs = new ArrayList<>();
+        String sql = "SELECT * FROM USER_TO_CLUB, CLUB WHERE CLUB.ID = USER_TO_CLUB.CLUB_ID AND USER_TO_CLUB.USER_ID = " + userId;
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+
+        try (pst) {
+            ResultSet rst = pst.executeQuery();
+
+            while (rst.next()) {
+                String clubName = rst.getString("CLUB.NAME");
+                int clubId = rst.getInt("CLUB.ID");
+                String description = rst.getString("CLUB.DESCRIPTION");
+                int size = rst.getInt("CLUB.SIZE");
+                String image = rst.getString("CLUB.IMAGE");
+
+                Club club = new Club(clubName, clubId, description, size, image);
+                clubs.add(club);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+
+        return clubs;
+    }
+
+    public void addUserToClub(int userId, int clubId) throws SQLException {
+        connect();
+
+        String sql = "INSERT INTO USER_TO_CLUB (USER_ID, CLUB_ID) VALUES (?, ?)";
+        try (java.sql.PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, clubId);
+
+            preparedStatement.executeUpdate();
+        }
+
+        close();
+    }
+
+    public boolean databaseUpdate(String table, String column, String value, int id) throws SQLException {
+        connect();
+        String sql = String.format("UPDATE %s SET %s = ? WHERE ID = ?", table.toUpperCase(), column.toUpperCase());
+
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, value);
+        pst.setInt(2, id);
+        int result = pst.executeUpdate();
+        pst.close();
+        close();
+        if (result > 0) {
+            return true;
+        }
+        return false;
+    }
 
 }
