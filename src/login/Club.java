@@ -45,6 +45,10 @@ public class Club {
     public String getImage() {
         return image;
     }
-    
-    //toString Clubname anzeigen
+    /*
+    @Override
+    public String toString() {
+        return "Club ID: " + getId() + ", Name: " + getClubName();
+    }
+*/
 }
