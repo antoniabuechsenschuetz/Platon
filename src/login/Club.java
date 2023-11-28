@@ -31,6 +31,10 @@ public class Club {
         return id;
     }
 
+    public void setId(int newId) {
+        this.id = newId;
+    }
+    
     // Getter für beschreibung
     public String getDescription() {
         return description;
@@ -45,6 +49,11 @@ public class Club {
     public String getImage() {
         return image;
     }
+    
+    @Override
+    public String toString() {
+    return getName(); 
+}
     /*
     @Override
     public String toString() {

@@ -78,7 +78,7 @@ public class Usercontroller {
     public void addFriend(String name) {
         try {
             int id = DB.getInstance().searchUserByName(name).getId();
-            DB.getInstance().addFriends(loggedInUser.getId(), id);
+            DB.getInstance().addFriend(loggedInUser.getId(), id);
         } catch (SQLException e) {
             e.printStackTrace();
         }

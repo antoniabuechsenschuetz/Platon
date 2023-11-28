@@ -7,22 +7,23 @@ import javax.swing.JOptionPane;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.SwingUtilities;
+import java.sql.SQLException;
+
 
 /**
  *
  * @author lisas //Gruppe löschen & Freunde hinzufügen
  */
 public class PanelClubs extends javax.swing.JPanel {
-    
+
     private DefaultListModel<Club> listModel;
     public List<Club> result;
     public String tmpClubname;
-    
 
     public PanelClubs(Homepage aThis) {
         initComponents();
         //jButtonLeaveClub.setEnabled(false);
-        
+
         listModel = new DefaultListModel<>();
         jListJoinedClubs.setModel(listModel);
         displayClubs();
@@ -41,7 +42,7 @@ public class PanelClubs extends javax.swing.JPanel {
         jButtonJoinNewClub = new javax.swing.JButton();
         jButtonLeaveClub = new javax.swing.JButton();
         jTextFieldSearchBar = new java.awt.TextField();
-        jListSearchFriends = new java.awt.List();
+        jListSearchClubs = new java.awt.List();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListJoinedClubs = new javax.swing.JList<>();
         jButtonDeleteClub = new javax.swing.JButton();
@@ -81,20 +82,25 @@ public class PanelClubs extends javax.swing.JPanel {
             }
         });
 
-        jListSearchFriends.addMouseListener(new java.awt.event.MouseAdapter() {
+        jListSearchClubs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListSearchFriendsMouseClicked(evt);
+                jListSearchClubsMouseClicked(evt);
             }
         });
-        jListSearchFriends.addActionListener(new java.awt.event.ActionListener() {
+        jListSearchClubs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jListSearchFriendsActionPerformed(evt);
+                jListSearchClubsActionPerformed(evt);
             }
         });
 
         jScrollPane1.setViewportView(jListJoinedClubs);
 
         jButtonDeleteClub.setText("Gruppe löschen");
+        jButtonDeleteClub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDeleteClubActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -104,9 +110,8 @@ public class PanelClubs extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                        .addComponent(jListSearchFriends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                    .addComponent(jListSearchClubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCreateClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
@@ -132,7 +137,7 @@ public class PanelClubs extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jListSearchFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jListSearchClubs, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -149,7 +154,7 @@ public class PanelClubs extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonCreateClubActionPerformed
 
     private void jButtonLeaveClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeaveClubActionPerformed
-    
+
 
     }//GEN-LAST:event_jButtonLeaveClubActionPerformed
 
@@ -162,41 +167,67 @@ public class PanelClubs extends javax.swing.JPanel {
         String searchText = jTextFieldSearchBar.getText();
         List<Club> searchResult = Usercontroller.getInstance().searchClub(searchText);
         result = searchResult;
-        jListSearchFriends.removeAll();
+        jListSearchClubs.removeAll();
         for (Club e : searchResult) {
-            jListSearchFriends.add(e.getName());
+            jListSearchClubs.add(e.getName());
         }
     }//GEN-LAST:event_jTextFieldSearchBarActionPerformed
 
-    private void jListSearchFriendsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSearchFriendsMouseClicked
+    private void jListSearchClubsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSearchClubsMouseClicked
         List<Club> tmp = this.result;
-        int x = jListSearchFriends.getSelectedIndex();
+        int x = jListSearchClubs.getSelectedIndex();
         if (x >= 0) {
             //jButtonAddFriend.setEnabled(true);
             System.out.println(x);
             tmpClubname = tmp.get(x).getName();
         }
-    }//GEN-LAST:event_jListSearchFriendsMouseClicked
+    }//GEN-LAST:event_jListSearchClubsMouseClicked
 
-    private void jListSearchFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListSearchFriendsActionPerformed
-        //TODO
-    }//GEN-LAST:event_jListSearchFriendsActionPerformed
+    private void jListSearchClubsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListSearchClubsActionPerformed
+
+    }//GEN-LAST:event_jListSearchClubsActionPerformed
+
+    private void jButtonDeleteClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteClubActionPerformed
+        
+        Club selectedClub = jListJoinedClubs.getSelectedValue();
+        int response = JOptionPane.showConfirmDialog(this, "Möchten Sie die ausgewählte Gruppe wirklich löschen?",
+                "Gruppe löschen", JOptionPane.YES_NO_OPTION);
+        
+        if (response == JOptionPane.YES_OPTION) {
+            DB dbInstance = DB.getInstance();
+
+            try {
+                boolean deletionResult = dbInstance.deleteClub(selectedClub);
+
+                if (deletionResult) {
+                    displayClubs();
+                    JOptionPane.showMessageDialog(this, "Gruppe erfolgreich gelöscht.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Fehler beim Löschen der Gruppe.", "Fehler", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "SQL-Fehler beim Löschen der Gruppe.", "Fehler", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }//GEN-LAST:event_jButtonDeleteClubActionPerformed
 
     private void displayClubs() {
         listModel.clear();
         List<Club> clubs = Usercontroller.getInstance().getClubs();
-        for (Club e : clubs) {
-            listModel.addElement(e);
+        for (Club club : clubs) {
+            listModel.addElement(club); //hier wird dann toString in Club aufgerufen
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCreateClub;
     private javax.swing.JButton jButtonDeleteClub;
     private javax.swing.JButton jButtonJoinNewClub;
     private javax.swing.JButton jButtonLeaveClub;
     private javax.swing.JList<Club> jListJoinedClubs;
-    private java.awt.List jListSearchFriends;
+    private java.awt.List jListSearchClubs;
     private javax.swing.JScrollPane jScrollPane1;
     private java.awt.TextField jTextFieldSearchBar;
     // End of variables declaration//GEN-END:variables

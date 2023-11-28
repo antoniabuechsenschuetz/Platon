@@ -271,7 +271,7 @@ public class DB {
         return friendsIdList;
     }
 
-    public boolean addFriends(int mId, int fId) throws SQLException {
+    public boolean addFriend(int mId, int fId) throws SQLException {
         connect();
         String sql = String.format("INSERT INTO MYFRIENDS(MYID, FRIENDID) VALUES (%d, %d)", mId, fId);
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
@@ -308,12 +308,12 @@ public class DB {
         return friendsNames;
     }
 
-    public boolean createClub(String club_name, String description, int size, String image) throws SQLException {
+    public boolean createClub(String clubName, String description, int size, String image) throws SQLException {
 
         connect();
         String sql = "INSERT INTO CLUB(NAME,DESCRIPTION, SIZE, IMAGE ) VALUES (?, ?, ?,?)";
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-        pst.setString(1, club_name);
+        pst.setString(1, clubName);
         pst.setString(2, description);
         pst.setInt(3, size);
         pst.setString(4, image);
@@ -325,7 +325,24 @@ public class DB {
             return true;
         }
         return false;
+    }
+    
+     public boolean deleteClub(Club club) throws SQLException {
+         if (club == null) {
+            System.err.println("Error: Trying to delete a null club.");
+            return false;
+        }
 
+        try {
+            connect();
+            Statement stmt = conn.createStatement();
+            boolean result = stmt.executeUpdate("DELETE FROM CLUB WHERE ID=" + club.getId()) != 0;
+            close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     public List<String> getJoinedClubNames(int userId) throws SQLException {
@@ -376,7 +393,7 @@ public class DB {
         close();
         return foundClubList;
     }
-    
+
     public Club searchClubByName(String name) throws SQLException {
         connect();
         Club club = null;
@@ -388,34 +405,11 @@ public class DB {
                     rst.getInt("ID"),
                     rst.getString("DESCRIPTION"),
                     rst.getInt("SIZE"),
-            rst.getString("IMAGE"));
+                    rst.getString("IMAGE"));
             //club.setId(rst.getString("IMAGE")); aus searchForUserByName
         }
         close();
         return club;
-    }
-    
-    public List<Integer> getClubMembersIds(int clubId) throws SQLException {
-        connect();
-        List<Integer> membersIds = new ArrayList<>();
-        String sql = "SELECT USER_ID FROM USER_TO_CLUB WHERE CLUB_ID = ?";
-        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-
-        try (pst) {
-            pst.setInt(1, clubId);
-            ResultSet rst = pst.executeQuery();
-
-            while (rst.next()) {
-                int memberId = rst.getInt("USER_ID");
-                membersIds.add(memberId);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            close();
-        }
-
-        return membersIds;
     }
 
     public List<Club> getClubsForUser(int userId) throws SQLException {
@@ -446,18 +440,17 @@ public class DB {
         return clubs;
     }
 
-    public void addUserToClub(int userId, int clubId) throws SQLException {
+    public boolean addUserToClub(int userId, int clubId) throws SQLException {
         connect();
-
-        String sql = "INSERT INTO USER_TO_CLUB (USER_ID, CLUB_ID) VALUES (?, ?)";
-        try (java.sql.PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
-            preparedStatement.setInt(1, userId);
-            preparedStatement.setInt(2, clubId);
-
-            preparedStatement.executeUpdate();
-        }
-
+        String sql = String.format("INSERT INTO USER_TO_CLUB (USER_ID, CLUB_ID) VALUES (%d, %d)", userId, clubId);
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        int result = pst.executeUpdate();
+        pst.close();
+        String sql2 = String.format("INSERT INTO USER_TO_CLUB (USER_ID, CLUB_ID) VALUES (%d, %d)", clubId, userId);
+        java.sql.PreparedStatement pst2 = conn.prepareStatement(sql2);
+        int result2 = pst2.executeUpdate();
         close();
+        return result == 0 && result2 == 0;
     }
 
     public boolean databaseUpdate(String table, String column, String value, int id) throws SQLException {

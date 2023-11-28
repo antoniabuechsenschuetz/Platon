@@ -25,10 +25,8 @@
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jTextFieldSearchBar" pref="330" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jScrollPane1" pref="330" max="32767" attributes="0"/>
-                      <Component id="jListSearchFriends" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jScrollPane1" pref="330" max="32767" attributes="0"/>
+                  <Component id="jListSearchClubs" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="41" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -60,7 +58,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTextFieldSearchBar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jListSearchFriends" min="-2" pref="154" max="-2" attributes="0"/>
+              <Component id="jListSearchClubs" min="-2" pref="154" max="-2" attributes="0"/>
               <EmptySpace pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -100,10 +98,10 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldSearchBarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="java.awt.List" name="jListSearchFriends">
+    <Component class="java.awt.List" name="jListSearchClubs">
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jListSearchFriendsMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jListSearchFriendsActionPerformed"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jListSearchClubsMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jListSearchClubsActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -129,6 +127,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Gruppe l&#xf6;schen"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteClubActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
