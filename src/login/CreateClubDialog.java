@@ -83,23 +83,18 @@ public class CreateClubDialog extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCreateClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateClubActionPerformed
-        try {
-            boolean success = DB.getInstance().createClub(
-                jTextFieldClubName.getText(),
-                jTextFieldDescription.getText(),
-                Integer.parseInt(jTextFieldClubSize.getText()), //damit nur Nummern angenommen werden
-                jTextFieldImage.getText()
-        );
+        boolean success = Usercontroller.getInstance().createClub(
+            jTextFieldClubName.getText(),
+            jTextFieldDescription.getText(),
+            Integer.parseInt(jTextFieldClubSize.getText()),
+            jTextFieldImage.getText()
+        );   
 
         if (success) {
             JOptionPane.showMessageDialog(CreateClubDialog.this, "Deine Gruppe wurde erfolgreich erstellt!");
             dispose(); // Schließt das Dialogfenster nach erfolgreichem Erstellen
         } else {
             JOptionPane.showMessageDialog(CreateClubDialog.this, "Fehler beim Erstellen deiner Gruppe.");
-        }
-    } catch (Exception e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(CreateClubDialog.this, "Fehler: Überprüfe deine Eingaben.");
         }
     }//GEN-LAST:event_jButtonCreateClubActionPerformed
 

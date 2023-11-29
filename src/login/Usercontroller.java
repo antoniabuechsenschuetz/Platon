@@ -116,14 +116,52 @@ public class Usercontroller {
         return clubNames;
     }
 */
+    
+    public boolean createClub(String clubName, String description, int clubSize, String image) {
+        try {
+            return DB.getInstance().createClub(
+                clubName,
+                loggedInUser.getId(),
+                description,
+                clubSize,
+                image);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    /// returns either 0 (success), -1 (error) or 1 (user has no rights)
+    public int deleteClub(Club club) {
+        try {
+            if (loggedInUser.getId() == club.getSenatorID()) {
+                if(DB.getInstance().deleteClub(club) == true) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            } else {
+                System.out.println("User has no rights to delete this club");
+                return 1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }  
+    }
+    
+    /// add yourself to a club
     public void addClub(String clubName) {
         try {
             Club club = DB.getInstance().searchClubByName(clubName);
 
             int userId = loggedInUser.getId();
             int clubId = club.getId();
-
-            DB.getInstance().addUserToClub(userId, clubId);
+            if (club.getSenatorID() != userId) {
+                DB.getInstance().addUserToClub(userId, clubId);
+            } else {
+                System.out.println("User is senator of that club");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -142,7 +180,9 @@ public class Usercontroller {
     
     public List<Club> getClubs() {
         try {
-            return DB.getInstance().getClubsForUser(loggedInUser.getId());
+            List<Club> result = DB.getInstance().getClubsForUser(loggedInUser.getId());
+            result.addAll(DB.getInstance().getClubsUserIsSenator(loggedInUser.getId()));
+            return result;
         } catch (SQLException e) {
             e.printStackTrace();
         }

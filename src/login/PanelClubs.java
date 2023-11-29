@@ -143,6 +143,7 @@ public class PanelClubs extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonJoinNewClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJoinNewClubActionPerformed
+        System.out.println(tmpClubname);
         Usercontroller.getInstance().addClub(tmpClubname);
         displayClubs();
         System.out.println("Club hinzugefügt.");
@@ -178,9 +179,9 @@ public class PanelClubs extends javax.swing.JPanel {
         int x = jListSearchClubs.getSelectedIndex();
         if (x >= 0) {
             //jButtonAddFriend.setEnabled(true);
-            System.out.println(x);
             tmpClubname = tmp.get(x).getName();
         }
+        
     }//GEN-LAST:event_jListSearchClubsMouseClicked
 
     private void jListSearchClubsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListSearchClubsActionPerformed
@@ -194,21 +195,17 @@ public class PanelClubs extends javax.swing.JPanel {
                 "Gruppe löschen", JOptionPane.YES_NO_OPTION);
         
         if (response == JOptionPane.YES_OPTION) {
-            DB dbInstance = DB.getInstance();
+            int res = Usercontroller.getInstance().deleteClub(selectedClub);
 
-            try {
-                boolean deletionResult = dbInstance.deleteClub(selectedClub);
-
-                if (deletionResult) {
-                    displayClubs();
-                    JOptionPane.showMessageDialog(this, "Gruppe erfolgreich gelöscht.");
-                } else {
-                    JOptionPane.showMessageDialog(this, "Fehler beim Löschen der Gruppe.", "Fehler", JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "SQL-Fehler beim Löschen der Gruppe.", "Fehler", JOptionPane.ERROR_MESSAGE);
+            if (res == 0) {
+                displayClubs();
+                JOptionPane.showMessageDialog(this, "Gruppe erfolgreich gelöscht.");
+            } else if (res == 1) {
+                JOptionPane.showMessageDialog(this, "User ist nicht Senator dieser Gruppe. Kann nicht gelöscht werden.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Fehler beim Löschen der Gruppe.", "Fehler", JOptionPane.ERROR_MESSAGE);
             }
+           
         }
 
     }//GEN-LAST:event_jButtonDeleteClubActionPerformed

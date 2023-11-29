@@ -308,15 +308,16 @@ public class DB {
         return friendsNames;
     }
     
-    public boolean createClub(String clubName, String description, int size, String image) throws SQLException {
+    public boolean createClub(String clubName,int senatorID, String description, int size, String image) throws SQLException {
         
         connect();
-        String sql = "INSERT INTO CLUB(NAME,DESCRIPTION, SIZE, IMAGE ) VALUES (?, ?, ?,?)";
+        String sql = "INSERT INTO CLUB(NAME,DESCRIPTION, SIZE, IMAGE, SENATOR_ID ) VALUES (?, ?, ?,?,?)";
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, clubName);
         pst.setString(2, description);
         pst.setInt(3, size);
         pst.setString(4, image);
+        pst.setInt(5, senatorID);
         
         int result = pst.executeUpdate();
         pst.close();
@@ -386,7 +387,8 @@ public class DB {
                     rst.getInt("id"),
                     rst.getString("description"),
                     rst.getInt("size"),
-                    rst.getString("image"));
+                    rst.getString("image"),
+            rst.getInt("senator_id"));
             foundClubList.add(club);
             
         }
@@ -405,13 +407,45 @@ public class DB {
                     rst.getInt("ID"),
                     rst.getString("DESCRIPTION"),
                     rst.getInt("SIZE"),
-                    rst.getString("IMAGE"));
+                    rst.getString("IMAGE"),
+                    rst.getInt("senator_id"));
             //club.setId(rst.getString("IMAGE")); aus searchForUserByName
         }
         close();
         return club;
     }
+
+    /// get clubs where user is senator
+    public List<Club> getClubsUserIsSenator(int userID) throws SQLException {
+        connect();
+        List<Club> clubs = new ArrayList<>();
+        String sql = "SELECT * FROM CLUB WHERE SENATOR_ID = "+userID;
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        
+        try (pst) {
+            ResultSet rst = pst.executeQuery();
+            
+            while (rst.next()) {
+                String clubName = rst.getString("CLUB.NAME");
+                int clubId = rst.getInt("CLUB.ID");
+                String description = rst.getString("CLUB.DESCRIPTION");
+                int size = rst.getInt("CLUB.SIZE");
+                String image = rst.getString("CLUB.IMAGE");
+                int senatorID = rst.getInt("CLUB.senator_id");
+                
+                Club club = new Club(clubName, clubId, description, size, image, senatorID);
+                clubs.add(club);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+        
+        return clubs;
+    }
     
+    /// get clubs user has joined (but is not owner)
     public List<Club> getClubsForUser(int userId) throws SQLException {
         connect();
         List<Club> clubs = new ArrayList<>();
@@ -427,8 +461,9 @@ public class DB {
                 String description = rst.getString("CLUB.DESCRIPTION");
                 int size = rst.getInt("CLUB.SIZE");
                 String image = rst.getString("CLUB.IMAGE");
+                int senatorID = rst.getInt("CLUB.senator_id");
                 
-                Club club = new Club(clubName, clubId, description, size, image);
+                Club club = new Club(clubName, clubId, description, size, image, senatorID);
                 clubs.add(club);
             }
         } catch (SQLException e) {
