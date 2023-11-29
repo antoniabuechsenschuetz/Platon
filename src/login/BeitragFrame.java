@@ -4,6 +4,9 @@
  */
 package login;
 
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  *
  * @author patricia
@@ -15,6 +18,7 @@ public class BeitragFrame extends javax.swing.JFrame {
      */
     public BeitragFrame() {
         initComponents();
+        displayer();
     }
 
     /**
@@ -31,6 +35,7 @@ public class BeitragFrame extends javax.swing.JFrame {
         BeitragText = new javax.swing.JTextArea();
         PostenButton = new javax.swing.JButton();
         CloseButton = new javax.swing.JButton();
+        PostTitel = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
@@ -43,11 +48,25 @@ public class BeitragFrame extends javax.swing.JFrame {
 
         BeitragText.setColumns(20);
         BeitragText.setRows(5);
-        BeitragText.setText("Erstelle einen Beitrag für deine Gruppe.");
+        BeitragText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                BeitragTextKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(BeitragText);
 
         PostenButton.setText("Beitrag Posten");
         PostenButton.setEnabled(false);
+        PostenButton.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                PostenButtonStateChanged(evt);
+            }
+        });
+        PostenButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PostenButtonMouseClicked(evt);
+            }
+        });
         PostenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PostenButtonActionPerformed(evt);
@@ -69,24 +88,39 @@ public class BeitragFrame extends javax.swing.JFrame {
             }
         });
 
+        PostTitel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PostTitelActionPerformed(evt);
+            }
+        });
+        PostTitel.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PostTitelKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+                            .addComponent(PostTitel)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(GruppenwahlPost, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(PostenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(375, 375, 375)
-                        .addComponent(CloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                                .addComponent(PostenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,9 +131,11 @@ public class BeitragFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PostenButton)
                     .addComponent(GruppenwahlPost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(PostTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -110,7 +146,7 @@ public class BeitragFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_PostenButtonActionPerformed
 
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
-        
+
     }//GEN-LAST:event_CloseButtonActionPerformed
 
     private void CloseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseButtonMouseEntered
@@ -122,8 +158,49 @@ public class BeitragFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CloseButtonMouseClicked
 
     private void GruppenwahlPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GruppenwahlPostActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_GruppenwahlPostActionPerformed
+
+    private void PostTitelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostTitelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PostTitelActionPerformed
+
+    private void BeitragTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BeitragTextKeyTyped
+        PostenButton.setEnabled(true);
+    }//GEN-LAST:event_BeitragTextKeyTyped
+
+    private void PostTitelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PostTitelKeyTyped
+        PostenButton.setEnabled(true);
+    }//GEN-LAST:event_PostTitelKeyTyped
+
+    private void PostenButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PostenButtonStateChanged
+        if (BeitragText.getText().isEmpty() && PostTitel.getText().isEmpty()) {
+            PostenButton.setEnabled(false);
+        } else if (PostTitel.getText().isEmpty() && !BeitragText.getText().isEmpty()) {
+            PostenButton.setEnabled(false);
+        } else if (BeitragText.getText().isEmpty() && !PostTitel.getText().isEmpty()) {
+            PostenButton.setEnabled(false);
+        } else {
+            PostenButton.setEnabled(true);
+        }
+    }//GEN-LAST:event_PostenButtonStateChanged
+
+    private void PostenButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PostenButtonMouseClicked
+
+        try {
+            String Titel = PostTitel.getText();
+            String Beitrag = BeitragText.getText();
+            int MyID = Usercontroller.getInstance().getLoggedInUserId();
+            String selectedGroup = GruppenwahlPost.getSelectedItem().toString();
+            Club foundGroup = DB.getInstance().searchClubByName(selectedGroup);
+            int ClubID = foundGroup.getId();
+            DB.getInstance().addPost(Titel, Beitrag, MyID, ClubID);
+            dispose();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_PostenButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -160,10 +237,24 @@ public class BeitragFrame extends javax.swing.JFrame {
         });
     }
 
+    public void displayer() {
+        try {
+            int id = Usercontroller.getInstance().getLoggedInUserId();
+            List<String> gruppe = DB.getInstance().getJoinedClubNames(id);
+            GruppenwahlPost.removeAll();
+            for (String e : gruppe) {
+                GruppenwahlPost.addItem(e);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea BeitragText;
     private javax.swing.JButton CloseButton;
     private javax.swing.JComboBox<String> GruppenwahlPost;
+    private javax.swing.JTextField PostTitel;
     private javax.swing.JButton PostenButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

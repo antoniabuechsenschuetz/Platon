@@ -50,6 +50,12 @@ public class PanelFeed extends javax.swing.JPanel {
             }
         });
 
+        Gruppenwahl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GruppenwahlActionPerformed(evt);
+            }
+        });
+
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -89,6 +95,10 @@ public class PanelFeed extends javax.swing.JPanel {
         BeitragFrame bf = new BeitragFrame();
         bf.setVisible(true);
     }//GEN-LAST:event_BeitragButtonMouseClicked
+
+    private void GruppenwahlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GruppenwahlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GruppenwahlActionPerformed
 
     public void displayer() {
         try {

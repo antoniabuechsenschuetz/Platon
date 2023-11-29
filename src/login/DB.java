@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import login.User;
 
 public class DB {
-
+    
     private static final String treibername = "org.hsqldb.jdbc.JDBCDriver";
     private static final String dbURL = "jdbc:hsqldb:file:data/Platon_db"; //richtigr pfad?
     private Connection conn;
@@ -33,18 +33,18 @@ public class DB {
             System.exit(-1);
         }
     }
-
+    
     public static DB getInstance() {
         if (instance == null) {
             instance = new DB();
         }
         return instance;
     }
-
+    
     private void connect() throws SQLException {
         conn = DriverManager.getConnection(dbURL, "SA", "");
     }
-
+    
     private void close() throws SQLException {
         if (conn != null) {
             if (!conn.isClosed()) {
@@ -54,18 +54,18 @@ public class DB {
             }
         }
     }
-
+    
     public User userLogin(String username, String password) throws SQLException {
         User loggedInUser = null;
         connect();
-
+        
         String sql = "SELECT * FROM User WHERE User_Name=? AND Password=?";
         java.sql.PreparedStatement preparedStatement = conn.prepareStatement(sql);
         preparedStatement.setString(1, username); // Benutzername
         preparedStatement.setString(2, password); // Passwort
 
         ResultSet resultSet = preparedStatement.executeQuery();
-
+        
         if (resultSet.next()) { // Wenn wahr dann das //hier:Nutzerobjekt
 
             String uname = resultSet.getString("user_name");
@@ -74,18 +74,18 @@ public class DB {
             String ps = resultSet.getString("password");
             String desc = resultSet.getString("description");
             String loc = resultSet.getString("location");
-
+            
             loggedInUser = new User(uname, name, mail, ps, loc, desc);
             loggedInUser.setId(resultSet.getInt("id"));
         }
-
+        
         close();
         return loggedInUser;
     }
-
+    
     public List<User> searchUser(String search, String excludeUsername) throws SQLException {
         List<User> foundUserList = new ArrayList<>();
-
+        
         String searchSql = "SELECT * FROM User where Name LIKE '%" + search + "%' or user_name LIKE '%" + search + "%'";
         connect();
         Statement stmt = conn.createStatement();
@@ -105,21 +105,21 @@ public class DB {
         close();
         return foundUserList;
     }
-
+    
     public int getLoggedInUserId(String username) throws SQLException {
         connect();
         int userId = -1;
-
+        
         String sql = "SELECT ID FROM USER WHERE USER_NAME = ?";
         try (java.sql.PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
-
+            
             if (resultSet.next()) {
                 userId = resultSet.getInt("ID");
             }
         }
-
+        
         close();
         return userId;
     }
@@ -150,7 +150,7 @@ public class DB {
         close();
         return all;
     }
-
+    
     public User searchUserByName(String name) throws SQLException {
         connect();
         User user = null;
@@ -168,7 +168,7 @@ public class DB {
         close();
         return user;
     }
-
+    
     public boolean newUser(User user) throws SQLException {
         boolean result = false;
         connect();
@@ -211,7 +211,7 @@ public class DB {
         close();
         return result;
     }
-
+    
     public boolean configurateUser(String name, String username, String email, String password) throws SQLException {
         connect();
         String sql = "INSERT INTO User (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
@@ -220,9 +220,9 @@ public class DB {
         pst.setString(2, username);
         pst.setString(3, email);
         pst.setString(4, password);
-
+        
         int result = pst.executeUpdate();
-
+        
         close();
         return result > 0;
     }
@@ -236,7 +236,7 @@ public class DB {
      * @return
      */
     public boolean register(String name, String username, String email, String password) throws SQLException {
-
+        
         connect();
         String sql = "INSERT INTO User (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
@@ -244,7 +244,7 @@ public class DB {
         pst.setString(2, username);
         pst.setString(3, email);
         pst.setString(4, password);
-
+        
         int result = pst.executeUpdate();
         pst.close();
         close();
@@ -253,24 +253,24 @@ public class DB {
         }
         return false;
     }
-
+    
     public List<Integer> getFriendsId(int search) throws SQLException {
         System.out.println(search);
         List<Integer> friendsIdList = new ArrayList<>();
         connect();
         String searchSql = "SELECT FRIENDID FROM MYFRIENDS WHERE MYID = " + search;
-
+        
         Statement stmt = conn.createStatement();
         ResultSet rst = stmt.executeQuery(searchSql);
-
+        
         while (rst.next()) {
             friendsIdList.add(rst.getInt("FRIENDID")); // "FRIENDID" in Großbuchstaben
         }
-
+        
         close();
         return friendsIdList;
     }
-
+    
     public boolean addFriend(int mId, int fId) throws SQLException {
         connect();
         String sql = String.format("INSERT INTO MYFRIENDS(MYID, FRIENDID) VALUES (%d, %d)", mId, fId);
@@ -283,33 +283,33 @@ public class DB {
         close();
         return result == 0 && result2 == 0;
     }
-
+    
     public List<String> nameIdSearch(List<Integer> ids) throws SQLException {
         List<String> friendsNames = new LinkedList<>();
         connect();
-
+        
         String sqlSmt = "SELECT USER_NAME FROM USER WHERE ID = ?";
-
+        
         for (int e : ids) {
             java.sql.PreparedStatement stmt = conn.prepareStatement(sqlSmt);
             stmt.setInt(1, e);
             ResultSet rst = stmt.executeQuery();
-
+            
             if (rst.next()) {
                 String userName = rst.getString("USER_NAME");
                 friendsNames.add(userName);
             }
-
+            
             rst.close();
             stmt.close();
         }
-
+        
         close();
         return friendsNames;
     }
-
+    
     public boolean createClub(String clubName, String description, int size, String image) throws SQLException {
-
+        
         connect();
         String sql = "INSERT INTO CLUB(NAME,DESCRIPTION, SIZE, IMAGE ) VALUES (?, ?, ?,?)";
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
@@ -317,7 +317,7 @@ public class DB {
         pst.setString(2, description);
         pst.setInt(3, size);
         pst.setString(4, image);
-
+        
         int result = pst.executeUpdate();
         pst.close();
         close();
@@ -327,12 +327,12 @@ public class DB {
         return false;
     }
     
-     public boolean deleteClub(Club club) throws SQLException {
-         if (club == null) {
+    public boolean deleteClub(Club club) throws SQLException {
+        if (club == null) {
             System.err.println("Error: Trying to delete a null club.");
             return false;
         }
-
+        
         try {
             connect();
             Statement stmt = conn.createStatement();
@@ -344,19 +344,19 @@ public class DB {
             return false;
         }
     }
-
+    
     public List<String> getJoinedClubNames(int userId) throws SQLException {
         connect();
         List<String> joinedClubs = new ArrayList<>();
-
+        
         String sql = "SELECT CLUB.* FROM CLUB "
                 + "JOIN USER_TO_CLUB ON CLUB.ID = USER_TO_CLUB.CLUB_ID "
                 + "WHERE USER_TO_CLUB.USER_ID = ?";
-
+        
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
         pst.setInt(1, userId);
         ResultSet rst = pst.executeQuery();
-
+        
         while (rst.next()) {
             String clubName = rst.getString("NAME");
             /*int clubId = rst.getInt("ID");
@@ -369,17 +369,17 @@ public class DB {
             joinedClubs.add(clubName);
         }
         close();
-
+        
         return joinedClubs;
     }
-
+    
     public List<Club> searchClub(String search) throws SQLException {
         List<Club> foundClubList = new ArrayList<>();
         String searchSql = "SELECT * FROM Club where Name LIKE '%" + search + "%'";
         connect();
         Statement stmt = conn.createStatement();
         ResultSet rst = stmt.executeQuery(searchSql);
-
+        
         while (rst.next()) {
             Club club = new Club(
                     rst.getString("name"),
@@ -388,12 +388,12 @@ public class DB {
                     rst.getInt("size"),
                     rst.getString("image"));
             foundClubList.add(club);
-
+            
         }
         close();
         return foundClubList;
     }
-
+    
     public Club searchClubByName(String name) throws SQLException {
         connect();
         Club club = null;
@@ -411,23 +411,23 @@ public class DB {
         close();
         return club;
     }
-
+    
     public List<Club> getClubsForUser(int userId) throws SQLException {
         connect();
         List<Club> clubs = new ArrayList<>();
         String sql = "SELECT * FROM USER_TO_CLUB, CLUB WHERE CLUB.ID = USER_TO_CLUB.CLUB_ID AND USER_TO_CLUB.USER_ID = " + userId;
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
-
+        
         try (pst) {
             ResultSet rst = pst.executeQuery();
-
+            
             while (rst.next()) {
                 String clubName = rst.getString("CLUB.NAME");
                 int clubId = rst.getInt("CLUB.ID");
                 String description = rst.getString("CLUB.DESCRIPTION");
                 int size = rst.getInt("CLUB.SIZE");
                 String image = rst.getString("CLUB.IMAGE");
-
+                
                 Club club = new Club(clubName, clubId, description, size, image);
                 clubs.add(club);
             }
@@ -436,10 +436,10 @@ public class DB {
         } finally {
             close();
         }
-
+        
         return clubs;
     }
-
+    
     public boolean addUserToClub(int userId, int clubId) throws SQLException {
         connect();
         String sql = String.format("INSERT INTO USER_TO_CLUB (USER_ID, CLUB_ID) VALUES (%d, %d)", userId, clubId);
@@ -452,11 +452,10 @@ public class DB {
         close();
         return result == 0 && result2 == 0;
     }
-
+    
     public boolean databaseUpdate(String table, String column, String value, int id) throws SQLException {
         connect();
         String sql = String.format("UPDATE %s SET %s = ? WHERE ID = ?", table.toUpperCase(), column.toUpperCase());
-
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, value);
         pst.setInt(2, id);
@@ -468,5 +467,21 @@ public class DB {
         }
         return false;
     }
-
+    
+    public boolean addPost(String Titel, String Beitrag, int UserID, int ClubID) throws SQLException{
+        connect();
+        String sql = "INSERT INTO POST (CLUBID, TITEL, DESCRIPTION, LIKE_COUNT, DISLIKE_COUNT, USER_ID) VALUES (?, ?, ?, ?, ?, ?)";
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setInt(1,ClubID);
+        pst.setString(2, Titel);
+        pst.setString(3, Beitrag);
+        pst.setInt(4, 0);
+        pst.setInt(5, 0);
+        pst.setInt(6, UserID);
+        int result = pst.executeUpdate();
+        pst.close();
+        close();
+        return result == 0;
+    }
+    
 }
