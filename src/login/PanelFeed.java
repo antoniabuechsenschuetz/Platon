@@ -6,6 +6,7 @@ package login;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.sql.SQLException;
 
 /**
  *
@@ -90,17 +91,18 @@ public class PanelFeed extends javax.swing.JPanel {
     }//GEN-LAST:event_BeitragButtonMouseClicked
 
     public void displayer() {
-        List<String> test = new LinkedList<>();
-        test.add("Feuer");
-        test.add("Wasser");
-        test.add("Erd");
-        test.add("Alle");
-        Gruppenwahl.removeAll();
-        for(String e : test) {
-            Gruppenwahl.addItem(e);
+        try {
+            int id = Usercontroller.getInstance().getLoggedInUserId();
+            List<String> gruppe = DB.getInstance().getJoinedClubNames(id);
+            Gruppenwahl.removeAll();
+            for (String e : gruppe) {
+                Gruppenwahl.addItem(e);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BeitragButton;
     private javax.swing.JComboBox<String> Gruppenwahl;

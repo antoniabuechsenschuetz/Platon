@@ -35,6 +35,12 @@ public class BeitragFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
 
+        GruppenwahlPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GruppenwahlPostActionPerformed(evt);
+            }
+        });
+
         BeitragText.setColumns(20);
         BeitragText.setRows(5);
         BeitragText.setText("Erstelle einen Beitrag für deine Gruppe.");
@@ -114,6 +120,10 @@ public class BeitragFrame extends javax.swing.JFrame {
     private void CloseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseButtonMouseClicked
         dispose();
     }//GEN-LAST:event_CloseButtonMouseClicked
+
+    private void GruppenwahlPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GruppenwahlPostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GruppenwahlPostActionPerformed
 
     /**
      * @param args the command line arguments

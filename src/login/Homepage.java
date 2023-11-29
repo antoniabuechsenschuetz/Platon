@@ -15,11 +15,12 @@ public class Homepage extends javax.swing.JFrame {
 
     public Homepage() {
         initComponents();
-        displayFeed();
+        
     }
 
     public void setLoggedInUsername(String username) {
         jLabelUsername.setText(username);
+        displayFeed();
     }
 
     /**
@@ -266,10 +267,12 @@ public class Homepage extends javax.swing.JFrame {
     }
     
     public void displayFeed() {
-        jPanelBelowToolBar.removeAll();
-        jPanelBelowToolBar.add(new PanelFeed(this));
-        jPanelBelowToolBar.repaint();
-        pack();
+        if (Usercontroller.getInstance().getLoggedInUser() != null) {
+            jPanelBelowToolBar.removeAll();
+            jPanelBelowToolBar.add(new PanelFeed(this));
+            jPanelBelowToolBar.repaint();
+            pack();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
