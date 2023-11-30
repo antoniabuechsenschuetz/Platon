@@ -13,7 +13,7 @@ import login.User;
 
 public class DB {
     
-    private static final String treibername = "org.hsqldb.jdbc.JDBCDriver";
+    private static final String drivername = "org.hsqldb.jdbc.JDBCDriver";
     private static final String dbURL = "jdbc:hsqldb:file:data/Platon_db"; //richtigr pfad?
     private Connection conn;
     private static DB instance;
@@ -27,7 +27,7 @@ public class DB {
      */
     private DB() {
         try {
-            Class.forName(treibername);
+            Class.forName(drivername);
         } catch (ClassNotFoundException exc) {
             exc.printStackTrace();
             System.exit(-1);
@@ -60,23 +60,23 @@ public class DB {
         connect();
         
         String sql = "SELECT * FROM User WHERE User_Name=? AND Password=?";
-        java.sql.PreparedStatement preparedStatement = conn.prepareStatement(sql);
-        preparedStatement.setString(1, username); // Benutzername
-        preparedStatement.setString(2, password); // Passwort
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setString(1, username); // Benutzername
+        pst.setString(2, password); // Passwort
 
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet rst = pst.executeQuery();
         
-        if (resultSet.next()) { // Wenn wahr dann das //hier:Nutzerobjekt
+        if (rst.next()) { // Wenn wahr dann das //hier:Nutzerobjekt
 
-            String uname = resultSet.getString("user_name");
-            String name = resultSet.getString("name");
-            String mail = resultSet.getString("email");
-            String ps = resultSet.getString("password");
-            String desc = resultSet.getString("description");
-            String loc = resultSet.getString("location");
+            String uname = rst.getString("user_name");
+            String name = rst.getString("name");
+            String mail = rst.getString("email");
+            String ps = rst.getString("password");
+            String description = rst.getString("description");
+            String location = rst.getString("location");
             
-            loggedInUser = new User(uname, name, mail, ps, loc, desc);
-            loggedInUser.setId(resultSet.getInt("id"));
+            loggedInUser = new User(uname, name, mail, ps, location, description);
+            loggedInUser.setId(rst.getInt("id"));
         }
         
         close();
@@ -86,7 +86,7 @@ public class DB {
     public List<User> searchUser(String search, String excludeUsername) throws SQLException {
         List<User> foundUserList = new ArrayList<>();
         
-        String searchSql = "SELECT * FROM User where Name LIKE '%" + search + "%' or user_name LIKE '%" + search + "%'";
+        String searchSql = "SELECT * FROM USER WHERE NAME LIKE '%" + search + "%' OR USER_NAME LIKE '%" + search + "%'";
         connect();
         Statement stmt = conn.createStatement();
         ResultSet rst = stmt.executeQuery(searchSql);
@@ -192,7 +192,7 @@ public class DB {
         boolean result;
         connect();
         Statement stmt = conn.createStatement();
-        result = stmt.executeUpdate("delete from User where id=" + user.getId()) != 0;
+        result = stmt.executeUpdate("DELETE FROM USER WHERE ID=" + user.getId()) != 0;
         close();
         return result;
     }
@@ -238,7 +238,7 @@ public class DB {
     public boolean register(String name, String username, String email, String password) throws SQLException {
         
         connect();
-        String sql = "INSERT INTO User (Name, User_Name, Email, Password) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO USER (NAME, USER_NAME, EMAIL, PASSWORD) VALUES (?, ?, ?, ?)";
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, name);
         pst.setString(2, username);

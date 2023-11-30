@@ -34,6 +34,7 @@
                   <Component id="jButtonLeaveClub" alignment="1" pref="155" max="32767" attributes="0"/>
                   <Component id="jButtonDeleteClub" alignment="1" max="32767" attributes="0"/>
                   <Component id="jButtonJoinNewClub" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jButtonShowMembers" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
@@ -56,10 +57,13 @@
                   <Component id="jScrollPane1" min="-2" pref="156" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextFieldSearchBar" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jTextFieldSearchBar" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonShowMembers" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jListSearchClubs" min="-2" pref="154" max="-2" attributes="0"/>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
+              <EmptySpace pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -130,6 +134,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteClubActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonShowMembers">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mitglieder anzeigen"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

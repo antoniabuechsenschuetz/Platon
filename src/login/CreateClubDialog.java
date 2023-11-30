@@ -35,12 +35,32 @@ public class CreateClubDialog extends JDialog {
         setBackground(new java.awt.Color(5, 81, 81));
 
         jTextFieldClubName.setText("Gruppenname...");
+        jTextFieldClubName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldClubNameMouseClicked(evt);
+            }
+        });
 
         jTextFieldDescription.setText("Beschreibung...");
+        jTextFieldDescription.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldDescriptionMouseClicked(evt);
+            }
+        });
 
         jTextFieldClubSize.setText("Gruppengröße...");
+        jTextFieldClubSize.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldClubSizeMouseClicked(evt);
+            }
+        });
 
         jTextFieldImage.setText("Bild URL...");
+        jTextFieldImage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextFieldImageMouseClicked(evt);
+            }
+        });
 
         jButtonCreateClub.setText("Gruppe erstellen");
         jButtonCreateClub.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +117,22 @@ public class CreateClubDialog extends JDialog {
             JOptionPane.showMessageDialog(CreateClubDialog.this, "Fehler beim Erstellen deiner Gruppe.");
         }
     }//GEN-LAST:event_jButtonCreateClubActionPerformed
+
+    private void jTextFieldClubNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldClubNameMouseClicked
+        jTextFieldClubName.setText("");
+    }//GEN-LAST:event_jTextFieldClubNameMouseClicked
+
+    private void jTextFieldDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionMouseClicked
+        jTextFieldDescription.setText("");
+    }//GEN-LAST:event_jTextFieldDescriptionMouseClicked
+
+    private void jTextFieldClubSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldClubSizeMouseClicked
+        jTextFieldClubSize.setText("");
+    }//GEN-LAST:event_jTextFieldClubSizeMouseClicked
+
+    private void jTextFieldImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldImageMouseClicked
+        jTextFieldImage.setText("");
+    }//GEN-LAST:event_jTextFieldImageMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
