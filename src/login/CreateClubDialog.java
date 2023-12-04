@@ -32,33 +32,47 @@ public class CreateClubDialog extends JDialog {
         jButtonCreateClub = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAutoRequestFocus(false);
         setBackground(new java.awt.Color(5, 81, 81));
 
-        jTextFieldClubName.setText("Gruppenname...");
-        jTextFieldClubName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldClubNameMouseClicked(evt);
+        jTextFieldClubName.setText("Benenne deine Gruppe...");
+        jTextFieldClubName.setActionCommand("<Not Set>");
+        jTextFieldClubName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldClubNameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldClubNameFocusLost(evt);
             }
         });
 
-        jTextFieldDescription.setText("Beschreibung...");
-        jTextFieldDescription.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldDescriptionMouseClicked(evt);
+        jTextFieldDescription.setText("Gib ihr eine Beschreibung...");
+        jTextFieldDescription.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldDescriptionFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldDescriptionFocusLost(evt);
             }
         });
 
-        jTextFieldClubSize.setText("Gruppengröße...");
-        jTextFieldClubSize.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldClubSizeMouseClicked(evt);
+        jTextFieldClubSize.setText("Maximale Gruppengröße?");
+        jTextFieldClubSize.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldClubSizeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldClubSizeFocusLost(evt);
             }
         });
 
-        jTextFieldImage.setText("Bild URL...");
-        jTextFieldImage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextFieldImageMouseClicked(evt);
+        jTextFieldImage.setText("URL für das Bild...");
+        jTextFieldImage.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldImageFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldImageFocusLost(evt);
             }
         });
 
@@ -76,12 +90,12 @@ public class CreateClubDialog extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonCreateClub)
-                    .addComponent(jTextFieldDescription)
+                    .addComponent(jTextFieldDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(jTextFieldClubName)
-                    .addComponent(jTextFieldClubSize, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                    .addComponent(jTextFieldImage))
-                .addContainerGap(77, Short.MAX_VALUE))
+                    .addComponent(jTextFieldClubSize)
+                    .addComponent(jTextFieldImage)
+                    .addComponent(jButtonCreateClub, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,11 +118,11 @@ public class CreateClubDialog extends JDialog {
 
     private void jButtonCreateClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateClubActionPerformed
         boolean success = Usercontroller.getInstance().createClub(
-            jTextFieldClubName.getText(),
-            jTextFieldDescription.getText(),
-            Integer.parseInt(jTextFieldClubSize.getText()),
-            jTextFieldImage.getText()
-        );   
+                jTextFieldClubName.getText(),
+                jTextFieldDescription.getText(),
+                Integer.parseInt(jTextFieldClubSize.getText()),
+                jTextFieldImage.getText()
+        );
 
         if (success) {
             JOptionPane.showMessageDialog(CreateClubDialog.this, "Deine Gruppe wurde erfolgreich erstellt!");
@@ -118,21 +132,53 @@ public class CreateClubDialog extends JDialog {
         }
     }//GEN-LAST:event_jButtonCreateClubActionPerformed
 
-    private void jTextFieldClubNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldClubNameMouseClicked
-        jTextFieldClubName.setText("");
-    }//GEN-LAST:event_jTextFieldClubNameMouseClicked
+    private void jTextFieldClubNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubNameFocusLost
+        if (jTextFieldClubName.getText().isEmpty()) {
+            jTextFieldClubName.setText("Benenne deine Gruppe...");
+        }
+    }//GEN-LAST:event_jTextFieldClubNameFocusLost
 
-    private void jTextFieldDescriptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionMouseClicked
-        jTextFieldDescription.setText("");
-    }//GEN-LAST:event_jTextFieldDescriptionMouseClicked
+    private void jTextFieldClubNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubNameFocusGained
+        if (jTextFieldClubName.getText().equals("Benenne deine Gruppe...")) {
+            jTextFieldClubName.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldClubNameFocusGained
 
-    private void jTextFieldClubSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldClubSizeMouseClicked
-        jTextFieldClubSize.setText("");
-    }//GEN-LAST:event_jTextFieldClubSizeMouseClicked
+    private void jTextFieldDescriptionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionFocusLost
+        if (jTextFieldDescription.getText().isEmpty()) {
+            jTextFieldDescription.setText("Gib ihr eine Beschreibung...");
+        }
+    }//GEN-LAST:event_jTextFieldDescriptionFocusLost
 
-    private void jTextFieldImageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldImageMouseClicked
-        jTextFieldImage.setText("");
-    }//GEN-LAST:event_jTextFieldImageMouseClicked
+    private void jTextFieldDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionFocusGained
+        if (jTextFieldDescription.getText().equals("Gib ihr eine Beschreibung...")) {
+            jTextFieldDescription.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldDescriptionFocusGained
+
+    private void jTextFieldClubSizeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubSizeFocusLost
+        if (jTextFieldClubSize.getText().isEmpty()) {
+            jTextFieldClubSize.setText("Maximale Gruppengröße?");
+        }
+    }//GEN-LAST:event_jTextFieldClubSizeFocusLost
+
+    private void jTextFieldClubSizeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubSizeFocusGained
+        if (jTextFieldClubSize.getText().equals("Maximale Gruppengröße?")) {
+            jTextFieldClubSize.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldClubSizeFocusGained
+
+    private void jTextFieldImageFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldImageFocusGained
+        if (jTextFieldImage.getText().equals("URL für das Bild...")) {
+            jTextFieldImage.setText("");
+        }
+    }//GEN-LAST:event_jTextFieldImageFocusGained
+
+    private void jTextFieldImageFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldImageFocusLost
+        if (jTextFieldImage.getText().isEmpty()) {
+            jTextFieldImage.setText("URL für das Bild...");
+        }
+    }//GEN-LAST:event_jTextFieldImageFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

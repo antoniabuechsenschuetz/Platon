@@ -28,13 +28,13 @@
                   <Component id="jScrollPane1" pref="330" max="32767" attributes="0"/>
                   <Component id="jListSearchClubs" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButtonCreateClub" alignment="1" pref="155" max="32767" attributes="0"/>
-                  <Component id="jButtonLeaveClub" alignment="1" pref="155" max="32767" attributes="0"/>
+                  <Component id="jButtonCreateClub" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jButtonLeaveClub" alignment="1" max="32767" attributes="0"/>
                   <Component id="jButtonDeleteClub" alignment="1" max="32767" attributes="0"/>
                   <Component id="jButtonJoinNewClub" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jButtonShowMembers" max="32767" attributes="0"/>
+                  <Component id="jButtonShowClubDetails" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
@@ -59,7 +59,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jTextFieldSearchBar" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonShowMembers" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonShowClubDetails" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jListSearchClubs" min="-2" pref="154" max="-2" attributes="0"/>
@@ -135,10 +135,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDeleteClubActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonShowMembers">
+    <Component class="javax.swing.JButton" name="jButtonShowClubDetails">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mitglieder anzeigen"/>
+        <Property name="text" type="java.lang.String" value="Gruppendetails anzeigen"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonShowClubDetailsMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

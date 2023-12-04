@@ -84,39 +84,6 @@ public class Usercontroller {
         }
     }
     
-    /*
-
-    public List<Club> searchForClubs(String search) {
-        try {
-            List<Club> clubs = DB.getInstance().searchClubs(search);
-
-            for (Club club : clubs) {
-                club.setMembersIds(DB.getInstance().getClubMembersIds(club.getId()));
-            }
-
-            return clubs;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return new ArrayList<>();
-    }
-
-    public List<String> getClubNames() {
-       List<String> clubNames = new ArrayList<>();
-        try {
-            List<Club> allClubs = DB.getInstance().getClubs();
-            for (Club club : allClubs) {
-                System.out.println("Club ID: " + club.getId() + ", Name: " + club.getClubName());
-                clubNames.add(club.getClubName());
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-        return clubNames;
-    }
-*/
-    
     public boolean createClub(String clubName, String description, int clubSize, String image) {
         try {
             return DB.getInstance().createClub(
@@ -188,5 +155,11 @@ public class Usercontroller {
         }
         return null;
     }
+     public void logout() {
+        loggedInUser = null;
+    }
      
+      public boolean updateClubDetails(String clubName, String description, int clubSize, String imageURL) {
+        return true; 
+    }
 }

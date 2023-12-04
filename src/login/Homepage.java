@@ -15,7 +15,7 @@ public class Homepage extends javax.swing.JFrame {
 
     public Homepage() {
         initComponents();
-        
+
     }
 
     public void setLoggedInUsername(String username) {
@@ -43,6 +43,7 @@ public class Homepage extends javax.swing.JFrame {
         jButtonClubs = new javax.swing.JButton();
         jButtonFriends = new javax.swing.JButton();
         jPanelBelowToolBar = new javax.swing.JPanel();
+        jButtonLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -149,6 +150,13 @@ public class Homepage extends javax.swing.JFrame {
 
         jPanelBelowToolBar.setOpaque(false);
 
+        jButtonLogout.setText("abmelden");
+        jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelAllLayout = new javax.swing.GroupLayout(jPanelAll);
         jPanelAll.setLayout(jPanelAllLayout);
         jPanelAllLayout.setHorizontalGroup(
@@ -156,7 +164,9 @@ public class Homepage extends javax.swing.JFrame {
             .addGroup(jPanelAllLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonLogout)
+                .addGap(26, 26, 26))
             .addGroup(jPanelAllLayout.createSequentialGroup()
                 .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAllLayout.createSequentialGroup()
@@ -171,9 +181,15 @@ public class Homepage extends javax.swing.JFrame {
                 .addComponent(jLabelRightHeadliner)
                 .addGap(3, 3, 3)
                 .addComponent(jPanelFeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAllLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAllLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonLogout)
+                        .addGap(19, 19, 19))))
         );
 
         getContentPane().add(jPanelAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 710));
@@ -221,6 +237,13 @@ public class Homepage extends javax.swing.JFrame {
         pack();
     }//GEN-LAST:event_jButtonFeedMouseClicked
 
+    private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
+        Usercontroller.getInstance().logout();
+        Loginform loginForm = new Loginform(this);
+        loginForm.setVisible(true); //Login sichtbar machen
+        this.dispose(); //schließen der Homepage
+    }//GEN-LAST:event_jButtonLogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -265,7 +288,7 @@ public class Homepage extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public void displayFeed() {
         if (Usercontroller.getInstance().getLoggedInUser() != null) {
             jPanelBelowToolBar.removeAll();
@@ -279,6 +302,7 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JButton jButtonClubs;
     private javax.swing.JButton jButtonFeed;
     private javax.swing.JButton jButtonFriends;
+    private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonProfile;
     private javax.swing.JLabel jLabelHeadline;
     private javax.swing.JLabel jLabelLeftHeadliner;

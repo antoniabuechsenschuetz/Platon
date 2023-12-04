@@ -518,5 +518,21 @@ public class DB {
         close();
         return result == 0;
     }
-    
+  
+    public boolean displayClubDetails( String clubName, String description, int clubSize, String imageURL) {
+    try {
+        Club displayClubDetails = DB.getInstance().searchClubByName(clubName);
+
+        if (displayClubDetails != null) {
+            return DB.getInstance().displayClubDetails(clubName, description, clubSize, imageURL);
+        } else {
+            System.out.println("Die Gruppe existiert nicht");
+            return false;
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
 }

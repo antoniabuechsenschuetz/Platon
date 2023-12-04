@@ -45,7 +45,7 @@ public class PanelClubs extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jListJoinedClubs = new javax.swing.JList<>();
         jButtonDeleteClub = new javax.swing.JButton();
-        jButtonShowMembers = new javax.swing.JButton();
+        jButtonShowClubDetails = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(5, 81, 81));
 
@@ -102,7 +102,12 @@ public class PanelClubs extends javax.swing.JPanel {
             }
         });
 
-        jButtonShowMembers.setText("Mitglieder anzeigen");
+        jButtonShowClubDetails.setText("Gruppendetails anzeigen");
+        jButtonShowClubDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonShowClubDetailsMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,13 +119,13 @@ public class PanelClubs extends javax.swing.JPanel {
                     .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                     .addComponent(jListSearchClubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonCreateClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jButtonLeaveClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                    .addComponent(jButtonCreateClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonLeaveClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonDeleteClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonJoinNewClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonShowMembers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonShowClubDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(26, 26, 26))
         );
         layout.setVerticalGroup(
@@ -140,7 +145,7 @@ public class PanelClubs extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonShowMembers))
+                    .addComponent(jButtonShowClubDetails))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jListSearchClubs, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -215,6 +220,14 @@ public class PanelClubs extends javax.swing.JPanel {
         displayClubs();
     }//GEN-LAST:event_jButtonDeleteClubActionPerformed
 
+    private void jButtonShowClubDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowClubDetailsMouseClicked
+        ClubDetailsDialog clubDetailsDialog = new ClubDetailsDialog();
+        clubDetailsDialog.setVisible(true);
+        
+        
+        
+    }//GEN-LAST:event_jButtonShowClubDetailsMouseClicked
+
     private void displayClubs() {
         listModel.clear();
         List<Club> clubs = Usercontroller.getInstance().getClubs();
@@ -228,7 +241,7 @@ public class PanelClubs extends javax.swing.JPanel {
     private javax.swing.JButton jButtonDeleteClub;
     private javax.swing.JButton jButtonJoinNewClub;
     private javax.swing.JButton jButtonLeaveClub;
-    private javax.swing.JButton jButtonShowMembers;
+    private javax.swing.JButton jButtonShowClubDetails;
     private javax.swing.JList<Club> jListJoinedClubs;
     private java.awt.List jListSearchClubs;
     private javax.swing.JScrollPane jScrollPane1;
