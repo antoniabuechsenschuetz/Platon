@@ -7,6 +7,8 @@ package login;
 import java.util.LinkedList;
 import java.util.List;
 import java.sql.SQLException;
+import javax.swing.DefaultListModel;
+import login.Post;
 
 /**
  *
@@ -14,11 +16,16 @@ import java.sql.SQLException;
  */
 public class PanelFeed extends javax.swing.JPanel {
 
+    private DefaultListModel<String> listModel;
+    private List<Post> posts;
+
     /**
      * Creates new form PanelFeed
      */
     public PanelFeed(Homepage aThis) {
         initComponents();
+        listModel = new DefaultListModel<>();
+        PostAnzeige.setModel(listModel);
         displayer();
     }
 
@@ -33,8 +40,11 @@ public class PanelFeed extends javax.swing.JPanel {
 
         BeitragButton = new javax.swing.JButton();
         Gruppenwahl = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        PostAnzeige = new javax.swing.JList<>();
+        DislikeButton = new javax.swing.JButton();
+        LikeButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(2, 70, 70));
 
@@ -56,9 +66,43 @@ public class PanelFeed extends javax.swing.JPanel {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        PostAnzeige.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(PostAnzeige);
+
+        DislikeButton.setText("Dislike");
+        DislikeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DislikeButtonMouseClicked(evt);
+            }
+        });
+
+        LikeButton.setText("Like");
+        LikeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LikeButtonMouseClicked(evt);
+            }
+        });
+        LikeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LikeButtonActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Refresh");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,11 +112,18 @@ public class PanelFeed extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(218, 218, 218)
-                        .addComponent(BeitragButton))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addComponent(LikeButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(DislikeButton))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton1)
+                            .addGap(122, 122, 122)
+                            .addComponent(BeitragButton))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -80,10 +131,16 @@ public class PanelFeed extends javax.swing.JPanel {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BeitragButton)
-                    .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DislikeButton)
+                    .addComponent(LikeButton))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -97,17 +154,96 @@ public class PanelFeed extends javax.swing.JPanel {
     }//GEN-LAST:event_BeitragButtonMouseClicked
 
     private void GruppenwahlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GruppenwahlActionPerformed
-        // TODO add your handling code here:
+
+        feeddisplay();
     }//GEN-LAST:event_GruppenwahlActionPerformed
+
+    private void LikeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LikeButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LikeButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        feeddisplay();
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void LikeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LikeButtonMouseClicked
+        try {
+            if (PostAnzeige.getSelectedIndex() >= 0) {
+                int id = posts.get(PostAnzeige.getSelectedIndex()).getPostID();
+                DB.getInstance().likecounter(id, "LIKE_COUNT");
+                feeddisplay();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_LikeButtonMouseClicked
+
+    private void DislikeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DislikeButtonMouseClicked
+        try {
+            if (PostAnzeige.getSelectedIndex() >= 0) {
+                int id = posts.get(PostAnzeige.getSelectedIndex()).getPostID();
+                DB.getInstance().likecounter(id, "DISLIKE_COUNT");
+                feeddisplay();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_DislikeButtonMouseClicked
+
+    public void feeddisplay() {
+        try {
+            listModel.clear();
+            if (Gruppenwahl.getItemCount() > 0) {
+                if (Gruppenwahl.getSelectedItem().toString().equals("alle")) {
+                    this.posts.clear();
+                    int id = Usercontroller.getInstance().getLoggedInUserId();
+                    List<Club> gruppe = DB.getInstance().getClubsForUser(id);
+                    List<Integer> clubIDs = new LinkedList<>();
+                    for (Club c : gruppe) {
+                        clubIDs.add(c.getId());
+                    }
+                    for (int i : clubIDs) {
+                        this.posts.addAll(DB.getInstance().readPost("CLUBID", i));
+                    }
+                } else {
+                    String selectedGroup = Gruppenwahl.getSelectedItem().toString();
+                    Club foundGroup = DB.getInstance().searchClubByName(selectedGroup);
+                    int ClubID = foundGroup.getId();
+                    this.posts = DB.getInstance().readPost("CLUBID", ClubID);
+                }
+                for (Post p : posts) {
+                    List<Integer> userid = new LinkedList<>();
+                    userid.add(p.getUserID());
+                    List<String> username = DB.getInstance().nameIdSearch(userid);
+                    String post = String.format("von %s am %s | %s | %s | Like: %d Dislike: %d ",
+                            username.getFirst(), p.getDate(), p.getTitel(), p.getDescription(), p.getLikecount(), p.getDislikecount());
+                    listModel.addElement(post);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public void displayer() {
         try {
+            // Anzeige der Combobox Gruppenwahl
             int id = Usercontroller.getInstance().getLoggedInUserId();
             List<String> gruppe = DB.getInstance().getJoinedClubNames(id);
             Gruppenwahl.removeAll();
             for (String e : gruppe) {
                 Gruppenwahl.addItem(e);
             }
+            Gruppenwahl.addItem("alle");
+            //First Feets
+            feeddisplay();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -115,8 +251,11 @@ public class PanelFeed extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BeitragButton;
+    private javax.swing.JButton DislikeButton;
     private javax.swing.JComboBox<String> Gruppenwahl;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton LikeButton;
+    private javax.swing.JList<String> PostAnzeige;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
