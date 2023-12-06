@@ -166,7 +166,21 @@ public class PanelClubs extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonCreateClubActionPerformed
 
     private void jButtonLeaveClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeaveClubActionPerformed
+        Club selectedClub = jListJoinedClubs.getSelectedValue();
+        int response = JOptionPane.showConfirmDialog(this, "Möchten Sie die ausgewählte Gruppe wirklich verlassen?",
+                "Gruppe verlassen", JOptionPane.YES_NO_OPTION);
 
+        if (response == JOptionPane.YES_OPTION) {
+            boolean res = Usercontroller.getInstance().exitClub(selectedClub);
+
+            if (res == true) {
+                displayClubs();
+                JOptionPane.showMessageDialog(this, "Gruppe erfolgreich verlassen.");
+            } else {
+                JOptionPane.showMessageDialog(this, "Fehler beim Verlassen der Gruppe.", "Fehler", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        displayClubs();
 
     }//GEN-LAST:event_jButtonLeaveClubActionPerformed
 

@@ -488,6 +488,19 @@ public class DB {
         return result == 0 && result2 == 0;
     }
     
+    public boolean removeUserFromClub(int userId, int clubId) throws SQLException {
+        connect();
+        String sql = String.format("DELETE FROM USER_TO_CLUB WHERE USER_ID=%d AND CLUB_ID=%d", userId, clubId);
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        int result = pst.executeUpdate();
+        pst.close();
+        String sql2 = String.format("DELETE FROM USER_TO_CLUB WHERE USER_ID=%d AND CLUB_ID=%d", clubId, userId);
+        java.sql.PreparedStatement pst2 = conn.prepareStatement(sql2);
+        int result2 = pst2.executeUpdate();
+        close();
+        return result == 0 && result2 == 0;
+    }
+    
     public boolean databaseUpdate(String table, String column, String value, int id) throws SQLException {
         connect();
         String sql = String.format("UPDATE %s SET %s = ? WHERE ID = ?", table.toUpperCase(), column.toUpperCase());

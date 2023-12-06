@@ -134,6 +134,15 @@ public class Usercontroller {
         }
 
     }
+    
+    public boolean exitClub(Club club) {
+        try {
+            return DB.getInstance().removeUserFromClub(loggedInUser.getId(), club.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }  
+    }
 
     public List<Club> searchClub(String search) {
         try {
