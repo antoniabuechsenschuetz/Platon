@@ -13,6 +13,8 @@ import login.User;
 
 public class DB {
     
+    
+    
     private static final String drivername = "org.hsqldb.jdbc.JDBCDriver";
     private static final String dbURL = "jdbc:hsqldb:file:data/Platon_db"; //richtigr pfad?
     private Connection conn;
@@ -388,7 +390,7 @@ public class DB {
                     rst.getString("description"),
                     rst.getInt("size"),
                     rst.getString("image"),
-            rst.getInt("senator_id"));
+                 rst.getInt("senator_id"));
             foundClubList.add(club);
             
         }
@@ -518,7 +520,7 @@ public class DB {
     
     public boolean addPost(String Titel, String Beitrag, int UserID, int ClubID) throws SQLException{
         connect();
-        String sql = "INSERT INTO POST (CLUBID, TITEL, DESCRIPTION, LIKE_COUNT, DISLIKE_COUNT, USER_ID) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO POST (CLUBID, TITEL, DESCRIPTION, LIKE_COUNT, DISLIKE_COUNT, USER_ID, DATE) VALUES (?, ?, ?, ?, ?, ?, current_timestamp)";
         java.sql.PreparedStatement pst = conn.prepareStatement(sql);
         pst.setInt(1,ClubID);
         pst.setString(2, Titel);
@@ -530,6 +532,46 @@ public class DB {
         pst.close();
         close();
         return result == 0;
+    }
+        
+    public boolean likecounter(int id, String column) throws SQLException{
+        connect();
+        String sql = String.format("UPDATE POST SET %s = %s + 1 WHERE POSTID = ?", column, column);
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setInt(1, id);
+        int result = pst.executeUpdate();
+        pst.close();
+        close();
+        return result == 0;
+    }
+    
+    public List<Post> readPost(String columnname,int ID) throws SQLException{
+        connect();
+        List<Post> posts = new LinkedList<>();
+        String sql = String.format("SELECT * FROM POST WHERE %s = ?", columnname);
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        pst.setInt(1, ID);
+        try (pst) {
+            ResultSet rst = pst.executeQuery();
+            
+            while (rst.next()) {
+                    int postID = rst.getInt("POSTID");
+                    int clubID = rst.getInt("CLUBID");
+                    String titel = rst.getString("TITEL");
+                    String description = rst.getString("DESCRIPTION");
+                    int likecount = rst.getInt("LIKE_COUNT");
+                    int dislikecount = rst.getInt("DISLIKE_COUNT");
+                    int userID = rst.getInt("USER_ID");
+                    String date = rst.getString("DATE");
+                    Post post = new Post(postID, clubID, titel, description, likecount,dislikecount,userID,date);
+                    posts.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+        return posts;
     }
   
     public boolean displayClubDetails( String clubName, String description, int clubSize, String imageURL) {
