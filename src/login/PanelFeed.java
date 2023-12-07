@@ -26,6 +26,7 @@ public class PanelFeed extends javax.swing.JPanel {
         initComponents();
         listModel = new DefaultListModel<>();
         PostAnzeige.setModel(listModel);
+        posts  = new LinkedList<Post>();
         displayer();
     }
 
@@ -220,7 +221,7 @@ public class PanelFeed extends javax.swing.JPanel {
                     userid.add(p.getUserID());
                     List<String> username = DB.getInstance().nameIdSearch(userid);
                     String post = String.format("von %s am %s | %s | %s | Like: %d Dislike: %d ",
-                            username.getFirst(), p.getDate(), p.getTitel(), p.getDescription(), p.getLikecount(), p.getDislikecount());
+                            username.get(0), p.getDate(), p.getTitel(), p.getDescription(), p.getLikecount(), p.getDislikecount());
                     listModel.addElement(post);
                 }
             }
