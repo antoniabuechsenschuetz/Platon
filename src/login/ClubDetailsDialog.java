@@ -9,11 +9,15 @@ import javax.swing.JOptionPane;
  */
 public class ClubDetailsDialog extends JDialog {
 
+    private Club club;
     /**
      * Creates new form CreateClubDialog
      */
-    public ClubDetailsDialog() {
+    public ClubDetailsDialog(Club club) {
+        this.club = club;
         initComponents();
+        jTextClubName.setText(club.getName());
+        
     }
 
     /**
@@ -188,9 +192,7 @@ public class ClubDetailsDialog extends JDialog {
     }//GEN-LAST:event_jTextFieldImageFocusGained
 
     private void jTextFieldClubNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubNameFocusLost
-        if (jTextFieldClubName.getText().isEmpty()) {
-            jTextFieldClubName.setText("Benenne deine Gruppe...");
-        }
+       
     }//GEN-LAST:event_jTextFieldClubNameFocusLost
 
     private void jTextFieldClubNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubNameFocusGained
