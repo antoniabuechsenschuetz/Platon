@@ -29,20 +29,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace pref="24" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jTextImage" min="-2" pref="64" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="24" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextMemberSize" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextMaxedSize" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextDescription" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextClubName" alignment="1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="jTextMemberSize" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextMaxedSize" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextDescription" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextClubName" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextImage" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -89,7 +82,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonShowMember" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="40" max="32767" attributes="0"/>
+              <EmptySpace pref="39" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,6 +91,9 @@
     <Component class="javax.swing.JTextField" name="jTextFieldClubName">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e2" green="e2" red="cb" type="rgb"/>
+        </Property>
         <Property name="actionCommand" type="java.lang.String" value="&lt;Not Set&gt;"/>
       </Properties>
       <Events>
@@ -109,6 +105,9 @@
     <Component class="javax.swing.JTextField" name="jTextFieldDescription">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e2" green="e2" red="cb" type="rgb"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDescriptionFocusGained"/>
@@ -118,6 +117,9 @@
     <Component class="javax.swing.JTextField" name="jTextFieldMemberSize">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e2" green="e2" red="cb" type="rgb"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldMemberSizeFocusGained"/>
@@ -127,6 +129,9 @@
     <Component class="javax.swing.JTextField" name="jTextFieldImage">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e2" green="e2" red="cb" type="rgb"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldImageFocusGained"/>
@@ -136,24 +141,36 @@
     <Component class="javax.swing.JTextField" name="jTextClubName">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c7" green="c7" red="a9" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Gruppenname:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextDescription">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c7" green="c7" red="a9" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Gruppenbeschreibung:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextMemberSize">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c7" green="c7" red="a9" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mitgliederanzahl:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextImage">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c7" green="c7" red="a9" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="BildURL:"/>
       </Properties>
       <Events>
@@ -163,6 +180,9 @@
     <Component class="javax.swing.JTextField" name="jTextMaxedSize">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c7" green="c7" red="a9" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="maximale Gr&#xf6;&#xdf;e:"/>
       </Properties>
       <Events>
@@ -172,10 +192,22 @@
     <Component class="javax.swing.JTextField" name="jTextFieldMaxedSize">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e2" green="e2" red="cb" type="rgb"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonShowMember">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Helvetica Neue" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mitglieder anzeigen lassen"/>
       </Properties>
     </Component>

@@ -20,6 +20,7 @@ public class BeitragFrame extends javax.swing.JFrame {
     public BeitragFrame() {
         initComponents();
         displayer();
+        getContentPane().setBackground(new java.awt.Color(169, 199, 199));
     }
 
     /**
@@ -41,12 +42,14 @@ public class BeitragFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
 
+        GruppenwahlPost.setBackground(new java.awt.Color(203, 226, 226));
         GruppenwahlPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GruppenwahlPostActionPerformed(evt);
             }
         });
 
+        BeitragText.setBackground(new java.awt.Color(203, 226, 226));
         BeitragText.setColumns(20);
         BeitragText.setRows(5);
         BeitragText.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -56,6 +59,9 @@ public class BeitragFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(BeitragText);
 
+        PostenButton.setBackground(new java.awt.Color(0, 51, 51));
+        PostenButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        PostenButton.setForeground(new java.awt.Color(255, 255, 255));
         PostenButton.setText("Beitrag Posten");
         PostenButton.setEnabled(false);
         PostenButton.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -74,6 +80,9 @@ public class BeitragFrame extends javax.swing.JFrame {
             }
         });
 
+        CloseButton.setBackground(new java.awt.Color(0, 51, 51));
+        CloseButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        CloseButton.setForeground(new java.awt.Color(255, 255, 255));
         CloseButton.setText("Close");
         CloseButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -89,6 +98,7 @@ public class BeitragFrame extends javax.swing.JFrame {
             }
         });
 
+        PostTitel.setBackground(new java.awt.Color(203, 226, 226));
         PostTitel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PostTitelActionPerformed(evt);
@@ -107,14 +117,14 @@ public class BeitragFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(CloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(GruppenwahlPost, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                             .addComponent(PostenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(PostTitel)
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1))
+                    .addComponent(CloseButton))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -130,7 +140,7 @@ public class BeitragFrame extends javax.swing.JFrame {
                 .addComponent(PostTitel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -224,6 +234,9 @@ public class BeitragFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(BeitragFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

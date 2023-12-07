@@ -10,9 +10,12 @@ package login;
  */
 public enum InterestEnum {
     
-    ZEICHNEN, 
-    REITEN, 
-    SPAZIEREN, 
-    LESEN
+    Zeichnen, 
+    Reiten, 
+    Spazieren, 
+    Lesen,
+    Boxen,
+    Schwimmen,
+    Tanzen
     
 }

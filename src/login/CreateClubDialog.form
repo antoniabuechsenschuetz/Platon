@@ -53,7 +53,7 @@
               <Component id="jTextFieldImage" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButtonCreateClub" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,6 +61,9 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jTextFieldClubName">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e2" green="e2" red="cb" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Benenne deine Gruppe..."/>
         <Property name="actionCommand" type="java.lang.String" value="&lt;Not Set&gt;"/>
       </Properties>
@@ -71,6 +74,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldDescription">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e2" green="e2" red="cb" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Gib ihr eine Beschreibung..."/>
       </Properties>
       <Events>
@@ -80,6 +86,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldClubSize">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e2" green="e2" red="cb" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Maximale Gruppengr&#xf6;&#xdf;e?"/>
       </Properties>
       <Events>
@@ -89,6 +98,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldImage">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="e2" green="e2" red="cb" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="URL f&#xfc;r das Bild..."/>
       </Properties>
       <Events>
@@ -98,6 +110,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCreateClub">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="0" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Helvetica Neue" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Gruppe erstellen"/>
       </Properties>
       <Events>

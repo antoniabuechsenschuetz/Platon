@@ -14,6 +14,7 @@ public class CreateClubDialog extends JDialog {
      */
     public CreateClubDialog() {
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(169, 199, 199));
     }
 
     /**
@@ -35,6 +36,7 @@ public class CreateClubDialog extends JDialog {
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(5, 81, 81));
 
+        jTextFieldClubName.setBackground(new java.awt.Color(203, 226, 226));
         jTextFieldClubName.setText("Benenne deine Gruppe...");
         jTextFieldClubName.setActionCommand("<Not Set>");
         jTextFieldClubName.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -46,6 +48,7 @@ public class CreateClubDialog extends JDialog {
             }
         });
 
+        jTextFieldDescription.setBackground(new java.awt.Color(203, 226, 226));
         jTextFieldDescription.setText("Gib ihr eine Beschreibung...");
         jTextFieldDescription.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -56,6 +59,7 @@ public class CreateClubDialog extends JDialog {
             }
         });
 
+        jTextFieldClubSize.setBackground(new java.awt.Color(203, 226, 226));
         jTextFieldClubSize.setText("Maximale Gruppengröße?");
         jTextFieldClubSize.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -66,6 +70,7 @@ public class CreateClubDialog extends JDialog {
             }
         });
 
+        jTextFieldImage.setBackground(new java.awt.Color(203, 226, 226));
         jTextFieldImage.setText("URL für das Bild...");
         jTextFieldImage.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -76,6 +81,9 @@ public class CreateClubDialog extends JDialog {
             }
         });
 
+        jButtonCreateClub.setBackground(new java.awt.Color(0, 51, 51));
+        jButtonCreateClub.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonCreateClub.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCreateClub.setText("Gruppe erstellen");
         jButtonCreateClub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +118,7 @@ public class CreateClubDialog extends JDialog {
                 .addComponent(jTextFieldImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonCreateClub)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();

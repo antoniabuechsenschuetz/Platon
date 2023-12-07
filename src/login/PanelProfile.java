@@ -4,15 +4,25 @@
  */
 package login;
 
+import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.swing.DefaultListModel;
+import javax.swing.JCheckBox;
+import javax.swing.ListModel;
 import login.DB;
 import login.Homepage;
 import login.Usercontroller;
+import login.InterestEnum;
 
 /**
  *
  * @author patricia
  */
 public class PanelProfile extends javax.swing.JPanel {
+    
+        private DefaultListModel<String> listModel;
 
     /**
      * Creates new form PanelProfile
@@ -21,7 +31,10 @@ public class PanelProfile extends javax.swing.JPanel {
      */
     public PanelProfile(Homepage aThis) {
         initComponents();
+        listModel = new DefaultListModel<>();
+        hobbysList.setModel(listModel);
         display_data();
+        displayer();
     }
 
     /**
@@ -45,6 +58,8 @@ public class PanelProfile extends javax.swing.JPanel {
         StandortText = new javax.swing.JLabel();
         NameText = new javax.swing.JLabel();
         BeschreibungText = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        hobbysList = new javax.swing.JList<>();
 
         setBackground(new java.awt.Color(6, 81, 81));
         setPreferredSize(new java.awt.Dimension(750, 500));
@@ -139,6 +154,19 @@ public class PanelProfile extends javax.swing.JPanel {
         BeschreibungText.setForeground(new java.awt.Color(255, 255, 255));
         BeschreibungText.setText("Beschreibung");
 
+        hobbysList.setBackground(new java.awt.Color(169, 199, 199));
+        hobbysList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Hobbys Hinzufügen..." };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        hobbysList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hobbysListMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(hobbysList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -152,22 +180,22 @@ public class PanelProfile extends javax.swing.JPanel {
                     .addComponent(UsernameText)
                     .addComponent(NameText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(Username)
-                                .addComponent(Location)
-                                .addComponent(Description, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)))
-                        .addContainerGap(189, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(ProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 287, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(SaveProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(72, 72, 72))))
+                        .addGap(72, 72, 72))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Name, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Username, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Location, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Description, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,13 +220,18 @@ public class PanelProfile extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StandortText))
-                .addGap(20, 20, 20)
-                .addComponent(HobbiesText)
-                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(HobbiesText))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BeschreibungText)
                     .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         Location.getAccessibleContext().setAccessibleName("Location");
@@ -239,15 +272,34 @@ public class PanelProfile extends javax.swing.JPanel {
         int id = Usercontroller.getInstance().getLoggedInUser().getId();
         String lo = Location.getText();
         String d = Description.getText();
-            try {
-                DB.getInstance().databaseUpdate("USER", "LOCATION", lo, id);
-                DB.getInstance().databaseUpdate("USER", "DESCRIPTION", d, id);
-            } catch (Exception e) {
-                e.printStackTrace();
+        try {
+            DB.getInstance().databaseUpdate("USER", "LOCATION", lo, id);
+            DB.getInstance().databaseUpdate("USER", "DESCRIPTION", d, id);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }//GEN-LAST:event_SaveProfileMouseClicked
 
+    private void hobbysListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hobbysListMouseClicked
+        if (hobbysList.isSelectedIndex(0) && hobbysList.getSelectedValue().equals("Hobbys Hinzufügen...")) {
+            HobbyFrame bf = new HobbyFrame();
+            bf.setVisible(true);
+        }
+    }//GEN-LAST:event_hobbysListMouseClicked
 
+    private void displayer() {
+        try {
+            listModel.clear();
+            listModel.addElement("Hobbys Hinzufügen...");
+            List<String> i = DB.getInstance().readInterest(Usercontroller.getInstance().getLoggedInUserId());
+            for(String e : i) {
+                listModel.addElement(e);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BeschreibungText;
     private javax.swing.JTextField Description;
@@ -260,6 +312,8 @@ public class PanelProfile extends javax.swing.JPanel {
     private javax.swing.JLabel StandortText;
     private javax.swing.JTextField Username;
     private javax.swing.JLabel UsernameText;
+    private javax.swing.JList<String> hobbysList;
     private javax.swing.JButton jButton1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

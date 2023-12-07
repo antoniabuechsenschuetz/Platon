@@ -268,6 +268,8 @@ public class PanelFeed extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BeitragButton;
