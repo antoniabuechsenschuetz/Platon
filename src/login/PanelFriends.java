@@ -42,8 +42,12 @@ public class PanelFriends extends javax.swing.JPanel {
         setOpaque(false);
 
         jPanelFriendsBackground.setBackground(new java.awt.Color(5, 81, 81));
+        jPanelFriendsBackground.setPreferredSize(new java.awt.Dimension(750, 500));
 
-        jButtonAddFriend.setText("add Friend");
+        jButtonAddFriend.setBackground(new java.awt.Color(0, 51, 51));
+        jButtonAddFriend.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonAddFriend.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAddFriend.setText("Freund hinzufügen");
         jButtonAddFriend.setEnabled(false);
         jButtonAddFriend.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -56,6 +60,9 @@ public class PanelFriends extends javax.swing.JPanel {
             }
         });
 
+        jTextFieldSearchBar.setBackground(new java.awt.Color(169, 199, 199));
+        jTextFieldSearchBar.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jTextFieldSearchBar.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldSearchBar.setText("Suche...");
         jTextFieldSearchBar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -68,6 +75,8 @@ public class PanelFriends extends javax.swing.JPanel {
             }
         });
 
+        jListSearchFriends.setBackground(new java.awt.Color(169, 199, 199));
+        jListSearchFriends.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jListSearchFriends.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListSearchFriendsMouseClicked(evt);
@@ -79,6 +88,8 @@ public class PanelFriends extends javax.swing.JPanel {
             }
         });
 
+        jListFriends.setBackground(new java.awt.Color(169, 199, 199));
+        jListFriends.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jListFriends.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -90,44 +101,37 @@ public class PanelFriends extends javax.swing.JPanel {
         jPanelFriendsBackground.setLayout(jPanelFriendsBackgroundLayout);
         jPanelFriendsBackgroundLayout.setHorizontalGroup(
             jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
-                .addGroup(jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jListSearchFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFriendsBackgroundLayout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                    .addComponent(jListSearchFriends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
                 .addComponent(jButtonAddFriend)
-                .addGap(14, 14, 14))
+                .addGap(35, 35, 35))
         );
         jPanelFriendsBackgroundLayout.setVerticalGroup(
             jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
-                .addGroup(jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(60, 60, 60)
+                .addGroup(jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jButtonAddFriend))
-                    .addGroup(jPanelFriendsBackgroundLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelFriendsBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                            .addComponent(jListSearchFriends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                            .addComponent(jButtonAddFriend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jListSearchFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelFriendsBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanelFriendsBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

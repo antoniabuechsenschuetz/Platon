@@ -15,11 +15,13 @@ public class Homepage extends javax.swing.JFrame {
 
     public Homepage() {
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(169, 199, 199));
 
     }
 
     public void setLoggedInUsername(String username) {
         jLabelUsername.setText(username);
+        
         displayFeed();
     }
 
@@ -32,46 +34,58 @@ public class Homepage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabelHeadline = new javax.swing.JLabel();
-        jLabelUsername = new javax.swing.JLabel();
-        jLabelLeftHeadliner = new javax.swing.JLabel();
-        jPanelAll = new javax.swing.JPanel();
-        jLabelRightHeadliner = new javax.swing.JLabel();
+        jPanelBelowToolBar = new javax.swing.JPanel();
         jPanelFeed = new javax.swing.JPanel();
+        jLabelUsername = new javax.swing.JLabel();
+        jLabelHeadline = new javax.swing.JLabel();
+        jButtonLogout = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jButtonProfile = new javax.swing.JButton();
         jButtonFeed = new javax.swing.JButton();
         jButtonClubs = new javax.swing.JButton();
         jButtonFriends = new javax.swing.JButton();
-        jPanelBelowToolBar = new javax.swing.JPanel();
-        jButtonLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(169, 199, 199));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabelHeadline.setFont(new java.awt.Font("Papyrus", 0, 48)); // NOI18N
-        jLabelHeadline.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelHeadline.setText("PLATON");
-        getContentPane().add(jLabelHeadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
-
-        jLabelUsername.setBackground(new java.awt.Color(255, 255, 255));
-        jLabelUsername.setFont(new java.awt.Font("Krungthep", 0, 24)); // NOI18N
-        jLabelUsername.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelUsername.setText("Name");
-        getContentPane().add(jLabelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 80, 113, 30));
-
-        jLabelLeftHeadliner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/Bilder/startseiteLeiste.JPEG"))); // NOI18N
-        jLabelLeftHeadliner.setText("jLabel2");
-        getContentPane().add(jLabelLeftHeadliner, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 338, -1));
-
-        jPanelAll.setBackground(new java.awt.Color(169, 199, 199));
-
-        jLabelRightHeadliner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/Bilder/startseiteLeiste.JPEG"))); // NOI18N
-        jLabelRightHeadliner.setText("jLabel3");
+        jPanelBelowToolBar.setOpaque(false);
+        jPanelBelowToolBar.setPreferredSize(new java.awt.Dimension(750, 500));
+        getContentPane().add(jPanelBelowToolBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 750, 570));
 
         jPanelFeed.setBackground(new java.awt.Color(37, 81, 81));
+        jPanelFeed.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabelUsername.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelUsername.setFont(new java.awt.Font("Krungthep", 0, 26)); // NOI18N
+        jLabelUsername.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabelUsername.setText("Name");
+        jPanelFeed.add(jLabelUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 113, 30));
+
+        jLabelHeadline.setFont(new java.awt.Font("Papyrus", 1, 48)); // NOI18N
+        jLabelHeadline.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelHeadline.setText("PLATON");
+        jPanelFeed.add(jLabelHeadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
+
+        jButtonLogout.setBackground(new java.awt.Color(0, 51, 51));
+        jButtonLogout.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonLogout.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLogout.setText("Abmelden");
+        jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogoutActionPerformed(evt);
+            }
+        });
+        jPanelFeed.add(jButtonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/Bilder/Banner.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jLabel1.setPreferredSize(new java.awt.Dimension(674, 116));
+        jPanelFeed.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, -1));
 
         jButtonProfile.setBackground(new java.awt.Color(148, 186, 186));
-        jButtonProfile.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
+        jButtonProfile.setFont(new java.awt.Font("Krungthep", 0, 14)); // NOI18N
         jButtonProfile.setText("Profil");
         jButtonProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -83,9 +97,10 @@ public class Homepage extends javax.swing.JFrame {
                 jButtonProfileActionPerformed(evt);
             }
         });
+        jPanelFeed.add(jButtonProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 140, -1));
 
         jButtonFeed.setBackground(new java.awt.Color(171, 203, 203));
-        jButtonFeed.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
+        jButtonFeed.setFont(new java.awt.Font("Krungthep", 0, 14)); // NOI18N
         jButtonFeed.setText("Feed");
         jButtonFeed.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,18 +112,20 @@ public class Homepage extends javax.swing.JFrame {
                 jButtonFeedActionPerformed(evt);
             }
         });
+        jPanelFeed.add(jButtonFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, 140, -1));
 
         jButtonClubs.setBackground(new java.awt.Color(156, 193, 193));
-        jButtonClubs.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
+        jButtonClubs.setFont(new java.awt.Font("Krungthep", 0, 14)); // NOI18N
         jButtonClubs.setText("Gruppen");
         jButtonClubs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonClubsActionPerformed(evt);
             }
         });
+        jPanelFeed.add(jButtonClubs, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 130, 140, -1));
 
         jButtonFriends.setBackground(new java.awt.Color(165, 200, 200));
-        jButtonFriends.setFont(new java.awt.Font("Krungthep", 0, 13)); // NOI18N
+        jButtonFriends.setFont(new java.awt.Font("Krungthep", 0, 14)); // NOI18N
         jButtonFriends.setText("Freunde");
         jButtonFriends.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -120,79 +137,9 @@ public class Homepage extends javax.swing.JFrame {
                 jButtonFriendsActionPerformed(evt);
             }
         });
+        jPanelFeed.add(jButtonFriends, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 130, 140, -1));
 
-        javax.swing.GroupLayout jPanelFeedLayout = new javax.swing.GroupLayout(jPanelFeed);
-        jPanelFeed.setLayout(jPanelFeedLayout);
-        jPanelFeedLayout.setHorizontalGroup(
-            jPanelFeedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFeedLayout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jButtonProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonFeed, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonClubs, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonFriends, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
-        );
-        jPanelFeedLayout.setVerticalGroup(
-            jPanelFeedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelFeedLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelFeedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonFriends)
-                    .addComponent(jButtonClubs)
-                    .addComponent(jButtonFeed)
-                    .addComponent(jButtonProfile))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanelBelowToolBar.setOpaque(false);
-
-        jButtonLogout.setText("abmelden");
-        jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonLogoutActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelAllLayout = new javax.swing.GroupLayout(jPanelAll);
-        jPanelAll.setLayout(jPanelAllLayout);
-        jPanelAllLayout.setHorizontalGroup(
-            jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAllLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonLogout)
-                .addGap(26, 26, 26))
-            .addGroup(jPanelAllLayout.createSequentialGroup()
-                .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAllLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelRightHeadliner, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanelFeed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanelAllLayout.setVerticalGroup(
-            jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAllLayout.createSequentialGroup()
-                .addComponent(jLabelRightHeadliner)
-                .addGap(3, 3, 3)
-                .addComponent(jPanelFeed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanelAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAllLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanelBelowToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAllLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonLogout)
-                        .addGap(19, 19, 19))))
-        );
-
-        getContentPane().add(jPanelAll, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 710));
+        getContentPane().add(jPanelFeed, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 170));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -304,11 +251,9 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFriends;
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonProfile;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelHeadline;
-    private javax.swing.JLabel jLabelLeftHeadliner;
-    private javax.swing.JLabel jLabelRightHeadliner;
     private javax.swing.JLabel jLabelUsername;
-    private javax.swing.JPanel jPanelAll;
     private javax.swing.JPanel jPanelBelowToolBar;
     private javax.swing.JPanel jPanelFeed;
     // End of variables declaration//GEN-END:variables

@@ -48,7 +48,11 @@ public class PanelClubs extends javax.swing.JPanel {
         jButtonShowClubDetails = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(5, 81, 81));
+        setPreferredSize(new java.awt.Dimension(750, 500));
 
+        jButtonCreateClub.setBackground(new java.awt.Color(0, 51, 51));
+        jButtonCreateClub.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonCreateClub.setForeground(new java.awt.Color(255, 255, 255));
         jButtonCreateClub.setText("Gruppe erstellen");
         jButtonCreateClub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +60,9 @@ public class PanelClubs extends javax.swing.JPanel {
             }
         });
 
+        jButtonJoinNewClub.setBackground(new java.awt.Color(0, 51, 51));
+        jButtonJoinNewClub.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonJoinNewClub.setForeground(new java.awt.Color(255, 255, 255));
         jButtonJoinNewClub.setText("Gruppe beitreten");
         jButtonJoinNewClub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +70,9 @@ public class PanelClubs extends javax.swing.JPanel {
             }
         });
 
+        jButtonLeaveClub.setBackground(new java.awt.Color(0, 51, 51));
+        jButtonLeaveClub.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonLeaveClub.setForeground(new java.awt.Color(255, 255, 255));
         jButtonLeaveClub.setText("aus Gruppe austreten");
         jButtonLeaveClub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +80,9 @@ public class PanelClubs extends javax.swing.JPanel {
             }
         });
 
+        jTextFieldSearchBar.setBackground(new java.awt.Color(169, 199, 199));
+        jTextFieldSearchBar.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jTextFieldSearchBar.setForeground(new java.awt.Color(0, 0, 0));
         jTextFieldSearchBar.setText("Suche...");
         jTextFieldSearchBar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -82,6 +95,8 @@ public class PanelClubs extends javax.swing.JPanel {
             }
         });
 
+        jListSearchClubs.setBackground(new java.awt.Color(169, 199, 199));
+        jListSearchClubs.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jListSearchClubs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListSearchClubsMouseClicked(evt);
@@ -93,8 +108,13 @@ public class PanelClubs extends javax.swing.JPanel {
             }
         });
 
+        jListJoinedClubs.setBackground(new java.awt.Color(169, 199, 199));
+        jListJoinedClubs.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jScrollPane1.setViewportView(jListJoinedClubs);
 
+        jButtonDeleteClub.setBackground(new java.awt.Color(0, 51, 51));
+        jButtonDeleteClub.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonDeleteClub.setForeground(new java.awt.Color(255, 255, 255));
         jButtonDeleteClub.setText("Gruppe löschen");
         jButtonDeleteClub.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +122,9 @@ public class PanelClubs extends javax.swing.JPanel {
             }
         });
 
+        jButtonShowClubDetails.setBackground(new java.awt.Color(0, 51, 51));
+        jButtonShowClubDetails.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonShowClubDetails.setForeground(new java.awt.Color(255, 255, 255));
         jButtonShowClubDetails.setText("Gruppendetails anzeigen");
         jButtonShowClubDetails.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -114,25 +137,30 @@ public class PanelClubs extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                    .addComponent(jListSearchClubs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(76, 76, 76)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jListSearchClubs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonCreateClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonLeaveClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonDeleteClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonJoinNewClub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonShowClubDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(26, 26, 26))
+                    .addComponent(jButtonShowClubDetails))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonCreateClub)
                         .addGap(18, 18, 18)
@@ -140,15 +168,12 @@ public class PanelClubs extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jButtonLeaveClub)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonDeleteClub))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldSearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonShowClubDetails))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonDeleteClub)
+                        .addGap(16, 16, 16)
+                        .addComponent(jButtonShowClubDetails)))
+                .addGap(21, 21, 21)
                 .addComponent(jListSearchClubs, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

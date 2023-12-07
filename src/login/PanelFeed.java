@@ -48,7 +48,12 @@ public class PanelFeed extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(2, 70, 70));
+        setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        setPreferredSize(new java.awt.Dimension(750, 500));
 
+        BeitragButton.setBackground(new java.awt.Color(0, 51, 51));
+        BeitragButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        BeitragButton.setForeground(new java.awt.Color(255, 255, 255));
         BeitragButton.setText("neuen Beitrag erstellen");
         BeitragButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -61,12 +66,16 @@ public class PanelFeed extends javax.swing.JPanel {
             }
         });
 
+        Gruppenwahl.setBackground(new java.awt.Color(169, 199, 199));
+        Gruppenwahl.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         Gruppenwahl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GruppenwahlActionPerformed(evt);
             }
         });
 
+        PostAnzeige.setBackground(new java.awt.Color(169, 199, 199));
+        PostAnzeige.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         PostAnzeige.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -74,6 +83,9 @@ public class PanelFeed extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(PostAnzeige);
 
+        DislikeButton.setBackground(new java.awt.Color(0, 51, 51));
+        DislikeButton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        DislikeButton.setForeground(new java.awt.Color(255, 255, 255));
         DislikeButton.setText("Dislike");
         DislikeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,6 +93,9 @@ public class PanelFeed extends javax.swing.JPanel {
             }
         });
 
+        LikeButton.setBackground(new java.awt.Color(0, 51, 51));
+        LikeButton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        LikeButton.setForeground(new java.awt.Color(255, 255, 255));
         LikeButton.setText("Like");
         LikeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -93,6 +108,9 @@ public class PanelFeed extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 51, 51));
+        jButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Refresh");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,38 +128,39 @@ public class PanelFeed extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(LikeButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(DislikeButton))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane2)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton1)
-                            .addGap(122, 122, 122)
-                            .addComponent(BeitragButton))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BeitragButton))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BeitragButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(BeitragButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DislikeButton)
                     .addComponent(LikeButton))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

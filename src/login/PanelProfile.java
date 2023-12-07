@@ -38,8 +38,6 @@ public class PanelProfile extends javax.swing.JPanel {
         Name = new javax.swing.JTextField();
         Username = new javax.swing.JTextField();
         Location = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        InteressenList = new javax.swing.JList<>();
         Description = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         HobbiesText = new javax.swing.JLabel();
@@ -49,7 +47,11 @@ public class PanelProfile extends javax.swing.JPanel {
         BeschreibungText = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(6, 81, 81));
+        setPreferredSize(new java.awt.Dimension(750, 500));
 
+        SaveProfile.setBackground(new java.awt.Color(0, 51, 51));
+        SaveProfile.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        SaveProfile.setForeground(new java.awt.Color(255, 255, 255));
         SaveProfile.setText("Speichern");
         SaveProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -57,11 +59,17 @@ public class PanelProfile extends javax.swing.JPanel {
             }
         });
 
-        ProfilePicture.setBackground(new java.awt.Color(255, 255, 255));
-        ProfilePicture.setForeground(new java.awt.Color(255, 255, 255));
-        ProfilePicture.setText("BILD");
-        ProfilePicture.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 9, true));
+        ProfilePicture.setBackground(new java.awt.Color(169, 199, 199));
+        ProfilePicture.setForeground(new java.awt.Color(169, 199, 199));
+        ProfilePicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/Bilder/ProfilePicture.jpg"))); // NOI18N
+        ProfilePicture.setAlignmentY(0.0F);
+        ProfilePicture.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ProfilePicture.setMaximumSize(new java.awt.Dimension(218, 218));
+        ProfilePicture.setMinimumSize(new java.awt.Dimension(218, 218));
+        ProfilePicture.setPreferredSize(new java.awt.Dimension(218, 218));
 
+        Name.setBackground(new java.awt.Color(169, 199, 199));
+        Name.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         Name.setText("Name");
         Name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +77,8 @@ public class PanelProfile extends javax.swing.JPanel {
             }
         });
 
+        Username.setBackground(new java.awt.Color(169, 199, 199));
+        Username.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         Username.setText("Username");
         Username.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +86,8 @@ public class PanelProfile extends javax.swing.JPanel {
             }
         });
 
+        Location.setBackground(new java.awt.Color(169, 199, 199));
+        Location.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         Location.setText("Standort");
         Location.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,18 +100,8 @@ public class PanelProfile extends javax.swing.JPanel {
             }
         });
 
-        InteressenList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        InteressenList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                InteressenListValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(InteressenList);
-
+        Description.setBackground(new java.awt.Color(169, 199, 199));
+        Description.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         Description.setText("Beschreibung");
         Description.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,20 +114,28 @@ public class PanelProfile extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 51, 51));
+        jButton1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Bearbeiten");
 
+        HobbiesText.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         HobbiesText.setForeground(new java.awt.Color(255, 255, 255));
         HobbiesText.setText("Hobbies");
 
+        UsernameText.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         UsernameText.setForeground(new java.awt.Color(255, 255, 255));
         UsernameText.setText("Benutzername");
 
+        StandortText.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         StandortText.setForeground(new java.awt.Color(255, 255, 255));
         StandortText.setText("Standort");
 
+        NameText.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         NameText.setForeground(new java.awt.Color(255, 255, 255));
         NameText.setText("Name");
 
+        BeschreibungText.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         BeschreibungText.setForeground(new java.awt.Color(255, 255, 255));
         BeschreibungText.setText("Beschreibung");
 
@@ -134,61 +144,61 @@ public class PanelProfile extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(StandortText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(HobbiesText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(UsernameText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(NameText, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BeschreibungText, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(102, 102, 102)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(HobbiesText)
+                    .addComponent(BeschreibungText)
+                    .addComponent(StandortText)
+                    .addComponent(UsernameText)
+                    .addComponent(NameText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Username)
+                                .addComponent(Location)
+                                .addComponent(Description, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)))
+                        .addContainerGap(189, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(239, 239, 239)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SaveProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Location, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                        .addComponent(ProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(SaveProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(72, 72, 72))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
                         .addComponent(SaveProfile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton1)
+                        .addGap(9, 9, 9))
+                    .addComponent(ProfilePicture, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(NameText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(NameText)
+                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UsernameText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(StandortText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(HobbiesText))
-                .addGap(12, 12, 12)
+                .addGap(20, 20, 20)
+                .addComponent(HobbiesText)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BeschreibungText)
-                    .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                    .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         Location.getAccessibleContext().setAccessibleName("Location");
@@ -217,10 +227,6 @@ public class PanelProfile extends javax.swing.JPanel {
 
     }//GEN-LAST:event_DescriptionActionPerformed
 
-    private void InteressenListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_InteressenListValueChanged
-
-    }//GEN-LAST:event_InteressenListValueChanged
-
     private void LocationKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_LocationKeyReleased
 
     }//GEN-LAST:event_LocationKeyReleased
@@ -246,7 +252,6 @@ public class PanelProfile extends javax.swing.JPanel {
     private javax.swing.JLabel BeschreibungText;
     private javax.swing.JTextField Description;
     private javax.swing.JLabel HobbiesText;
-    private javax.swing.JList<String> InteressenList;
     private javax.swing.JTextField Location;
     private javax.swing.JTextField Name;
     private javax.swing.JLabel NameText;
@@ -256,6 +261,5 @@ public class PanelProfile extends javax.swing.JPanel {
     private javax.swing.JTextField Username;
     private javax.swing.JLabel UsernameText;
     private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

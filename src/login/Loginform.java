@@ -31,16 +31,18 @@ public class Loginform extends javax.swing.JDialog {
 
         jPanelBackground.setBackground(new java.awt.Color(169, 199, 199));
 
-        jLabelHeadline.setFont(new java.awt.Font("Papyrus", 0, 36)); // NOI18N
+        jLabelHeadline.setFont(new java.awt.Font("Papyrus", 0, 48)); // NOI18N
         jLabelHeadline.setText("Login");
 
-        jLabelUsernameFont.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabelUsernameFont.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabelUsernameFont.setText("Benutzername:");
 
-        jLabelPasswordFont.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jLabelUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+
+        jLabelPasswordFont.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         jLabelPasswordFont.setText("Passwort:");
 
-        jButtonLogin.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jButtonLogin.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jButtonLogin.setText("Einloggen");
         jButtonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,7 +52,8 @@ public class Loginform extends javax.swing.JDialog {
 
         jLabelRegister.setBackground(new java.awt.Color(255, 255, 255));
         jLabelRegister.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabelRegister.setText("registrieren");
+        jLabelRegister.setForeground(new java.awt.Color(0, 102, 102));
+        jLabelRegister.setText("Registrieren");
         jLabelRegister.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelRegisterMouseClicked(evt);
@@ -60,6 +63,7 @@ public class Loginform extends javax.swing.JDialog {
         jLabelPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/Bilder/IMG_platon.jpg"))); // NOI18N
         jLabelPhoto.setText("jLabel5");
 
+        jLabelPassword.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         jLabelPassword.setText("jPasswordField1");
 
         jLabelQuote.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -77,40 +81,45 @@ public class Loginform extends javax.swing.JDialog {
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                         .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabelPasswordFont)
-                                    .addComponent(jLabelUsernameFont))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
-                                    .addComponent(jLabelUsername)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelBackgroundLayout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelBackgroundLayout.createSequentialGroup()
-                                        .addGap(71, 71, 71)
-                                        .addComponent(jLabelHeadline))))
-                            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                                .addGap(221, 221, 221)
-                                .addComponent(jLabelRegister))
-                            .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jLabelQuote)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabelPasswordFont)
+                                            .addComponent(jLabelUsernameFont))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabelPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                                            .addComponent(jLabelUsername)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelBackgroundLayout.createSequentialGroup()
+                                                .addGap(50, 50, 50)
+                                                .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addComponent(jLabelQuote)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabelPlaton)))
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabelPlaton)))
-                .addGap(18, 18, 18)
+                        .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
+                                .addComponent(jLabelHeadline)
+                                .addGap(192, 192, 192))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
+                                .addComponent(jLabelRegister)
+                                .addGap(197, 197, 197)))))
                 .addComponent(jLabelPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(189, 189, 189))
         );
         jPanelBackgroundLayout.setVerticalGroup(
             jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(57, 57, 57)
                 .addComponent(jLabelHeadline)
-                .addGap(36, 36, 36)
+                .addGap(30, 30, 30)
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelUsernameFont, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -120,9 +129,9 @@ public class Loginform extends javax.swing.JDialog {
                     .addComponent(jLabelPasswordFont, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelRegister)
-                .addGap(64, 64, 64)
+                .addGap(87, 87, 87)
                 .addComponent(jLabelQuote)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelPlaton)
