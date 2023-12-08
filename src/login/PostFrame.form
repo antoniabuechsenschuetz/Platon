@@ -31,11 +31,11 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="GruppenwahlPost" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Component id="GroupChoicePost" min="-2" pref="133" max="-2" attributes="0"/>
                           <EmptySpace pref="111" max="32767" attributes="0"/>
                           <Component id="PostenButton" min="-2" pref="134" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="PostTitel" max="32767" attributes="0"/>
+                      <Component id="PostTitle" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="CloseButton" min="-2" max="-2" attributes="0"/>
@@ -52,10 +52,10 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="PostenButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="GruppenwahlPost" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="GroupChoicePost" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-              <Component id="PostTitel" min="-2" pref="23" max="-2" attributes="0"/>
+              <Component id="PostTitle" min="-2" pref="23" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="266" max="-2" attributes="0"/>
               <EmptySpace pref="13" max="32767" attributes="0"/>
@@ -64,14 +64,14 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JComboBox" name="GruppenwahlPost">
+    <Component class="javax.swing.JComboBox" name="GroupChoicePost">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e2" green="e2" red="cb" type="rgb"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GruppenwahlPostActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GroupChoicePostActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -84,7 +84,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="BeitragText">
+        <Component class="javax.swing.JTextArea" name="PostText">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e2" green="e2" red="cb" type="rgb"/>
@@ -93,7 +93,7 @@
             <Property name="rows" type="int" value="5"/>
           </Properties>
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="BeitragTextKeyTyped"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PostTextKeyTyped"/>
           </Events>
         </Component>
       </SubComponents>
@@ -137,15 +137,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CloseButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="PostTitel">
+    <Component class="javax.swing.JTextField" name="PostTitle">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e2" green="e2" red="cb" type="rgb"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PostTitelActionPerformed"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PostTitelKeyTyped"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PostTitleActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="PostTitleKeyTyped"/>
       </Events>
     </Component>
   </SubComponents>

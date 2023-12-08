@@ -169,7 +169,7 @@ public class PanelFeed extends javax.swing.JPanel {
     }//GEN-LAST:event_BeitragButtonActionPerformed
 
     private void BeitragButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BeitragButtonMouseClicked
-        BeitragFrame bf = new BeitragFrame();
+        PostFrame bf = new PostFrame();
         bf.setVisible(true);
     }//GEN-LAST:event_BeitragButtonMouseClicked
 
