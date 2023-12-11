@@ -31,9 +31,9 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="GroupChoicePost" min="-2" pref="133" max="-2" attributes="0"/>
+                          <Component id="ClubChoicePost" min="-2" pref="133" max="-2" attributes="0"/>
                           <EmptySpace pref="111" max="32767" attributes="0"/>
-                          <Component id="PostenButton" min="-2" pref="134" max="-2" attributes="0"/>
+                          <Component id="PostingButton" min="-2" pref="134" max="-2" attributes="0"/>
                       </Group>
                       <Component id="PostTitle" max="32767" attributes="0"/>
                       <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
@@ -51,8 +51,8 @@
               <Component id="CloseButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="PostenButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="GroupChoicePost" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="PostingButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ClubChoicePost" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Component id="PostTitle" min="-2" pref="23" max="-2" attributes="0"/>
@@ -64,14 +64,14 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JComboBox" name="GroupChoicePost">
+    <Component class="javax.swing.JComboBox" name="ClubChoicePost">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e2" green="e2" red="cb" type="rgb"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GroupChoicePostActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClubChoicePostActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -98,7 +98,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="PostenButton">
+    <Component class="javax.swing.JButton" name="PostingButton">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="0" type="rgb"/>
@@ -109,13 +109,13 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Beitrag Posten"/>
+        <Property name="text" type="java.lang.String" value="Beitrag posten"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="PostenButtonStateChanged"/>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PostenButtonMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PostenButtonActionPerformed"/>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="PostingButtonStateChanged"/>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PostingButtonMouseClicked"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PostingButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="CloseButton">

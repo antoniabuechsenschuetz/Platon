@@ -32,20 +32,20 @@ public class PostFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        GroupChoicePost = new javax.swing.JComboBox<>();
+        ClubChoicePost = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         PostText = new javax.swing.JTextArea();
-        PostenButton = new javax.swing.JButton();
+        PostingButton = new javax.swing.JButton();
         CloseButton = new javax.swing.JButton();
         PostTitle = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 102));
 
-        GroupChoicePost.setBackground(new java.awt.Color(203, 226, 226));
-        GroupChoicePost.addActionListener(new java.awt.event.ActionListener() {
+        ClubChoicePost.setBackground(new java.awt.Color(203, 226, 226));
+        ClubChoicePost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GroupChoicePostActionPerformed(evt);
+                ClubChoicePostActionPerformed(evt);
             }
         });
 
@@ -59,24 +59,24 @@ public class PostFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(PostText);
 
-        PostenButton.setBackground(new java.awt.Color(0, 51, 51));
-        PostenButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        PostenButton.setForeground(new java.awt.Color(255, 255, 255));
-        PostenButton.setText("Beitrag Posten");
-        PostenButton.setEnabled(false);
-        PostenButton.addChangeListener(new javax.swing.event.ChangeListener() {
+        PostingButton.setBackground(new java.awt.Color(0, 51, 51));
+        PostingButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        PostingButton.setForeground(new java.awt.Color(255, 255, 255));
+        PostingButton.setText("Beitrag posten");
+        PostingButton.setEnabled(false);
+        PostingButton.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                PostenButtonStateChanged(evt);
+                PostingButtonStateChanged(evt);
             }
         });
-        PostenButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        PostingButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PostenButtonMouseClicked(evt);
+                PostingButtonMouseClicked(evt);
             }
         });
-        PostenButton.addActionListener(new java.awt.event.ActionListener() {
+        PostingButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PostenButtonActionPerformed(evt);
+                PostingButtonActionPerformed(evt);
             }
         });
 
@@ -119,9 +119,9 @@ public class PostFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(GroupChoicePost, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ClubChoicePost, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                            .addComponent(PostenButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(PostingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(PostTitle)
                         .addComponent(jScrollPane1))
                     .addComponent(CloseButton))
@@ -134,8 +134,8 @@ public class PostFrame extends javax.swing.JFrame {
                 .addComponent(CloseButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PostenButton)
-                    .addComponent(GroupChoicePost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PostingButton)
+                    .addComponent(ClubChoicePost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addComponent(PostTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,9 +146,9 @@ public class PostFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PostenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostenButtonActionPerformed
+    private void PostingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostingButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PostenButtonActionPerformed
+    }//GEN-LAST:event_PostingButtonActionPerformed
 
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
 
@@ -162,41 +162,41 @@ public class PostFrame extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_CloseButtonMouseClicked
 
-    private void GroupChoicePostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupChoicePostActionPerformed
+    private void ClubChoicePostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClubChoicePostActionPerformed
 
-    }//GEN-LAST:event_GroupChoicePostActionPerformed
+    }//GEN-LAST:event_ClubChoicePostActionPerformed
 
     private void PostTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostTitleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PostTitleActionPerformed
 
     private void PostTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PostTextKeyTyped
-        PostenButton.setEnabled(true);
+        PostingButton.setEnabled(true);
     }//GEN-LAST:event_PostTextKeyTyped
 
     private void PostTitleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PostTitleKeyTyped
-        PostenButton.setEnabled(true);
+        PostingButton.setEnabled(true);
     }//GEN-LAST:event_PostTitleKeyTyped
 
-    private void PostenButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PostenButtonStateChanged
+    private void PostingButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PostingButtonStateChanged
         if (PostText.getText().isEmpty() && PostTitle.getText().isEmpty()) {
-            PostenButton.setEnabled(false);
+            PostingButton.setEnabled(false);
         } else if (PostTitle.getText().isEmpty() && !PostText.getText().isEmpty()) {
-            PostenButton.setEnabled(false);
+            PostingButton.setEnabled(false);
         } else if (PostText.getText().isEmpty() && !PostTitle.getText().isEmpty()) {
-            PostenButton.setEnabled(false);
+            PostingButton.setEnabled(false);
         } else {
-            PostenButton.setEnabled(true);
+            PostingButton.setEnabled(true);
         }
-    }//GEN-LAST:event_PostenButtonStateChanged
+    }//GEN-LAST:event_PostingButtonStateChanged
 
-    private void PostenButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PostenButtonMouseClicked
+    private void PostingButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PostingButtonMouseClicked
 
         try {
             String Title = PostTitle.getText();
             String Beitrag = PostText.getText();  // Beitrag zu Post umbennenen??
             int MyID = Usercontroller.getInstance().getLoggedInUserId();
-            String selectedGroup = GroupChoicePost.getSelectedItem().toString();
+            String selectedGroup = ClubChoicePost.getSelectedItem().toString();
             Club foundGroup = DB.getInstance().searchClubByName(selectedGroup);
             int ClubID = foundGroup.getId();
             DB.getInstance().addPost(Title, Beitrag, MyID, ClubID);
@@ -207,7 +207,7 @@ public class PostFrame extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-    }//GEN-LAST:event_PostenButtonMouseClicked
+    }//GEN-LAST:event_PostingButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -255,9 +255,9 @@ public class PostFrame extends javax.swing.JFrame {
         try {
             int id = Usercontroller.getInstance().getLoggedInUserId();
             List<String> group = DB.getInstance().getJoinedClubNames(id);
-            GroupChoicePost.removeAll();
+            ClubChoicePost.removeAll();
             for (String e : group) {
-                GroupChoicePost.addItem(e);
+                ClubChoicePost.addItem(e);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -266,10 +266,10 @@ public class PostFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CloseButton;
-    private javax.swing.JComboBox<String> GroupChoicePost;
+    private javax.swing.JComboBox<String> ClubChoicePost;
     private javax.swing.JTextArea PostText;
     private javax.swing.JTextField PostTitle;
-    private javax.swing.JButton PostenButton;
+    private javax.swing.JButton PostingButton;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

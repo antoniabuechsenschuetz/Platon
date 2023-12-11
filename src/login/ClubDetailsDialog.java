@@ -10,13 +10,19 @@ import javax.swing.JOptionPane;
 public class ClubDetailsDialog extends JDialog {
 
     private Club club;
+
     /**
      * Creates new form CreateClubDialog
+     *
+     * @param club
      */
     public ClubDetailsDialog(Club club) {
         this.club = club;
         initComponents();
-        jTextClubName.setText(club.getName());
+        jTextFieldClubName.setText(club.getName());
+        jTextFieldDescription.setText(club.getDescription());
+        jTextFieldImage.setText(club.getImage());
+        jTextFieldMaxedSize.setText(String.valueOf(club.getSize()));
         getContentPane().setBackground(new java.awt.Color(169, 199, 199));
     }
 
@@ -31,15 +37,13 @@ public class ClubDetailsDialog extends JDialog {
 
         jTextFieldClubName = new javax.swing.JTextField();
         jTextFieldDescription = new javax.swing.JTextField();
-        jTextFieldMemberSize = new javax.swing.JTextField();
         jTextFieldImage = new javax.swing.JTextField();
         jTextClubName = new javax.swing.JTextField();
         jTextDescription = new javax.swing.JTextField();
-        jTextMemberSize = new javax.swing.JTextField();
         jTextImage = new javax.swing.JTextField();
         jTextMaxedSize = new javax.swing.JTextField();
         jTextFieldMaxedSize = new javax.swing.JTextField();
-        jButtonShowMember = new javax.swing.JButton();
+        jButtonShowMembers = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAutoRequestFocus(false);
@@ -49,52 +53,12 @@ public class ClubDetailsDialog extends JDialog {
         jTextFieldClubName.setEditable(false);
         jTextFieldClubName.setBackground(new java.awt.Color(203, 226, 226));
         jTextFieldClubName.setActionCommand("<Not Set>");
-        jTextFieldClubName.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldClubNameFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldClubNameFocusLost(evt);
-            }
-        });
-        jTextFieldClubName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldClubNameActionPerformed(evt);
-            }
-        });
 
         jTextFieldDescription.setEditable(false);
         jTextFieldDescription.setBackground(new java.awt.Color(203, 226, 226));
-        jTextFieldDescription.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldDescriptionFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldDescriptionFocusLost(evt);
-            }
-        });
-
-        jTextFieldMemberSize.setEditable(false);
-        jTextFieldMemberSize.setBackground(new java.awt.Color(203, 226, 226));
-        jTextFieldMemberSize.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldMemberSizeFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldMemberSizeFocusLost(evt);
-            }
-        });
 
         jTextFieldImage.setEditable(false);
         jTextFieldImage.setBackground(new java.awt.Color(203, 226, 226));
-        jTextFieldImage.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextFieldImageFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextFieldImageFocusLost(evt);
-            }
-        });
 
         jTextClubName.setEditable(false);
         jTextClubName.setBackground(new java.awt.Color(169, 199, 199));
@@ -104,35 +68,26 @@ public class ClubDetailsDialog extends JDialog {
         jTextDescription.setBackground(new java.awt.Color(169, 199, 199));
         jTextDescription.setText("Gruppenbeschreibung:");
 
-        jTextMemberSize.setEditable(false);
-        jTextMemberSize.setBackground(new java.awt.Color(169, 199, 199));
-        jTextMemberSize.setText("Mitgliederanzahl:");
-
         jTextImage.setEditable(false);
         jTextImage.setBackground(new java.awt.Color(169, 199, 199));
         jTextImage.setText("BildURL:");
-        jTextImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextImageActionPerformed(evt);
-            }
-        });
 
         jTextMaxedSize.setEditable(false);
         jTextMaxedSize.setBackground(new java.awt.Color(169, 199, 199));
         jTextMaxedSize.setText("maximale Größe:");
-        jTextMaxedSize.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextMaxedSizeActionPerformed(evt);
-            }
-        });
 
         jTextFieldMaxedSize.setEditable(false);
         jTextFieldMaxedSize.setBackground(new java.awt.Color(203, 226, 226));
 
-        jButtonShowMember.setBackground(new java.awt.Color(0, 51, 51));
-        jButtonShowMember.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        jButtonShowMember.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonShowMember.setText("Mitglieder anzeigen lassen");
+        jButtonShowMembers.setBackground(new java.awt.Color(0, 51, 51));
+        jButtonShowMembers.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        jButtonShowMembers.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonShowMembers.setText("Mitglieder anzeigen lassen");
+        jButtonShowMembers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonShowMembersMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,16 +96,14 @@ public class ClubDetailsDialog extends JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextMemberSize, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextMaxedSize, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextDescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextClubName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonShowMember, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(jButtonShowMembers, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                     .addComponent(jTextFieldClubName, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldMemberSize, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextFieldImage, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextFieldMaxedSize, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTextFieldDescription))
@@ -170,105 +123,45 @@ public class ClubDetailsDialog extends JDialog {
                         .addComponent(jTextFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldMemberSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextMemberSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTextFieldImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextMaxedSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldMaxedSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonShowMember)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldMaxedSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextMaxedSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(58, 58, 58)
+                .addComponent(jButtonShowMembers)
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldImageFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldImageFocusLost
-        if (jTextFieldImage.getText().isEmpty()) {
-            jTextFieldImage.setText("URL für das Bild...");
+    private void jButtonShowMembersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowMembersMouseClicked
+        if (club != null) {
+            ClubMembersDialog clubMembersDialog = new ClubMembersDialog(club);
+            clubMembersDialog.displayMembers();
+            JDialog dialog = new JDialog(this, "Club Members", true); // Create a new JDialog
+            dialog.getContentPane().add(clubMembersDialog); // Add the ClubMembersDialog panel to the JDialog's content pane
+            dialog.setSize(451, 438); // Set the size of the JDialog 
+            dialog.setLocationRelativeTo(this); // Set the location relative to the ClubDetailsDialog
+            dialog.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Keine Gruppe ausgewählt, bitte wähle eine Gruppe.");
         }
-    }//GEN-LAST:event_jTextFieldImageFocusLost
+    }//GEN-LAST:event_jButtonShowMembersMouseClicked
 
-    private void jTextFieldImageFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldImageFocusGained
-        if (jTextFieldImage.getText().equals("URL für das Bild...")) {
-            jTextFieldImage.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldImageFocusGained
-
-    private void jTextFieldClubNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubNameFocusLost
-       
-    }//GEN-LAST:event_jTextFieldClubNameFocusLost
-
-    private void jTextFieldClubNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubNameFocusGained
-        if (jTextFieldClubName.getText().equals("Benenne deine Gruppe...")) {
-            jTextFieldClubName.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldClubNameFocusGained
-
-    private void jTextFieldMemberSizeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldMemberSizeFocusLost
-        if (jTextFieldMemberSize.getText().isEmpty()) {
-            jTextFieldMemberSize.setText("Maximale Gruppengröße?");
-        }
-    }//GEN-LAST:event_jTextFieldMemberSizeFocusLost
-
-    private void jTextFieldMemberSizeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldMemberSizeFocusGained
-        if (jTextFieldMemberSize.getText().equals("Maximale Gruppengröße?")) {
-            jTextFieldMemberSize.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldMemberSizeFocusGained
-
-    private void jTextFieldDescriptionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionFocusLost
-        if (jTextFieldDescription.getText().isEmpty()) {
-            jTextFieldDescription.setText("Gib ihr eine Beschreibung...");
-        }
-    }//GEN-LAST:event_jTextFieldDescriptionFocusLost
-
-    private void jTextFieldDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionFocusGained
-        if (jTextFieldDescription.getText().equals("Gib ihr eine Beschreibung...")) {
-            jTextFieldDescription.setText("");
-        }
-    }//GEN-LAST:event_jTextFieldDescriptionFocusGained
-
-    private void jTextFieldClubNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldClubNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldClubNameActionPerformed
-
-    private void jTextImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextImageActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextImageActionPerformed
-
-    private void jTextMaxedSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextMaxedSizeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextMaxedSizeActionPerformed
-
-    private void showClubDetails() {
-         String clubName = "Gruppenname"; // Hier sollte der Name der Gruppe abgerufen werden
-        String description = "Beschreibung der Gruppe"; // Hier sollte die Beschreibung der Gruppe abgerufen werden
-        int clubSize = 10; // Hier sollte die Gruppengröße abgerufen werden
-        String imageURL = "URL für das Bild";
-        
-        jTextFieldClubName.setText(clubName);
-        jTextFieldDescription.setText(description);
-        jTextFieldMemberSize.setText(String.valueOf(clubSize));
-        jTextFieldImage.setText(imageURL);
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonShowMember;
+    private javax.swing.JButton jButtonShowMembers;
     private javax.swing.JTextField jTextClubName;
     private javax.swing.JTextField jTextDescription;
     private javax.swing.JTextField jTextFieldClubName;
     private javax.swing.JTextField jTextFieldDescription;
     private javax.swing.JTextField jTextFieldImage;
     private javax.swing.JTextField jTextFieldMaxedSize;
-    private javax.swing.JTextField jTextFieldMemberSize;
     private javax.swing.JTextField jTextImage;
     private javax.swing.JTextField jTextMaxedSize;
-    private javax.swing.JTextField jTextMemberSize;
     // End of variables declaration//GEN-END:variables
 }

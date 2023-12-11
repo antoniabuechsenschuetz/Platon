@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author lisas //Gruppe löschen & Freunde hinzufügen
+ * @author
  */
 public class PanelClubs extends javax.swing.JPanel {
 
@@ -187,7 +187,6 @@ public class PanelClubs extends javax.swing.JPanel {
     private void jButtonCreateClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateClubActionPerformed
         CreateClubDialog createClubDialog = new CreateClubDialog();
         createClubDialog.setVisible(true);
-        //displayClubs(); auch damit wird nicht aktualisiert
     }//GEN-LAST:event_jButtonCreateClubActionPerformed
 
     private void jButtonLeaveClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeaveClubActionPerformed

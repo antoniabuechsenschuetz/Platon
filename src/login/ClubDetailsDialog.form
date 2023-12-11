@@ -31,7 +31,6 @@
           <Group type="102" attributes="0">
               <EmptySpace pref="24" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTextMemberSize" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextMaxedSize" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextDescription" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextClubName" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -39,9 +38,8 @@
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonShowMember" pref="232" max="32767" attributes="0"/>
+                  <Component id="jButtonShowMembers" pref="232" max="32767" attributes="0"/>
                   <Component id="jTextFieldClubName" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jTextFieldMemberSize" alignment="1" max="32767" attributes="0"/>
                   <Component id="jTextFieldImage" alignment="1" max="32767" attributes="0"/>
                   <Component id="jTextFieldMaxedSize" alignment="1" max="32767" attributes="0"/>
                   <Component id="jTextFieldDescription" alignment="0" max="32767" attributes="0"/>
@@ -65,23 +63,18 @@
                       <Component id="jTextFieldDescription" min="-2" pref="150" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextFieldMemberSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextMemberSize" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jTextFieldImage" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextImage" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextMaxedSize" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldMaxedSize" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jTextFieldMaxedSize" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextMaxedSize" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButtonShowMember" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <Component id="jButtonShowMembers" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="39" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -96,11 +89,6 @@
         </Property>
         <Property name="actionCommand" type="java.lang.String" value="&lt;Not Set&gt;"/>
       </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldClubNameFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldClubNameFocusLost"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldClubNameActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldDescription">
       <Properties>
@@ -109,22 +97,6 @@
           <Color blue="e2" green="e2" red="cb" type="rgb"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDescriptionFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldDescriptionFocusLost"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldMemberSize">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="e2" green="e2" red="cb" type="rgb"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldMemberSizeFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldMemberSizeFocusLost"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldImage">
       <Properties>
@@ -133,10 +105,6 @@
           <Color blue="e2" green="e2" red="cb" type="rgb"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldImageFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextFieldImageFocusLost"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextClubName">
       <Properties>
@@ -156,15 +124,6 @@
         <Property name="text" type="java.lang.String" value="Gruppenbeschreibung:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextMemberSize">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="c7" green="c7" red="a9" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Mitgliederanzahl:"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JTextField" name="jTextImage">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
@@ -173,9 +132,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="BildURL:"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextImageActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextMaxedSize">
       <Properties>
@@ -185,9 +141,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="maximale Gr&#xf6;&#xdf;e:"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextMaxedSizeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldMaxedSize">
       <Properties>
@@ -197,7 +150,7 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonShowMember">
+    <Component class="javax.swing.JButton" name="jButtonShowMembers">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="0" type="rgb"/>
@@ -210,6 +163,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Mitglieder anzeigen lassen"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonShowMembersMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

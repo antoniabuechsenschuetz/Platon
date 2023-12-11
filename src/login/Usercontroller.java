@@ -83,26 +83,26 @@ public class Usercontroller {
             e.printStackTrace();
         }
     }
-    
+
     public boolean createClub(String clubName, String description, int clubSize, String image) {
         try {
             return DB.getInstance().createClub(
                 clubName,
-                loggedInUser.getId(),
+         loggedInUser.getId(),
                 description,
-                clubSize,
+            clubSize,
                 image);
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
     }
-    
+
     /// returns either 0 (success), -1 (error) or 1 (user has no rights)
     public int deleteClub(Club club) {
         try {
             if (loggedInUser.getId() == club.getSenatorID()) {
-                if(DB.getInstance().deleteClub(club) == true) {
+                if (DB.getInstance().deleteClub(club) == true) {
                     return 0;
                 } else {
                     return -1;
@@ -114,9 +114,9 @@ public class Usercontroller {
         } catch (SQLException e) {
             e.printStackTrace();
             return -1;
-        }  
+        }
     }
-    
+
     /// add yourself to a club
     public void addClub(String clubName) {
         try {
@@ -134,14 +134,14 @@ public class Usercontroller {
         }
 
     }
-    
+
     public boolean exitClub(Club club) {
         try {
             return DB.getInstance().removeUserFromClub(loggedInUser.getId(), club.getId());
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-        }  
+        }
     }
 
     public List<Club> searchClub(String search) {
@@ -153,7 +153,7 @@ public class Usercontroller {
         return null;
 
     }
-    
+
     public List<Club> getClubs() {
         try {
             List<Club> result = DB.getInstance().getClubsForUser(loggedInUser.getId());
@@ -164,11 +164,17 @@ public class Usercontroller {
         }
         return null;
     }
-     public void logout() {
+
+    public void logout() {
         loggedInUser = null;
     }
-     
-      public boolean updateClubDetails(String clubName, String description, int clubSize, String imageURL) {
-        return true; 
+
+    public List<String> getMembersNamesForClub(Club club) {
+        try {
+            return DB.getInstance().getMembersNamesForClub(club.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

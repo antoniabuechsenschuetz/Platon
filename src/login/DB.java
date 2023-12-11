@@ -74,7 +74,6 @@ public class DB {
             String ps = rst.getString("password");
             String description = rst.getString("description");
             String location = rst.getString("location");
-            
 
             loggedInUser = new User(uname, name, mail, ps, location, description);
             loggedInUser.setId(rst.getInt("id"));
@@ -588,8 +587,8 @@ public class DB {
         close();
         return result == 0;
     }
-    
-        public List<String> readInterest(int ID) throws SQLException {
+
+    public List<String> readInterest(int ID) throws SQLException {
         connect();
         List<String> interests = new LinkedList<>();
         String sql = "SELECT * FROM INTEREST WHERE USER_ID = ?";
@@ -610,20 +609,26 @@ public class DB {
         return interests;
     }
 
-    public boolean displayClubDetails(String clubName, String description, int clubSize, String imageURL) {
-        try {
-            Club displayClubDetails = DB.getInstance().searchClubByName(clubName);
+    public List<String> getMembersNamesForClub(int clubId) throws SQLException {
+        connect();
+        List<String> membersNames = new ArrayList<>();
 
-            if (displayClubDetails != null) {
-                return DB.getInstance().displayClubDetails(clubName, description, clubSize, imageURL);
-            } else {
-                System.out.println("Die Gruppe existiert nicht");
-                return false;
+        String sql = "SELECT USER.USER_NAME FROM USER_TO_CLUB "
+                + "JOIN USER ON USER_TO_CLUB.USER_ID = USER.ID "
+                + "WHERE USER_TO_CLUB.CLUB_ID = ?";
+        try (java.sql.PreparedStatement pst = conn.prepareStatement(sql)) {
+            pst.setInt(1, clubId);
+            ResultSet rst = pst.executeQuery();
+
+            while (rst.next()) {
+                String username = rst.getString("USER_NAME");
+                membersNames.add(username);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-    }
+        close();
 
+        return membersNames;
+    }
 }
