@@ -188,7 +188,12 @@ public class Homepage extends javax.swing.JFrame {
         Usercontroller.getInstance().logout();
         Loginform loginForm = new Loginform(this);
         loginForm.setVisible(true); //Login sichtbar machen
-        this.dispose(); //schließen der Homepage
+        if (Usercontroller.getInstance().getLoggedInUser() != null) {
+                    setLoggedInUsername(Usercontroller.getInstance().getLoggedInUser().getUsername());
+        } else {
+            System.exit(0);
+        }
+        //this.dispose(); //schließen der Homepage
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
     /**
