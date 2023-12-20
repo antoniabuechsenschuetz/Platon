@@ -416,11 +416,10 @@ public class HobbyFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_box12ActionPerformed
 
-
     public void displayer() {
-
         try {
             List<String> inDataHobby = DB.getInstance().readInterest(Usercontroller.getInstance().getLoggedInUserId());
+
             List<JCheckBox> box = new LinkedList<>();
 
             box.add(box1);
@@ -440,18 +439,23 @@ public class HobbyFrame extends javax.swing.JFrame {
                     .map(Enum::name)
                     .collect(Collectors.toList());
 
-            for (int i = 0; i < inter.size(); i++) {
+            int ende = (inter.size() > box.size() ? box.size() : inter.size());
+            for (int i = 0; i < ende; i++) {
+
                 JCheckBox currentBox = box.get(i);
                 String currentInterest = inter.get(i);
 
                 currentBox.setVisible(true);
                 currentBox.setEnabled(true);
                 currentBox.setText(currentInterest);
-                for(String e : inDataHobby) {
-                    if(currentInterest.equals(e)) {
+
+                for (String e : inDataHobby) {
+                    if (currentInterest.equals(e)) {
                         currentBox.setSelected(true);
                     }
+
                 }
+
             }
 
         } catch (SQLException e) {
