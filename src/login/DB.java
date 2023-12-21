@@ -312,7 +312,7 @@ public class DB {
 
         connect();
         String sql = "INSERT INTO CLUB(NAME,DESCRIPTION, SIZE, IMAGE, SENATOR_ID ) VALUES (?, ?, ?,?,?)";
-        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);  
         pst.setString(1, clubName);
         pst.setString(2, description);
         pst.setInt(3, size);
@@ -322,7 +322,7 @@ public class DB {
         int result = pst.executeUpdate();
         pst.close();
         close();
-        if (result > 0) {
+        if (result >= 0) {
             return true;
         }
         return false;
