@@ -191,7 +191,7 @@ public class Homepage extends javax.swing.JFrame {
         if (Usercontroller.getInstance().getLoggedInUser() != null) {
                     setLoggedInUsername(Usercontroller.getInstance().getLoggedInUser().getUsername());
         } else {
-            System.exit(0);
+            System.exit(0); //in else case kommt nur, wenn Login abgebrochen wird
         }
         //this.dispose(); //schließen der Homepage
     }//GEN-LAST:event_jButtonLogoutActionPerformed

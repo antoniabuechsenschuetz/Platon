@@ -259,9 +259,8 @@ public class PanelClubs extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonDeleteClubActionPerformed
 
     private void jButtonShowClubDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowClubDetailsMouseClicked
-        ClubDetailsDialog clubDetailsDialog = new ClubDetailsDialog(jListJoinedClubs.getSelectedValue());
-        clubDetailsDialog.setVisible(true);
-        
+        ClubDetailsDialog clubDetailsDialog = new ClubDetailsDialog(jListJoinedClubs.getSelectedValue()); //Instanz 
+        clubDetailsDialog.setVisible(true); 
     }//GEN-LAST:event_jButtonShowClubDetailsMouseClicked
 
     private void displayClubs() {

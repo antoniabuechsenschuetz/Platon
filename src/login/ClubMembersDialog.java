@@ -1,8 +1,10 @@
 package login;
 
+import java.awt.Frame;
 import javax.swing.DefaultListModel;
 import java.util.List;
 import java.sql.SQLException;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +27,7 @@ public class ClubMembersDialog extends javax.swing.JPanel {
         initComponents();
         listModel = new DefaultListModel<>();
         jListMembers.setModel(listModel);
+        displayMembers();
     }
 
     /**
@@ -64,10 +67,22 @@ public class ClubMembersDialog extends javax.swing.JPanel {
     public void displayMembers() {
         listModel.clear();
         List<String> members = Usercontroller.getInstance().getMembersNamesForClub(club);
-        for (String member : members) {
+        for (String member : members) { //jeder member wird dem DefaulListModel hinzugefügt
             listModel.addElement(member);
         }
     }
+    
+    public void openDialog() {
+        Frame parentFrame = JOptionPane.getFrameForComponent(this);
+        //findet übergeordnetes Frame für aktuelles grafisches Element this
+        
+        JDialog dialog = new JDialog(parentFrame, "Gruppenmitglieder", true);
+        //neues JDialog Objekt erstellen, true gitb an, dass modal
+            dialog.getContentPane().add(this); //aktuelles Objekt wird Dialog hinzugefügt
+            dialog.setSize(451, 438); 
+            dialog.setVisible(true);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> jListMembers;

@@ -138,20 +138,11 @@ public class ClubDetailsDialog extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonShowMembersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowMembersMouseClicked
-        if (club != null) {
-            ClubMembersDialog clubMembersDialog = new ClubMembersDialog(club);
-            clubMembersDialog.displayMembers();
-            JDialog dialog = new JDialog(this, "Club Members", true); // Create a new JDialog
-            dialog.getContentPane().add(clubMembersDialog); // Add the ClubMembersDialog panel to the JDialog's content pane
-            dialog.setSize(451, 438); // Set the size of the JDialog 
-            dialog.setLocationRelativeTo(this); // Set the location relative to the ClubDetailsDialog
-            dialog.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Keine Gruppe ausgewählt, bitte wähle eine Gruppe.");
-        }
+        ClubMembersDialog clubMembersDialog = new ClubMembersDialog(club);
+        clubMembersDialog.openDialog();
+        //clubMembersDialog.setVisible(true);
     }//GEN-LAST:event_jButtonShowMembersMouseClicked
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonShowMembers;
