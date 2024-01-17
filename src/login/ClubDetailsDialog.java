@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author lisas
+ * @author Antonia Buchsenschutz, Lisa Szelag, Patricia Warmulla, Kim Solveigh Knutzen, Dominik Marlin Erhardt
  */
 public class ClubDetailsDialog extends JDialog {
 
