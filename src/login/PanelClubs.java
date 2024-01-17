@@ -1,27 +1,31 @@
 package login;
 
-import java.awt.Frame;
-import java.util.List;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.SwingUtilities;
-import java.sql.SQLException;
 
 /**
+ * PanelClubs class represents a graphical user interface panel for managing
+ * clubs. This panel allows users to create, join, leave, and delete clubs, as
+ * well as search for clubs. It also displays a list of joined clubs and a
+ * search result list.
  *
- * @author
+ * @author Antonia Buchsenschutz,Lisa Szelag,Patricia Warmulla,Kim Solveigh
+ * Knutzen,Dominik Marlin Erhardt
  */
 public class PanelClubs extends javax.swing.JPanel {
 
-    private DefaultListModel<Club> listModel;
+    private final DefaultListModel<Club> listModel;
     public List<Club> result;
     public String tmpClubname;
 
+    /**
+     * Creates a new PanelClubs instance.
+     *
+     * @param aThis The parent Homepage instance.
+     */
     public PanelClubs(Homepage aThis) {
         initComponents();
-        //jButtonLeaveClub.setEnabled(false);
 
         listModel = new DefaultListModel<>();
         jListJoinedClubs.setModel(listModel);
@@ -177,6 +181,11 @@ public class PanelClubs extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action performed when the "Join New Club" button is clicked.
+     *
+     * @param evt The ActionEvent.
+     */
     private void jButtonJoinNewClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJoinNewClubActionPerformed
         System.out.println(tmpClubname);
         Usercontroller.getInstance().addClub(tmpClubname);
@@ -184,11 +193,21 @@ public class PanelClubs extends javax.swing.JPanel {
         System.out.println("Club hinzugefügt.");
     }//GEN-LAST:event_jButtonJoinNewClubActionPerformed
 
+    /**
+     * Action performed when the "Create Club" button is clicked.
+     *
+     * @param evt The ActionEvent.
+     */
     private void jButtonCreateClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateClubActionPerformed
         CreateClubDialog createClubDialog = new CreateClubDialog();
         createClubDialog.setVisible(true);
     }//GEN-LAST:event_jButtonCreateClubActionPerformed
 
+    /**
+     * Action performed when the "Leave Club" button is clicked.
+     *
+     * @param evt The ActionEvent.
+     */
     private void jButtonLeaveClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeaveClubActionPerformed
         Club selectedClub = jListJoinedClubs.getSelectedValue();
         int response = JOptionPane.showConfirmDialog(this, "Möchten Sie die ausgewählte Gruppe wirklich verlassen?",
@@ -208,10 +227,20 @@ public class PanelClubs extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButtonLeaveClubActionPerformed
 
+    /**
+     * Mouse clicked event for the search bar.
+     *
+     * @param evt The MouseEvent.
+     */
     private void jTextFieldSearchBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextFieldSearchBarMouseClicked
         jTextFieldSearchBar.setText("");
     }//GEN-LAST:event_jTextFieldSearchBarMouseClicked
 
+    /**
+     * Action performed when the search bar text is entered.
+     *
+     * @param evt The ActionEvent.
+     */
     private void jTextFieldSearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSearchBarActionPerformed
 
         String searchText = jTextFieldSearchBar.getText();
@@ -223,6 +252,11 @@ public class PanelClubs extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextFieldSearchBarActionPerformed
 
+    /**
+     * Mouse clicked event for the search result list.
+     *
+     * @param evt The MouseEvent.
+     */
     private void jListSearchClubsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListSearchClubsMouseClicked
         List<Club> tmp = this.result;
         int x = jListSearchClubs.getSelectedIndex();
@@ -237,6 +271,11 @@ public class PanelClubs extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jListSearchClubsActionPerformed
 
+    /**
+     * Action performed when the "Delete Club" button is clicked.
+     *
+     * @param evt The ActionEvent.
+     */
     private void jButtonDeleteClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteClubActionPerformed
 
         Club selectedClub = jListJoinedClubs.getSelectedValue();
@@ -246,23 +285,28 @@ public class PanelClubs extends javax.swing.JPanel {
         if (response == JOptionPane.YES_OPTION) {
             int res = Usercontroller.getInstance().deleteClub(selectedClub);
 
-            if (res == 0) {
-                displayClubs();
-                JOptionPane.showMessageDialog(this, "Gruppe erfolgreich gelöscht.");
-            } else if (res == 1) {
-                JOptionPane.showMessageDialog(this, "User ist nicht Senator dieser Gruppe. Kann nicht gelöscht werden.");
-            } else {
-                JOptionPane.showMessageDialog(this, "Fehler beim Löschen der Gruppe.", "Fehler", JOptionPane.ERROR_MESSAGE);
+            switch (res) {
+                case 0 -> {
+                    displayClubs();
+                    JOptionPane.showMessageDialog(this, "Gruppe erfolgreich gelöscht.");
+                }
+                case 1 ->
+                    JOptionPane.showMessageDialog(this, "User ist nicht Senator dieser Gruppe. Kann nicht gelöscht werden.");
+                default ->
+                    JOptionPane.showMessageDialog(this, "Fehler beim Löschen der Gruppe.", "Fehler", JOptionPane.ERROR_MESSAGE);
             }
         }
         displayClubs();
     }//GEN-LAST:event_jButtonDeleteClubActionPerformed
 
     private void jButtonShowClubDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowClubDetailsMouseClicked
-        ClubDetailsDialog clubDetailsDialog = new ClubDetailsDialog(jListJoinedClubs.getSelectedValue()); //Instanz 
-        clubDetailsDialog.setVisible(true); 
+        ClubDetailsDialog clubDetailsDialog = new ClubDetailsDialog(jListJoinedClubs.getSelectedValue());
+        clubDetailsDialog.setVisible(true);
     }//GEN-LAST:event_jButtonShowClubDetailsMouseClicked
 
+    /**
+     * Display the list of joined clubs in the graphical user interface.
+     */
     private void displayClubs() {
         listModel.clear();
         List<Club> clubs = Usercontroller.getInstance().getClubs();

@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package login;
 
 /**
- *
- * @author patricia
+ *Enum representing different interests.
+ * 
+ * @author Antonia Buchsenschutz,Lisa Szelag,Patricia Warmulla,Kim Solveigh
+ * Knutzen,Dominik Marlin Erhardt
  */
 public enum InterestEnum {
     

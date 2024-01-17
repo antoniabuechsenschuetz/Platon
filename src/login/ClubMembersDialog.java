@@ -3,23 +3,25 @@ package login;
 import java.awt.Frame;
 import javax.swing.DefaultListModel;
 import java.util.List;
-import java.sql.SQLException;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
+ * This class represents a dialog for displaying club members. It includes a
+ * list of members belonging to a specific club.
  *
- * @author lisas
+ * Author: Antonia Buchsenschutz, Lisa Szelag, Patricia Warmulla, Kim Solveigh
+ * Knutzen, Dominik Marlin Erhardt
  */
 public class ClubMembersDialog extends javax.swing.JPanel {
-    
-    private DefaultListModel<String> listModel;
-    private Club club;
+
+    private final DefaultListModel<String> listModel;
+    private final Club club;
 
     /**
-     * Creates new form ClubMembersDialog
+     * Creates new form ClubMembersDialog.
      *
-     * @param club
+     * @param club The club whose members are to be displayed.
      */
     public ClubMembersDialog(Club club) {
         this.club = club;
@@ -64,25 +66,28 @@ public class ClubMembersDialog extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Displays the members of the club in the list.
+     */
     public void displayMembers() {
         listModel.clear();
         List<String> members = Usercontroller.getInstance().getMembersNamesForClub(club);
-        for (String member : members) { //jeder member wird dem DefaulListModel hinzugefügt
+        for (String member : members) {
             listModel.addElement(member);
         }
     }
-    
+
+    /**
+     * Opens the dialog to display club members.
+     */
     public void openDialog() {
         Frame parentFrame = JOptionPane.getFrameForComponent(this);
-        //findet übergeordnetes Frame für aktuelles grafisches Element this
-        
-        JDialog dialog = new JDialog(parentFrame, "Gruppenmitglieder", true);
-        //neues JDialog Objekt erstellen, true gitb an, dass modal
-            dialog.getContentPane().add(this); //aktuelles Objekt wird Dialog hinzugefügt
-            dialog.setSize(451, 438); 
-            dialog.setVisible(true);
-    }
 
+        JDialog dialog = new JDialog(parentFrame, "Gruppenmitglieder", true);
+        dialog.getContentPane().add(this);
+        dialog.setSize(451, 438);
+        dialog.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> jListMembers;

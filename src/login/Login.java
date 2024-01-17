@@ -3,9 +3,23 @@ package login;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
-public class Loginform extends javax.swing.JDialog {
+/**
+ * This class provides a dialog for user login with a graphical user interface.
+ * It includes fields for entering a username and password, a login button, and
+ * a link to the registration form. The dialog also displays a headline, a
+ * quote, and an image.
+ *
+ * @author Antonia Buchsenschutz,Lisa Szelag,Patricia Warmulla,Kim Solveigh
+ * Knutzen,Dominik Marlin Erhardt
+ */
+public class Login extends javax.swing.JDialog {
 
-    public Loginform(JFrame parent) {
+    /**
+     * Creates a new login form dialog.
+     *
+     * @param parent The parent frame for this dialog.
+     */
+    public Login(JFrame parent) {
         super(parent, true);
         initComponents();
         resetPassword();
@@ -81,9 +95,9 @@ public class Loginform extends javax.swing.JDialog {
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                         .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
                                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
                                         .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabelPasswordFont)
                                             .addComponent(jLabelUsernameFont))
@@ -94,9 +108,7 @@ public class Loginform extends javax.swing.JDialog {
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelBackgroundLayout.createSequentialGroup()
                                                 .addGap(50, 50, 50)
                                                 .addComponent(jButtonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(jPanelBackgroundLayout.createSequentialGroup()
-                                        .addGap(25, 25, 25)
-                                        .addComponent(jLabelQuote)))
+                                    .addComponent(jLabelQuote))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackgroundLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -161,6 +173,11 @@ public class Loginform extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action performed when the login button is clicked.
+     *
+     * @param evt The action event.
+     */
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
 
         String username = jLabelUsername.getText();
@@ -168,20 +185,28 @@ public class Loginform extends javax.swing.JDialog {
         String password = new String(passwordChars);
 
         if (Usercontroller.getInstance().login(username, password)) {
-            this.setVisible(false); //öffnen des neuen Fensters
-         } else {
+            this.setVisible(false);
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Logindaten sind falsch");
         }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
-    private void resetPassword() {
-        jLabelPassword.setText(""); //sonst Field voll mit *
-        jLabelPassword.setEchoChar('\u2022'); //setzt Echo auf runden Punkt
-    }
-    
+    /**
+     * Opens the registration form when the "Register" link is clicked.
+     *
+     * @param evt The mouse event.
+     */
     private void jLabelRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelRegisterMouseClicked
         new Register(this).setVisible(true);
     }//GEN-LAST:event_jLabelRegisterMouseClicked
+
+    /**
+     * Resets the password field.
+     */
+    private void resetPassword() {
+        jLabelPassword.setText(""); // Clear the field (otherwise, it's filled with *)
+        jLabelPassword.setEchoChar('\u2022'); // Set the echo to a bullet point
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;

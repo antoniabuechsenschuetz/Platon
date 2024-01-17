@@ -4,8 +4,12 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
+ * CreateClubDialog class represents a dialog for creating a new club. Users can
+ * input information such as club name, description, maximum size, and image
+ * URL.
  *
- * @author lisas
+ * @author Antonia Buchsenschutz, Lisa Szelag, Patricia Warmulla, Kim Solveigh
+ * Knutzen, Dominik Marlin Erhardt
  */
 public class CreateClubDialog extends JDialog {
 
@@ -124,6 +128,11 @@ public class CreateClubDialog extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action performed when the "Create Club" button is clicked.
+     *
+     * @param evt The ActionEvent.
+     */
     private void jButtonCreateClubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateClubActionPerformed
         boolean success = Usercontroller.getInstance().createClub(
                 jTextFieldClubName.getText(),
@@ -134,54 +143,103 @@ public class CreateClubDialog extends JDialog {
 
         if (success) {
             JOptionPane.showMessageDialog(CreateClubDialog.this, "Deine Gruppe wurde erfolgreich erstellt!");
-            dispose(); // Schließt das Dialogfenster nach erfolgreichem Erstellen
+            dispose();
         } else {
             JOptionPane.showMessageDialog(CreateClubDialog.this, "Fehler beim Erstellen deiner Gruppe.");
         }
     }//GEN-LAST:event_jButtonCreateClubActionPerformed
 
+    /**
+     * Sets the default text "Benenne deine Gruppe..." to the club name text
+     * field if it loses focus and is empty.
+     *
+     * @param evt The focus event triggering this method.
+     */
     private void jTextFieldClubNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubNameFocusLost
         if (jTextFieldClubName.getText().isEmpty()) {
             jTextFieldClubName.setText("Benenne deine Gruppe...");
         }
     }//GEN-LAST:event_jTextFieldClubNameFocusLost
 
+    /**
+     * Clears the default text "Benenne deine Gruppe..." from the club name text
+     * field if it gains focus and its current text is the default.
+     *
+     * @param evt The focus event triggering this method.
+     */
     private void jTextFieldClubNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubNameFocusGained
         if (jTextFieldClubName.getText().equals("Benenne deine Gruppe...")) {
             jTextFieldClubName.setText("");
         }
     }//GEN-LAST:event_jTextFieldClubNameFocusGained
 
+    /**
+     * Sets the default text "Gib ihr eine Beschreibung..." to the description
+     * text field if it loses focus and is empty.
+     *
+     * @param evt The focus event triggering this method.
+     */
     private void jTextFieldDescriptionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionFocusLost
         if (jTextFieldDescription.getText().isEmpty()) {
             jTextFieldDescription.setText("Gib ihr eine Beschreibung...");
         }
     }//GEN-LAST:event_jTextFieldDescriptionFocusLost
 
+    /**
+     * Clears the default text "Gib ihr eine Beschreibung..." from the
+     * description text field if it gains focus and its current text is the
+     * default.
+     *
+     * @param evt The focus event triggering this method.
+     */
     private void jTextFieldDescriptionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldDescriptionFocusGained
         if (jTextFieldDescription.getText().equals("Gib ihr eine Beschreibung...")) {
             jTextFieldDescription.setText("");
         }
     }//GEN-LAST:event_jTextFieldDescriptionFocusGained
 
+    /**
+     * Sets the default text "Maximale Gruppengröße?" to the club size text
+     * field if it loses focus and is empty.
+     *
+     * @param evt The focus event triggering this method.
+     */
     private void jTextFieldClubSizeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubSizeFocusLost
         if (jTextFieldClubSize.getText().isEmpty()) {
             jTextFieldClubSize.setText("Maximale Gruppengröße?");
         }
     }//GEN-LAST:event_jTextFieldClubSizeFocusLost
 
+    /**
+     * Clears the default text "Maximale Gruppengröße?" from the club size text
+     * field if it gains focus and its current text is the default.
+     *
+     * @param evt The focus event triggering this method.
+     */
     private void jTextFieldClubSizeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldClubSizeFocusGained
         if (jTextFieldClubSize.getText().equals("Maximale Gruppengröße?")) {
             jTextFieldClubSize.setText("");
         }
     }//GEN-LAST:event_jTextFieldClubSizeFocusGained
 
+    /**
+     * Clears the default text "URL für das Bild..." from the image URL text
+     * field if it gains focus and its current text is the default.
+     *
+     * @param evt The focus event triggering this method.
+     */
     private void jTextFieldImageFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldImageFocusGained
         if (jTextFieldImage.getText().equals("URL für das Bild...")) {
             jTextFieldImage.setText("");
         }
     }//GEN-LAST:event_jTextFieldImageFocusGained
 
+    /**
+     * Sets the default text "URL für das Bild..." to the image URL text field
+     * if it loses focus and is empty.
+     *
+     * @param evt The focus event triggering this method.
+     */
     private void jTextFieldImageFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldImageFocusLost
         if (jTextFieldImage.getText().isEmpty()) {
             jTextFieldImage.setText("URL für das Bild...");

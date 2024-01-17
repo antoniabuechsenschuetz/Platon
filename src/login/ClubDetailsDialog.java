@@ -1,15 +1,19 @@
 package login;
 
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 
 /**
+ * This class represents a dialog for displaying club details. The dialog
+ * contains information such as the club name, description, image, and maximum
+ * size of the club. Additionally, there is an option to show the members of the
+ * club.
  *
- * @author Antonia Buchsenschutz, Lisa Szelag, Patricia Warmulla, Kim Solveigh Knutzen, Dominik Marlin Erhardt
+ * Author: Antonia Buchsenschutz, Lisa Szelag, Patricia Warmulla, Kim Solveigh
+ * Knutzen, Dominik Marlin Erhardt
  */
 public class ClubDetailsDialog extends JDialog {
 
-    private Club club;
+    private final Club club;
 
     /**
      * Creates new form CreateClubDialog
@@ -137,10 +141,14 @@ public class ClubDetailsDialog extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * This method is called when the button to show members is clicked.
+     *
+     * @param evt The event that triggered the click.
+     */
     private void jButtonShowMembersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonShowMembersMouseClicked
         ClubMembersDialog clubMembersDialog = new ClubMembersDialog(club);
         clubMembersDialog.openDialog();
-        //clubMembersDialog.setVisible(true);
     }//GEN-LAST:event_jButtonShowMembersMouseClicked
 
 

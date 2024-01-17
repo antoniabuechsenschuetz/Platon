@@ -1,9 +1,10 @@
 package login;
+
 /**
  *
- * @author antonia Buchsenschutz,Lisa Szelag,Patricia Warmulla,Kim Solveigh Knutzen,Dominik Marlin Erhardt
+ * @author antonia Buchsenschutz,Lisa Szelag,Patricia Warmulla,Kim Solveigh
+ * Knutzen,Dominik Marlin Erhardt
  */
-
 import java.sql.*;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -11,14 +12,11 @@ import java.util.List;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
-
-import login.User;
 
 public class DB {
 
-    private static final String drivername = "org.hsqldb.jdbc.JDBCDriver";
-    private static final String dbURL = "jdbc:hsqldb:file:data/Platon_db"; //richtigr pfad?
+    private static final String DRIVER_NAME = "org.hsqldb.jdbc.JDBCDriver";
+    private static final String DB_URL = "jdbc:hsqldb:file:data/Platon_db"; //richtigr pfad?
     private Connection conn;
     private static DB instance;
 
@@ -31,12 +29,13 @@ public class DB {
      */
     private DB() {
         try {
-            Class.forName(drivername);
+            Class.forName(DRIVER_NAME);
         } catch (ClassNotFoundException exc) {
             exc.printStackTrace();
             System.exit(-1);
         }
     }
+
     /**
      * Gets the instance of the DB class, following the Singleton pattern.
      *
@@ -50,7 +49,7 @@ public class DB {
     }
 
     private void connect() throws SQLException {
-        conn = DriverManager.getConnection(dbURL, "SA", "");
+        conn = DriverManager.getConnection(DB_URL, "SA", "");
     }
 
     private void close() throws SQLException {
@@ -62,7 +61,6 @@ public class DB {
             }
         }
     }
-    
 
     /**
      * Authenticates a user based on the provided username and password.
@@ -99,10 +97,11 @@ public class DB {
         close();
         return loggedInUser;
     }
+
     /**
      * Searches for users in the database based on the provided search criteria.
      *
-     * @param search          The search criteria.
+     * @param search The search criteria.
      * @param excludeUsername The username to be excluded from the search.
      * @return List of User objects matching the search criteria.
      * @throws SQLException If a database error occurs.
@@ -129,7 +128,8 @@ public class DB {
         close();
         return foundUserList;
     }
- /**
+
+    /**
      * Retrieves the ID of the currently logged-in user.
      *
      * @param username The username of the user.
@@ -163,8 +163,8 @@ public class DB {
      * @throws SQLException
      */
     public List<User> allUser() throws SQLException {
-        List<User> all = new ArrayList<User>();
         connect();
+        List<User> all = new ArrayList<User>();
         Statement stmt = conn.createStatement();
         ResultSet rst = stmt.executeQuery("SELECT * from User");
         while (rst.next()) {
@@ -180,6 +180,7 @@ public class DB {
         close();
         return all;
     }
+
     /**
      * Searches for a user in the database based on the provided username.
      *
@@ -204,9 +205,10 @@ public class DB {
         close();
         return user;
     }
+
     /**
      * Inserts a new user into the database.
-     * 
+     *
      * @param user The user to be inserted.
      * @return True if the user is successfully inserted, false otherwise.
      * @throws SQLException If a database access error occurs.
@@ -229,9 +231,9 @@ public class DB {
         return result;
     }
 
-/**
+    /**
      * Deletes a user from the database.
-     * 
+     *
      * @param user The user to be deleted.
      * @return True if the user is successfully deleted, false otherwise.
      * @throws SQLException If a database access error occurs.
@@ -247,14 +249,14 @@ public class DB {
 
     /**
      * Saves user data by updating the corresponding record in the database.
-     * 
+     *
      * @param user The user whose data needs to be saved.
      * @return True if the user data is successfully updated, false otherwise.
      * @throws SQLException If a database access error occurs.
      */
     public boolean saveUser(User user) throws SQLException {
-        boolean result = false;
         connect();
+        boolean result = false;
         Statement stmt = conn.createStatement();
         result = (stmt.executeUpdate("UPDATE User SET "
                 + "name='" + user.getName() + "', "
@@ -265,12 +267,13 @@ public class DB {
         close();
         return result;
     }
-/**
+
+    /**
      * Configures user data by inserting a new user into the database.
-     * 
-     * @param name     The name of the user.
+     *
+     * @param name The name of the user.
      * @param username The username of the user.
-     * @param email    The email of the user.
+     * @param email The email of the user.
      * @param password The password of the user.
      * @return True if the user is successfully configured, false otherwise.
      * @throws SQLException If a database access error occurs.
@@ -290,12 +293,12 @@ public class DB {
         return result > 0;
     }
 
-  /**
+    /**
      * Registers a new user in the database.
-     * 
-     * @param name     The name of the user.
+     *
+     * @param name The name of the user.
      * @param username The username of the user.
-     * @param email    The email of the user.
+     * @param email The email of the user.
      * @param password The password of the user.
      * @return True if the user is successfully registered, false otherwise.
      * @throws SQLException If a database access error occurs.
@@ -318,17 +321,18 @@ public class DB {
         }
         return false;
     }
+
     /**
      * Retrieves a list of friend IDs for a given user ID.
-     * 
+     *
      * @param search The user ID to search for friends.
      * @return A list of friend IDs.
      * @throws SQLException If a database access error occurs.
      */
     public List<Integer> getFriendsId(int search) throws SQLException {
+        connect();
         System.out.println(search);
         List<Integer> friendsIdList = new ArrayList<>();
-        connect();
         String searchSql = "SELECT FRIENDID FROM MYFRIENDS WHERE MYID = " + search;
 
         Statement stmt = conn.createStatement();
@@ -341,12 +345,14 @@ public class DB {
         close();
         return friendsIdList;
     }
-      /**
+
+    /**
      * Adds a friend relationship between two users.
-     * 
+     *
      * @param mId The ID of the first user.
      * @param fId The ID of the second user.
-     * @return True if the friend relationship is successfully added, false otherwise.
+     * @return True if the friend relationship is successfully added, false
+     * otherwise.
      * @throws SQLException If a database access error occurs.
      */
     public boolean addFriend(int mId, int fId) throws SQLException {
@@ -361,17 +367,17 @@ public class DB {
         close();
         return result == 0 && result2 == 0;
     }
+
     /**
      * Retrieves usernames based on a list of user IDs.
-     * 
+     *
      * @param ids The list of user IDs.
      * @return A list of usernames.
      * @throws SQLException If a database access error occurs.
      */
     public List<String> nameIdSearch(List<Integer> ids) throws SQLException {
-        List<String> friendsNames = new LinkedList<>();
         connect();
-
+        List<String> friendsNames = new LinkedList<>();
         String sqlSmt = "SELECT USER_NAME FROM USER WHERE ID = ?";
 
         for (int e : ids) {
@@ -391,22 +397,22 @@ public class DB {
         close();
         return friendsNames;
     }
+
     /**
      * Creates a new club in the database.
-     * 
-     * @param clubName   The name of the club.
-     * @param senatorID  The ID of the senator (club owner).
+     *
+     * @param clubName The name of the club.
+     * @param senatorID The ID of the senator (club owner).
      * @param description The description of the club.
-     * @param size        The size of the club.
-     * @param image       The image of the club.
+     * @param size The size of the club.
+     * @param image The image of the club.
      * @return True if the club is successfully created, false otherwise.
      * @throws SQLException If a database access error occurs.
      */
     public boolean createClub(String clubName, int senatorID, String description, int size, String image) throws SQLException {
-
         connect();
         String sql = "INSERT INTO CLUB(NAME,DESCRIPTION, SIZE, IMAGE, SENATOR_ID ) VALUES (?, ?, ?,?,?)";
-        java.sql.PreparedStatement pst = conn.prepareStatement(sql);  
+        java.sql.PreparedStatement pst = conn.prepareStatement(sql);
         pst.setString(1, clubName);
         pst.setString(2, description);
         pst.setInt(3, size);
@@ -421,9 +427,10 @@ public class DB {
         }
         return false;
     }
+
     /**
      * Deletes a club from the database.
-     * 
+     *
      * @param club The club to be deleted.
      * @return True if the club is successfully deleted, false otherwise.
      * @throws SQLException If a database access error occurs.
@@ -445,9 +452,10 @@ public class DB {
             return false;
         }
     }
+
     /**
      * Retrieves a list of joined club names for a given user ID.
-     * 
+     *
      * @param userId The user ID to search for joined clubs.
      * @return A list of joined club names.
      * @throws SQLException If a database access error occurs.
@@ -466,30 +474,24 @@ public class DB {
 
         while (rst.next()) {
             String clubName = rst.getString("NAME");
-            /*int clubId = rst.getInt("ID");
-            String description = rst.getString("DESCRIPTION");
-            int size = rst.getInt("SIZE");
-            String image = rst.getString("IMAGE");
-
-            Club club = new Club(clubName, clubId, description, size, image);
-             */
             joinedClubs.add(clubName);
         }
         close();
 
         return joinedClubs;
     }
-      /**
+
+    /**
      * Searches for clubs based on a search string.
-     * 
+     *
      * @param search The search string for club names.
      * @return A list of found clubs.
      * @throws SQLException If a database access error occurs.
      */
     public List<Club> searchClub(String search) throws SQLException {
+        connect();
         List<Club> foundClubList = new ArrayList<>();
         String searchSql = "SELECT * FROM Club where Name LIKE '%" + search + "%'";
-        connect();
         Statement stmt = conn.createStatement();
         ResultSet rst = stmt.executeQuery(searchSql);
 
@@ -507,13 +509,15 @@ public class DB {
         close();
         return foundClubList;
     }
+
     /**
- * Searches for a club by name in the database.
- *
- * @param name The name of the club to search for.
- * @return The Club object representing the found club, or null if not found.
- * @throws SQLException If a database access error occurs.
- */
+     * Searches for a club by name in the database.
+     *
+     * @param name The name of the club to search for.
+     * @return The Club object representing the found club, or null if not
+     * found.
+     * @throws SQLException If a database access error occurs.
+     */
     public Club searchClubByName(String name) throws SQLException {
         connect();
         Club club = null;
@@ -534,12 +538,12 @@ public class DB {
     }
 
     /**
- * Retrieves a list of clubs where a user is the senator (owner).
- *
- * @param userID The ID of the user.
- * @return A list of Club objects representing clubs owned by the user.
- * @throws SQLException If a database access error occurs.
- */
+     * Retrieves a list of clubs where a user is the senator (owner).
+     *
+     * @param userID The ID of the user.
+     * @return A list of Club objects representing clubs owned by the user.
+     * @throws SQLException If a database access error occurs.
+     */
     public List<Club> getClubsUserIsSenator(int userID) throws SQLException {
         connect();
         List<Club> clubs = new ArrayList<>();
@@ -570,12 +574,12 @@ public class DB {
     }
 
     /**
- * Retrieves a list of clubs that a user has joined (but is not the owner).
- *
- * @param userId The ID of the user.
- * @return A list of Club objects representing clubs joined by the user.
- * @throws SQLException If a database access error occurs.
- */
+     * Retrieves a list of clubs that a user has joined (but is not the owner).
+     *
+     * @param userId The ID of the user.
+     * @return A list of Club objects representing clubs joined by the user.
+     * @throws SQLException If a database access error occurs.
+     */
     public List<Club> getClubsForUser(int userId) throws SQLException {
         connect();
         List<Club> clubs = new ArrayList<>();
@@ -604,14 +608,16 @@ public class DB {
 
         return clubs;
     }
-/**
- * Adds a user to a club in the database.
- *
- * @param userId The ID of the user.
- * @param clubId The ID of the club.
- * @return True if the user is successfully added to the club, false otherwise.
- * @throws SQLException If a database access error occurs.
- */
+
+    /**
+     * Adds a user to a club in the database.
+     *
+     * @param userId The ID of the user.
+     * @param clubId The ID of the club.
+     * @return True if the user is successfully added to the club, false
+     * otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean addUserToClub(int userId, int clubId) throws SQLException {
         connect();
         String sql = String.format("INSERT INTO USER_TO_CLUB (USER_ID, CLUB_ID) VALUES (%d, %d)", userId, clubId);
@@ -624,14 +630,16 @@ public class DB {
         close();
         return result == 0 && result2 == 0;
     }
-/**
- * Removes a user from a club in the database.
- *
- * @param userId The ID of the user.
- * @param clubId The ID of the club.
- * @return True if the user is successfully removed from the club, false otherwise.
- * @throws SQLException If a database access error occurs.
- */
+
+    /**
+     * Removes a user from a club in the database.
+     *
+     * @param userId The ID of the user.
+     * @param clubId The ID of the club.
+     * @return True if the user is successfully removed from the club, false
+     * otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean removeUserFromClub(int userId, int clubId) throws SQLException {
         connect();
         String sql = String.format("DELETE FROM USER_TO_CLUB WHERE USER_ID=%d AND CLUB_ID=%d", userId, clubId);
@@ -644,16 +652,17 @@ public class DB {
         close();
         return result == 0 && result2 == 0;
     }
-/**
- * Updates a specific column with a new value in the database.
- *
- * @param table  The name of the table to be updated.
- * @param column The name of the column to be updated.
- * @param value  The new value for the column.
- * @param id     The ID of the record to be updated.
- * @return True if the update is successful, false otherwise.
- * @throws SQLException If a database access error occurs.
- */
+
+    /**
+     * Updates a specific column with a new value in the database.
+     *
+     * @param table The name of the table to be updated.
+     * @param column The name of the column to be updated.
+     * @param value The new value for the column.
+     * @param id The ID of the record to be updated.
+     * @return True if the update is successful, false otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean databaseUpdate(String table, String column, String value, int id) throws SQLException {
         connect();
         String sql = String.format("UPDATE %s SET %s = ? WHERE ID = ?", table.toUpperCase(), column.toUpperCase());
@@ -668,16 +677,17 @@ public class DB {
         }
         return false;
     }
-/**
- * Adds a new post to the database.
- *
- * @param Titel  The title of the post.
- * @param Beitrag The content of the post.
- * @param UserID The ID of the user creating the post.
- * @param ClubID The ID of the club where the post is created.
- * @return True if the post is successfully added, false otherwise.
- * @throws SQLException If a database access error occurs.
- */
+
+    /**
+     * Adds a new post to the database.
+     *
+     * @param Titel The title of the post.
+     * @param Beitrag The content of the post.
+     * @param UserID The ID of the user creating the post.
+     * @param ClubID The ID of the club where the post is created.
+     * @return True if the post is successfully added, false otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean addPost(String Titel, String Beitrag, int UserID, int ClubID) throws SQLException {
         connect();
         String sql = "INSERT INTO POST (CLUBID, TITEL, DESCRIPTION, LIKE_COUNT, DISLIKE_COUNT, USER_ID, DATE) VALUES (?, ?, ?, ?, ?, ?, current_timestamp)";
@@ -693,14 +703,15 @@ public class DB {
         close();
         return result == 0;
     }
-/**
- * Increments the like count or dislike count of a post in the database.
- *
- * @param id     The ID of the post.
- * @param column The column to be updated (LIKE_COUNT or DISLIKE_COUNT).
- * @return True if the update is successful, false otherwise.
- * @throws SQLException If a database access error occurs.
- */
+
+    /**
+     * Increments the like count or dislike count of a post in the database.
+     *
+     * @param id The ID of the post.
+     * @param column The column to be updated (LIKE_COUNT or DISLIKE_COUNT).
+     * @return True if the update is successful, false otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean likecounter(int id, String column) throws SQLException {
         connect();
         String sql = String.format("UPDATE POST SET %s = %s + 1 WHERE POSTID = ?", column, column);
@@ -711,14 +722,18 @@ public class DB {
         close();
         return result == 0;
     }
-/**
- * Retrieves a list of posts based on a specific column value from the database.
- *
- * @param columnname The column name to filter posts (e.g., CLUBID, USER_ID).
- * @param ID         The value to filter posts by.
- * @return A list of Post objects representing posts that match the filter criteria.
- * @throws SQLException If a database access error occurs.
- */
+
+    /**
+     * Retrieves a list of posts based on a specific column value from the
+     * database.
+     *
+     * @param columnname The column name to filter posts (e.g., CLUBID,
+     * USER_ID).
+     * @param ID The value to filter posts by.
+     * @return A list of Post objects representing posts that match the filter
+     * criteria.
+     * @throws SQLException If a database access error occurs.
+     */
     public List<Post> readPost(String columnname, int ID) throws SQLException {
         connect();
         List<Post> posts = new LinkedList<>();
@@ -747,14 +762,15 @@ public class DB {
         }
         return posts;
     }
-/**
- * Adds user interests to the database.
- *
- * @param interest The list of interests to be added.
- * @param UserID   The ID of the user.
- * @return True if the interests are successfully added, false otherwise.
- * @throws SQLException If a database access error occurs.
- */
+
+    /**
+     * Adds user interests to the database.
+     *
+     * @param interest The list of interests to be added.
+     * @param UserID The ID of the user.
+     * @return True if the interests are successfully added, false otherwise.
+     * @throws SQLException If a database access error occurs.
+     */
     public boolean addInterest(List<String> interest, int UserID) throws SQLException {
         connect();
         int result = -1;
@@ -770,13 +786,14 @@ public class DB {
         close();
         return result == 0;
     }
-/**
- * Retrieves a list of user interests from the database.
- *
- * @param ID The ID of the user.
- * @return A list of strings representing the user's interests.
- * @throws SQLException If a database access error occurs.
- */
+
+    /**
+     * Retrieves a list of user interests from the database.
+     *
+     * @param ID The ID of the user.
+     * @return A list of strings representing the user's interests.
+     * @throws SQLException If a database access error occurs.
+     */
     public List<String> readInterest(int ID) throws SQLException {
         connect();
         List<String> interests = new LinkedList<>();
@@ -797,13 +814,14 @@ public class DB {
         }
         return interests;
     }
-/**
- * Retrieves a list of member names for a specific club from the database.
- *
- * @param clubId The ID of the club.
- * @return A list of strings representing the member names of the club.
- * @throws SQLException If a database access error occurs.
- */
+
+    /**
+     * Retrieves a list of member names for a specific club from the database.
+     *
+     * @param clubId The ID of the club.
+     * @return A list of strings representing the member names of the club.
+     * @throws SQLException If a database access error occurs.
+     */
     public List<String> getMembersNamesForClub(int clubId) throws SQLException {
         connect();
         List<String> membersNames = new ArrayList<>();

@@ -186,7 +186,7 @@ public class Homepage extends javax.swing.JFrame {
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
         Usercontroller.getInstance().logout();
-        Loginform loginForm = new Loginform(this);
+        Login loginForm = new Login(this);
         loginForm.setVisible(true); //Login sichtbar machen
         if (Usercontroller.getInstance().getLoggedInUser() != null) {
                     setLoggedInUsername(Usercontroller.getInstance().getLoggedInUser().getUsername());
@@ -230,7 +230,7 @@ public class Homepage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Homepage homepage = new Homepage();
-                new Loginform(homepage).setVisible(true);
+                new Login(homepage).setVisible(true);
                 if (Usercontroller.getInstance().getLoggedInUser() != null) {
                     homepage.setLoggedInUsername(Usercontroller.getInstance().getLoggedInUser().getUsername());
                     homepage.setVisible(true);
