@@ -11,8 +11,13 @@ import javax.swing.DefaultListModel;
 import login.Post;
 
 /**
- *
- * @author patricia
+ * PanelFeed class represents a JPanel used for displaying a feed of posts.
+ * Users can view posts from different groups or view all posts from the groups they joined.
+ * It includes options to create a new post, like or dislike a post, and refresh the feed.
+ * The feed is displayed in a JList, and users can interact with posts using buttons.
+ * The class manages the interaction with the database to retrieve and display posts.
+ * @author Antonia Buchsenschutz,Lisa Szelag,Patricia Warmulla,Kim Solveigh
+ * Knutzen,Dominik Marlin Erhardt
  */
 public class PanelFeed extends javax.swing.JPanel {
 
@@ -40,7 +45,7 @@ public class PanelFeed extends javax.swing.JPanel {
     private void initComponents() {
 
         BeitragButton = new javax.swing.JButton();
-        Gruppenwahl = new javax.swing.JComboBox<>();
+        Groupchoice = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         PostAnzeige = new javax.swing.JList<>();
         DislikeButton = new javax.swing.JButton();
@@ -66,11 +71,11 @@ public class PanelFeed extends javax.swing.JPanel {
             }
         });
 
-        Gruppenwahl.setBackground(new java.awt.Color(169, 199, 199));
-        Gruppenwahl.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        Gruppenwahl.addActionListener(new java.awt.event.ActionListener() {
+        Groupchoice.setBackground(new java.awt.Color(169, 199, 199));
+        Groupchoice.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        Groupchoice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GruppenwahlActionPerformed(evt);
+                GroupchoiceActionPerformed(evt);
             }
         });
 
@@ -138,7 +143,7 @@ public class PanelFeed extends javax.swing.JPanel {
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Groupchoice, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -151,7 +156,7 @@ public class PanelFeed extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Gruppenwahl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Groupchoice, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
                     .addComponent(BeitragButton))
                 .addGap(18, 18, 18)
@@ -173,10 +178,10 @@ public class PanelFeed extends javax.swing.JPanel {
         bf.setVisible(true);
     }//GEN-LAST:event_BeitragButtonMouseClicked
 
-    private void GruppenwahlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GruppenwahlActionPerformed
+    private void GroupchoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupchoiceActionPerformed
 
         feeddisplay();
-    }//GEN-LAST:event_GruppenwahlActionPerformed
+    }//GEN-LAST:event_GroupchoiceActionPerformed
 
     private void LikeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LikeButtonActionPerformed
         // TODO add your handling code here:
@@ -213,12 +218,14 @@ public class PanelFeed extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_DislikeButtonMouseClicked
-
+ /**
+     * Displays the feed based on the selected group in the Gruppenwahl combo box.
+     */
     public void feeddisplay() {
         try {
             listModel.clear();
-            if (Gruppenwahl.getItemCount() > 0) {
-                if (Gruppenwahl.getSelectedItem().toString().equals("alle")) {
+            if (Groupchoice.getItemCount() > 0) {
+                if (Groupchoice.getSelectedItem().toString().equals("alle")) {
                     this.posts.clear();
                     int id = Usercontroller.getInstance().getLoggedInUserId();
                     List<Club> gruppe = DB.getInstance().getClubsForUser(id);
@@ -230,7 +237,7 @@ public class PanelFeed extends javax.swing.JPanel {
                         this.posts.addAll(DB.getInstance().readPost("CLUBID", i));
                     }
                 } else {
-                    String selectedGroup = Gruppenwahl.getSelectedItem().toString();
+                    String selectedGroup = Groupchoice.getSelectedItem().toString();
                     Club foundGroup = DB.getInstance().searchClubByName(selectedGroup);
                     int ClubID = foundGroup.getId();
                     this.posts = DB.getInstance().readPost("CLUBID", ClubID);
@@ -256,12 +263,11 @@ public class PanelFeed extends javax.swing.JPanel {
             // Anzeige der Combobox Gruppenwahl
             int id = Usercontroller.getInstance().getLoggedInUserId();
             List<String> gruppe = DB.getInstance().getJoinedClubNames(id);
-            Gruppenwahl.removeAll();
+            Groupchoice.removeAll();
             for (String e : gruppe) {
-                Gruppenwahl.addItem(e);
+                Groupchoice.addItem(e);
             }
-            Gruppenwahl.addItem("alle");
-            //First Feets
+            Groupchoice.addItem("alle");
             feeddisplay();
 
         } catch (SQLException e) {
@@ -274,7 +280,7 @@ public class PanelFeed extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BeitragButton;
     private javax.swing.JButton DislikeButton;
-    private javax.swing.JComboBox<String> Gruppenwahl;
+    private javax.swing.JComboBox<String> Groupchoice;
     private javax.swing.JButton LikeButton;
     private javax.swing.JList<String> PostAnzeige;
     private javax.swing.JButton jButton1;

@@ -9,8 +9,13 @@ import java.util.List;
 import login.PanelFeed;
 
 /**
+ * The PostFrame class represents the GUI frame for posting messages in Platon.
+ * It allows users to create and post messages to specific clubs they have
+ * joined. Users can select a club, enter a title and description for their
+ * post, and click the "Beitrag posten" button.
  *
- * @author patricia
+ * @author Antonia Buchsenschutz,Lisa Szelag,Patricia Warmulla,Kim Solveigh
+ * Knutzen,Dominik Marlin Erhardt
  */
 public class PostFrame extends javax.swing.JFrame {
 
@@ -147,7 +152,7 @@ public class PostFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void PostingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostingButtonActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_PostingButtonActionPerformed
 
     private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
@@ -155,9 +160,14 @@ public class PostFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CloseButtonActionPerformed
 
     private void CloseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseButtonMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CloseButtonMouseEntered
 
+    }//GEN-LAST:event_CloseButtonMouseEntered
+    /**
+     * Handles the action when CloseButton is clicked. Closes the PostFrame by
+     * disposing of it.
+     *
+     * @param evt The MouseEvent triggering the method.
+     */
     private void CloseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseButtonMouseClicked
         dispose();
     }//GEN-LAST:event_CloseButtonMouseClicked
@@ -167,17 +177,30 @@ public class PostFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ClubChoicePostActionPerformed
 
     private void PostTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostTitleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PostTitleActionPerformed
 
+    }//GEN-LAST:event_PostTitleActionPerformed
+    /**
+     * Enables the PostingButton when text is typed into the PostText field.
+     *
+     * @param evt The KeyEvent triggering the method.
+     */
     private void PostTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PostTextKeyTyped
         PostingButton.setEnabled(true);
     }//GEN-LAST:event_PostTextKeyTyped
-
+    /**
+     * Enables the PostingButton when text is typed into the PostTitle field.
+     *
+     * @param evt The KeyEvent triggering the method.
+     */
     private void PostTitleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PostTitleKeyTyped
         PostingButton.setEnabled(true);
     }//GEN-LAST:event_PostTitleKeyTyped
-
+    /**
+     * Enables or disables the PostingButton based on the contents of PostText
+     * and PostTitle fields.
+     *
+     * @param evt The ChangeEvent triggering the method.
+     */
     private void PostingButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_PostingButtonStateChanged
         if (PostText.getText().isEmpty() && PostTitle.getText().isEmpty()) {
             PostingButton.setEnabled(false);
@@ -189,27 +212,34 @@ public class PostFrame extends javax.swing.JFrame {
             PostingButton.setEnabled(true);
         }
     }//GEN-LAST:event_PostingButtonStateChanged
-
+    /**
+     * Handles the action when PostingButton is clicked. Retrieves post
+     * information (title, content, user ID, club ID) and adds the post to the
+     * database. Closes the PostFrame upon successful posting.
+     *
+     * @param evt The MouseEvent triggering the method.
+     */
     private void PostingButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PostingButtonMouseClicked
 
         try {
             String Title = PostTitle.getText();
-            String Beitrag = PostText.getText();  // Beitrag zu Post umbennenen??
+            String Beitrag = PostText.getText();
             int MyID = Usercontroller.getInstance().getLoggedInUserId();
             String selectedGroup = ClubChoicePost.getSelectedItem().toString();
             Club foundGroup = DB.getInstance().searchClubByName(selectedGroup);
             int ClubID = foundGroup.getId();
             DB.getInstance().addPost(Title, Beitrag, MyID, ClubID);
             dispose();
-            
-            
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }//GEN-LAST:event_PostingButtonMouseClicked
 
-
+    /**
+     * Displays the clubs a user has joined in the ClubChoicePost dropdown menu.
+     */
     public void displayer() {
         try {
             int id = Usercontroller.getInstance().getLoggedInUserId();

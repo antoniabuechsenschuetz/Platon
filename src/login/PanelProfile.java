@@ -17,17 +17,23 @@ import login.Usercontroller;
 import login.InterestEnum;
 
 /**
+ * PanelProfile class represents a JPanel used for displaying and updating user
+ * profile information. It includes fields for name, username, location,
+ * description, hobbies, and a profile picture. Users can edit and save their
+ * profile information using this panel. Hobbies are displayed in a list, and
+ * users can add new hobbies by clicking on the list.
  *
- * @author patricia
+ * @author Antonia Buchsenschutz,Lisa Szelag,Patricia Warmulla,Kim Solveigh
+ * Knutzen,Dominik Marlin Erhardt
  */
 public class PanelProfile extends javax.swing.JPanel {
-    
-        private DefaultListModel<String> listModel;
+
+    private DefaultListModel<String> listModel;
 
     /**
      * Creates new form PanelProfile
      *
-     * @param aThis
+     * @param aThis The Homepage instance associated with this panel.
      */
     public PanelProfile(Homepage aThis) {
         initComponents();
@@ -236,7 +242,9 @@ public class PanelProfile extends javax.swing.JPanel {
 
         Location.getAccessibleContext().setAccessibleName("Location");
     }// </editor-fold>//GEN-END:initComponents
-
+ /**
+     * Displays the user's profile data in the corresponding fields.
+     */
     private void display_data() {
         Name.setText(Usercontroller.getInstance().getLoggedInUser().getName());
         Username.setText(Usercontroller.getInstance().getLoggedInUser().getUsername());
@@ -267,7 +275,10 @@ public class PanelProfile extends javax.swing.JPanel {
     private void DescriptionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DescriptionKeyReleased
 
     }//GEN-LAST:event_DescriptionKeyReleased
-
+    /**
+     * Handles the action when the user clicks the "Speichern" button. Updates
+     * the user's location and description in the database.
+     */
     private void SaveProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveProfileMouseClicked
         int id = Usercontroller.getInstance().getLoggedInUser().getId();
         String lo = Location.getText();
@@ -279,20 +290,25 @@ public class PanelProfile extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_SaveProfileMouseClicked
-
+    /**
+     * Handles the action when the user clicks on a hobby in the hobbies list.
+     * Opens a HobbyFrame if the selected field is "Hobbys Hinzufügen...".
+     */
     private void hobbysListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hobbysListMouseClicked
         if (hobbysList.isSelectedIndex(0) && hobbysList.getSelectedValue().equals("Hobbys Hinzufügen...")) {
             HobbyFrame bf = new HobbyFrame();
             bf.setVisible(true);
         }
     }//GEN-LAST:event_hobbysListMouseClicked
-
+    /**
+     * Updates the hobbies list with the user's hobbies.
+     */
     private void displayer() {
         try {
             listModel.clear();
             listModel.addElement("Hobbys Hinzufügen...");
             List<String> i = DB.getInstance().readInterest(Usercontroller.getInstance().getLoggedInUserId());
-            for(String e : i) {
+            for (String e : i) {
                 listModel.addElement(e);
             }
         } catch (SQLException e) {
