@@ -12,10 +12,12 @@ import login.Post;
 
 /**
  * PanelFeed class represents a JPanel used for displaying a feed of posts.
- * Users can view posts from different groups or view all posts from the groups they joined.
- * It includes options to create a new post, like or dislike a post, and refresh the feed.
- * The feed is displayed in a JList, and users can interact with posts using buttons.
- * The class manages the interaction with the database to retrieve and display posts.
+ * Users can view posts from different groups or view all posts from the groups
+ * they joined. It includes options to create a new post, like or dislike a
+ * post, and refresh the feed. The feed is displayed in a JList, and users can
+ * interact with posts using buttons. The class manages the interaction with the
+ * database to retrieve and display posts.
+ *
  * @author Antonia Buchsenschutz,Lisa Szelag,Patricia Warmulla,Kim Solveigh
  * Knutzen,Dominik Marlin Erhardt
  */
@@ -31,7 +33,7 @@ public class PanelFeed extends javax.swing.JPanel {
         initComponents();
         listModel = new DefaultListModel<>();
         PostAnzeige.setModel(listModel);
-        posts  = new LinkedList<Post>();
+        posts = new LinkedList<Post>();
         displayer();
     }
 
@@ -170,31 +172,56 @@ public class PanelFeed extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BeitragButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BeitragButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BeitragButtonActionPerformed
 
+    }//GEN-LAST:event_BeitragButtonActionPerformed
+    /**
+     * Handles the mouse click event for creating a new post. Instantiates a new
+     * PostFrame, making it visible for the user to create a new post.
+     *
+     * @param evt The MouseEvent associated with the mouse click.
+     */
     private void BeitragButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BeitragButtonMouseClicked
         PostFrame bf = new PostFrame();
         bf.setVisible(true);
     }//GEN-LAST:event_BeitragButtonMouseClicked
-
+    /**
+     * Handles the action event when the selection in the Groupchoice combobox
+     * changes. Refreshes the feed display based on the selected group or shows
+     * posts from all groups.
+     *
+     * @param evt The ActionEvent associated with the combobox selection change.
+     */
     private void GroupchoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupchoiceActionPerformed
 
         feeddisplay();
     }//GEN-LAST:event_GroupchoiceActionPerformed
 
     private void LikeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LikeButtonActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_LikeButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
+    }//GEN-LAST:event_jButton1ActionPerformed
+    /**
+     * Handles the mouse click event for the refresh button. Invokes the
+     * {feeddisplay()} method to refresh the display of posts in the PostAnzeige
+     * list based on the selected group in Gruppenwahl.
+     *
+     * @param evt The MouseEvent associated with the mouse click.
+     */
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         feeddisplay();
     }//GEN-LAST:event_jButton1MouseClicked
-
+    /**
+     * Handles the mouse click event for the likeButton. If a post is selected
+     * in the PostAnzeige list, retrieves the corresponding post ID and updates
+     * the like count in the database using the { DB likecounter(int, String)}
+     * method with the counter type "LIKE_COUNT". After updating the dislike
+     * count, refreshes the feed display by calling the {feeddisplay()} method.
+     *
+     * @param evt The MouseEvent associated with the mouse click.
+     */
     private void LikeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LikeButtonMouseClicked
         try {
             if (PostAnzeige.getSelectedIndex() >= 0) {
@@ -206,7 +233,16 @@ public class PanelFeed extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_LikeButtonMouseClicked
-
+    /**
+     * Handles the mouse click event for the DislikeButton. If a post is
+     * selected in the PostAnzeige list, retrieves the corresponding post ID and
+     * updates the dislike count in the database using the { DB likecounter(int,
+     * String)} method with the counter type "DISLIKE_COUNT". After updating the
+     * dislike count, refreshes the feed display by calling the {feeddisplay()}
+     * method.
+     *
+     * @param evt The MouseEvent associated with the mouse click.
+     */
     private void DislikeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DislikeButtonMouseClicked
         try {
             if (PostAnzeige.getSelectedIndex() >= 0) {
@@ -218,8 +254,9 @@ public class PanelFeed extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_DislikeButtonMouseClicked
- /**
-     * Displays the feed based on the selected group in the Gruppenwahl combo box.
+    /**
+     * Displays the feed based on the selected group in the Gruppenwahl combo
+     * box.
      */
     public void feeddisplay() {
         try {
@@ -258,9 +295,17 @@ public class PanelFeed extends javax.swing.JPanel {
 
     }
 
+    /**
+     * Updates and displays the content of the GroupChoice combo box. Retrieves
+     * the list of groups that the logged-in user has joined and populates the
+     * combo box with these group names. Also adds an option to view posts from
+     * all groups. Finally, calls the feeddisplay() method to refresh and
+     * display the feed based on the selected group.
+     *
+     * @throws SQLException if there is an error accessing the database.
+     */
     public void displayer() {
         try {
-            // Anzeige der Combobox Gruppenwahl
             int id = Usercontroller.getInstance().getLoggedInUserId();
             List<String> gruppe = DB.getInstance().getJoinedClubNames(id);
             Groupchoice.removeAll();
@@ -274,8 +319,7 @@ public class PanelFeed extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BeitragButton;
