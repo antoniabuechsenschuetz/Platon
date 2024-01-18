@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package login;
 
 import java.sql.SQLException;
 import java.util.List;
-import login.PanelFeed;
 
 /**
  * The PostFrame class represents the GUI frame for posting messages in Platon.
@@ -48,11 +43,6 @@ public class PostFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 102, 102));
 
         ClubChoicePost.setBackground(new java.awt.Color(203, 226, 226));
-        ClubChoicePost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClubChoicePostActionPerformed(evt);
-            }
-        });
 
         PostText.setBackground(new java.awt.Color(203, 226, 226));
         PostText.setColumns(20);
@@ -79,11 +69,6 @@ public class PostFrame extends javax.swing.JFrame {
                 PostingButtonMouseClicked(evt);
             }
         });
-        PostingButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PostingButtonActionPerformed(evt);
-            }
-        });
 
         CloseButton.setBackground(new java.awt.Color(0, 51, 51));
         CloseButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
@@ -93,22 +78,9 @@ public class PostFrame extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CloseButtonMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                CloseButtonMouseEntered(evt);
-            }
-        });
-        CloseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CloseButtonActionPerformed(evt);
-            }
         });
 
         PostTitle.setBackground(new java.awt.Color(203, 226, 226));
-        PostTitle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PostTitleActionPerformed(evt);
-            }
-        });
         PostTitle.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 PostTitleKeyTyped(evt);
@@ -150,18 +122,6 @@ public class PostFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void PostingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostingButtonActionPerformed
-
-    }//GEN-LAST:event_PostingButtonActionPerformed
-
-    private void CloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseButtonActionPerformed
-
-    }//GEN-LAST:event_CloseButtonActionPerformed
-
-    private void CloseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseButtonMouseEntered
-
-    }//GEN-LAST:event_CloseButtonMouseEntered
     /**
      * Handles the action when CloseButton is clicked. Closes the PostFrame by
      * disposing of it.
@@ -171,14 +131,6 @@ public class PostFrame extends javax.swing.JFrame {
     private void CloseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CloseButtonMouseClicked
         dispose();
     }//GEN-LAST:event_CloseButtonMouseClicked
-
-    private void ClubChoicePostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClubChoicePostActionPerformed
-
-    }//GEN-LAST:event_ClubChoicePostActionPerformed
-
-    private void PostTitleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostTitleActionPerformed
-
-    }//GEN-LAST:event_PostTitleActionPerformed
     /**
      * Enables the PostingButton when text is typed into the PostText field.
      *
@@ -212,6 +164,7 @@ public class PostFrame extends javax.swing.JFrame {
             PostingButton.setEnabled(true);
         }
     }//GEN-LAST:event_PostingButtonStateChanged
+
     /**
      * Handles the action when PostingButton is clicked. Retrieves post
      * information (title, content, user ID, club ID) and adds the post to the

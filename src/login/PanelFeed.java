@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package login;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.sql.SQLException;
 import javax.swing.DefaultListModel;
-import login.Post;
 
 /**
  * PanelFeed class represents a JPanel used for displaying a feed of posts.
@@ -28,11 +23,13 @@ public class PanelFeed extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelFeed
+     *
+     * @param aThis
      */
     public PanelFeed(Homepage aThis) {
         initComponents();
         listModel = new DefaultListModel<>();
-        PostAnzeige.setModel(listModel);
+        PostDisplayField.setModel(listModel);
         posts = new LinkedList<Post>();
         displayer();
     }
@@ -46,30 +43,25 @@ public class PanelFeed extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        BeitragButton = new javax.swing.JButton();
+        newPostButton = new javax.swing.JButton();
         Groupchoice = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        PostAnzeige = new javax.swing.JList<>();
+        PostDisplayField = new javax.swing.JList<>();
         DislikeButton = new javax.swing.JButton();
         LikeButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        RefreshButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(2, 70, 70));
         setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         setPreferredSize(new java.awt.Dimension(750, 500));
 
-        BeitragButton.setBackground(new java.awt.Color(0, 51, 51));
-        BeitragButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        BeitragButton.setForeground(new java.awt.Color(255, 255, 255));
-        BeitragButton.setText("neuen Beitrag erstellen");
-        BeitragButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        newPostButton.setBackground(new java.awt.Color(0, 51, 51));
+        newPostButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        newPostButton.setForeground(new java.awt.Color(255, 255, 255));
+        newPostButton.setText("neuen Beitrag erstellen");
+        newPostButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BeitragButtonMouseClicked(evt);
-            }
-        });
-        BeitragButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BeitragButtonActionPerformed(evt);
+                newPostButtonMouseClicked(evt);
             }
         });
 
@@ -81,14 +73,14 @@ public class PanelFeed extends javax.swing.JPanel {
             }
         });
 
-        PostAnzeige.setBackground(new java.awt.Color(169, 199, 199));
-        PostAnzeige.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        PostAnzeige.setModel(new javax.swing.AbstractListModel<String>() {
+        PostDisplayField.setBackground(new java.awt.Color(169, 199, 199));
+        PostDisplayField.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        PostDisplayField.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(PostAnzeige);
+        jScrollPane2.setViewportView(PostDisplayField);
 
         DislikeButton.setBackground(new java.awt.Color(0, 51, 51));
         DislikeButton.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -109,24 +101,14 @@ public class PanelFeed extends javax.swing.JPanel {
                 LikeButtonMouseClicked(evt);
             }
         });
-        LikeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LikeButtonActionPerformed(evt);
-            }
-        });
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 51));
-        jButton1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Refresh");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        RefreshButton.setBackground(new java.awt.Color(0, 51, 51));
+        RefreshButton.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        RefreshButton.setForeground(new java.awt.Color(255, 255, 255));
+        RefreshButton.setText("Refresh");
+        RefreshButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RefreshButtonMouseClicked(evt);
             }
         });
 
@@ -147,9 +129,9 @@ public class PanelFeed extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Groupchoice, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1)
+                                .addComponent(RefreshButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BeitragButton))
+                                .addComponent(newPostButton))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
@@ -159,8 +141,8 @@ public class PanelFeed extends javax.swing.JPanel {
                 .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Groupchoice, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(BeitragButton))
+                    .addComponent(RefreshButton)
+                    .addComponent(newPostButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -170,20 +152,17 @@ public class PanelFeed extends javax.swing.JPanel {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BeitragButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BeitragButtonActionPerformed
-
-    }//GEN-LAST:event_BeitragButtonActionPerformed
     /**
      * Handles the mouse click event for creating a new post. Instantiates a new
      * PostFrame, making it visible for the user to create a new post.
      *
      * @param evt The MouseEvent associated with the mouse click.
      */
-    private void BeitragButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BeitragButtonMouseClicked
+    private void newPostButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPostButtonMouseClicked
         PostFrame bf = new PostFrame();
         bf.setVisible(true);
-    }//GEN-LAST:event_BeitragButtonMouseClicked
+    }//GEN-LAST:event_newPostButtonMouseClicked
+
     /**
      * Handles the action event when the selection in the Groupchoice combobox
      * changes. Refreshes the feed display based on the selected group or shows
@@ -192,17 +171,9 @@ public class PanelFeed extends javax.swing.JPanel {
      * @param evt The ActionEvent associated with the combobox selection change.
      */
     private void GroupchoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupchoiceActionPerformed
-
         feeddisplay();
     }//GEN-LAST:event_GroupchoiceActionPerformed
 
-    private void LikeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LikeButtonActionPerformed
-
-    }//GEN-LAST:event_LikeButtonActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-    }//GEN-LAST:event_jButton1ActionPerformed
     /**
      * Handles the mouse click event for the refresh button. Invokes the
      * {feeddisplay()} method to refresh the display of posts in the PostAnzeige
@@ -210,9 +181,10 @@ public class PanelFeed extends javax.swing.JPanel {
      *
      * @param evt The MouseEvent associated with the mouse click.
      */
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void RefreshButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RefreshButtonMouseClicked
         feeddisplay();
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_RefreshButtonMouseClicked
+
     /**
      * Handles the mouse click event for the likeButton. If a post is selected
      * in the PostAnzeige list, retrieves the corresponding post ID and updates
@@ -224,8 +196,8 @@ public class PanelFeed extends javax.swing.JPanel {
      */
     private void LikeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LikeButtonMouseClicked
         try {
-            if (PostAnzeige.getSelectedIndex() >= 0) {
-                int id = posts.get(PostAnzeige.getSelectedIndex()).getPostID();
+            if (PostDisplayField.getSelectedIndex() >= 0) {
+                int id = posts.get(PostDisplayField.getSelectedIndex()).getPostID();
                 DB.getInstance().likecounter(id, "LIKE_COUNT");
                 feeddisplay();
             }
@@ -233,6 +205,7 @@ public class PanelFeed extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_LikeButtonMouseClicked
+
     /**
      * Handles the mouse click event for the DislikeButton. If a post is
      * selected in the PostAnzeige list, retrieves the corresponding post ID and
@@ -245,8 +218,8 @@ public class PanelFeed extends javax.swing.JPanel {
      */
     private void DislikeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DislikeButtonMouseClicked
         try {
-            if (PostAnzeige.getSelectedIndex() >= 0) {
-                int id = posts.get(PostAnzeige.getSelectedIndex()).getPostID();
+            if (PostDisplayField.getSelectedIndex() >= 0) {
+                int id = posts.get(PostDisplayField.getSelectedIndex()).getPostID();
                 DB.getInstance().likecounter(id, "DISLIKE_COUNT");
                 feeddisplay();
             }
@@ -254,6 +227,7 @@ public class PanelFeed extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_DislikeButtonMouseClicked
+
     /**
      * Displays the feed based on the selected group in the Gruppenwahl combo
      * box.
@@ -322,12 +296,12 @@ public class PanelFeed extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BeitragButton;
     private javax.swing.JButton DislikeButton;
     private javax.swing.JComboBox<String> Groupchoice;
     private javax.swing.JButton LikeButton;
-    private javax.swing.JList<String> PostAnzeige;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JList<String> PostDisplayField;
+    private javax.swing.JButton RefreshButton;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton newPostButton;
     // End of variables declaration//GEN-END:variables
 }

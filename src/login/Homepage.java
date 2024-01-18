@@ -43,7 +43,7 @@ public class Homepage extends javax.swing.JFrame {
         jLabelUsername = new javax.swing.JLabel();
         jLabelHeadline = new javax.swing.JLabel();
         jButtonLogout = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelBehindHeader = new javax.swing.JLabel();
         jButtonProfile = new javax.swing.JButton();
         jButtonFeed = new javax.swing.JButton();
         jButtonClubs = new javax.swing.JButton();
@@ -83,10 +83,10 @@ public class Homepage extends javax.swing.JFrame {
         });
         jPanelFeed.add(jButtonLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/Bilder/Banner.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        jLabel1.setPreferredSize(new java.awt.Dimension(674, 116));
-        jPanelFeed.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, -1));
+        jLabelBehindHeader.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/Bilder/Banner.jpg"))); // NOI18N
+        jLabelBehindHeader.setText("jLabel1");
+        jLabelBehindHeader.setPreferredSize(new java.awt.Dimension(674, 116));
+        jPanelFeed.add(jLabelBehindHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, -1));
 
         jButtonProfile.setBackground(new java.awt.Color(148, 186, 186));
         jButtonProfile.setFont(new java.awt.Font("Krungthep", 0, 14)); // NOI18N
@@ -298,6 +298,7 @@ public class Homepage extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 Homepage homepage = new Homepage();
                 new Login(homepage).setVisible(true);
@@ -331,7 +332,7 @@ public class Homepage extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFriends;
     private javax.swing.JButton jButtonLogout;
     private javax.swing.JButton jButtonProfile;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelBehindHeader;
     private javax.swing.JLabel jLabelHeadline;
     private javax.swing.JLabel jLabelUsername;
     private javax.swing.JPanel jPanelBelowToolBar;
